@@ -1,0 +1,34 @@
+--- 
+title: "공공데이터 분석 101"
+author: "나영준"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "공공데이터 분석 입문"
+---
+
+# 서론
+
+지금 우리는 디지털 시대에 살고 있으며, 빅데이터와 인공지능 기술의 발전으로 인해 우리는 많은 양의 데이터를 수집하고 보유하게 되었습니다. 이러한 데이터는 공공부문에서도 예외는 아닙니다. 정부 기관, 공공기관 및 비영리 단체는 국민의 생활에 영향을 미치는 다양한 분야에서 데이터를 수집하고 보유하고 있습니다. 그러나 이러한 데이터는 그 자체로는 가치가 없습니다. 데이터의 가치를 실현하려면 이를 분석하고 인사이트를 도출해야 합니다. 
+
+하지만 공공데이터 분석은 그 자체로 쉬운 작업은 아닙니다. 데이터의 복잡성, 다양성, 크기 등이 도전 요인이 될 수 있습니다. 또한, 데이터의 개인정보 보호와 관련된 윤리적인 문제도 고려되어야 합니다. 따라서, 이 분야에서 활동하고자 하는 사람들은 데이터 분석 기술과 도구에 대한 이해뿐만 아니라 윤리적인 측면과 법적인 요구 사항에 대한 이해도 필요합니다.  
+
+본 교재에서는 공공데이터 분석에 대한 입문 지식을 제공하고, 이 분야에서 성공적으로 활동하기 위해 필요한 핵심 개념, 기술, 도구 등을 살펴볼 것입니다. 또한, 데이터 분석의 중요성과 잠재력을 강조하여 공공부문에서 데이터 주도적 의사결정과 혁신을 실현하는 데에 대한 이해를 높이고자 합니다.  
+
+
+```{r eval=FALSE}
+remotes::install_github("datatoys")
+```
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

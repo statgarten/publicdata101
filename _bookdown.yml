@@ -1,0 +1,5 @@
+book_filename: "공공데이터분석101"
+language:
+  ui:
+    chapter_name: "챕터 "
+delete_merged_file: true
