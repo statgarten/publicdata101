@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>공공데이터 분석 101</title>
+  <title>챕터 4 데이터 주무르기 | 공공데이터 분석 101</title>
   <meta name="description" content="공공데이터 분석 입문" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="공공데이터 분석 101" />
+  <meta property="og:title" content="챕터 4 데이터 주무르기 | 공공데이터 분석 101" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="공공데이터 분석 입문" />
   <meta name="github-repo" content="statgarten/publickdata101" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="공공데이터 분석 101" />
+  <meta name="twitter:title" content="챕터 4 데이터 주무르기 | 공공데이터 분석 101" />
   
   <meta name="twitter:description" content="공공데이터 분석 입문" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="data.html"/>
+<link rel="prev" href="r-에센셜.html"/>
+<link rel="next" href="시각화-기초.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -254,37 +254,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">공공데이터 분석 101</h1>
-<p class="author"><em>나영준</em></p>
-<p class="date"><em>2023-05-24</em></p>
+<div id="데이터-주무르기" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">챕터 4</span> 데이터 주무르기<a href="데이터-주무르기.html#데이터-주무르기" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="음주운전-데이터-주무르기" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 음주운전 데이터 주무르기<a href="데이터-주무르기.html#음주운전-데이터-주무르기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="select" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> select()<a href="데이터-주무르기.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="모두를-위한-공공데이터" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">챕터 1</span> 모두를 위한 공공데이터<a href="index.html#모두를-위한-공공데이터" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="서론" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> 서론<a href="index.html#서론" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>지금 우리는 디지털 시대에 살고 있으며, 빅데이터와 인공지능 기술의 발전으로 인해 우리는 많은 양의 데이터를 수집하고 보유하게 되었습니다. 이러한 데이터는 공공부문에서도 예외는 아닙니다. 정부 기관, 공공기관 및 비영리 단체는 국민의 생활에 영향을 미치는 다양한 분야에서 데이터를 수집하고 보유하고 있습니다. 그러나 이러한 데이터는 그 자체로는 가치가 없습니다. 데이터의 가치를 실현하려면 이를 분석하고 인사이트를 도출해야 합니다.</p>
-<p>하지만 공공데이터 분석은 그 자체로 쉬운 작업은 아닙니다. 데이터의 복잡성, 다양성, 크기 등이 도전 요인이 될 수 있습니다. 또한, 데이터의 개인정보 보호와 관련된 윤리적인 문제도 고려되어야 합니다. 따라서, 이 분야에서 활동하고자 하는 사람들은 데이터 분석 기술과 도구에 대한 이해뿐만 아니라 윤리적인 측면과 법적인 요구 사항에 대한 이해도 필요합니다.</p>
-<p>본 교재에서는 공공데이터 분석에 대한 입문 지식을 제공하고, 이 분야에서 성공적으로 활동하기 위해 필요한 핵심 개념, 기술, 도구 등을 살펴볼 것입니다. 또한, 데이터 분석의 중요성과 잠재력을 강조하여 공공부문에서 데이터 주도적 의사결정과 혁신을 실현하는 데에 대한 이해를 높이고자 합니다.</p>
+<div id="arrange" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> arrange()<a href="데이터-주무르기.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="무엇을-배우게-될까" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> 무엇을 배우게 될까?<a href="index.html#무엇을-배우게-될까" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="filter" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> filter()<a href="데이터-주무르기.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="공공데이터란-무엇일까" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> 공공데이터란 무엇일까?<a href="index.html#공공데이터란-무엇일까" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mutate" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> mutate()<a href="데이터-주무르기.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="공공데이터를-분석-하는-이유" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> 공공데이터를 분석 하는 이유<a href="index.html#공공데이터를-분석-하는-이유" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="count" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> count()<a href="데이터-주무르기.html#count" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="공공데이터-활용사례" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> 공공데이터 활용사례<a href="index.html#공공데이터-활용사례" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="group_by-summarise" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> group_by() &amp; summarise()<a href="데이터-주무르기.html#group_by-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
-<div id="r을-사용하는-이유" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> R을 사용하는 이유<a href="index.html#r을-사용하는-이유" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="statgarten-생태계" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> Statgarten 생태계<a href="index.html#statgarten-생태계" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="데이터라는-것이-폭발한다.-합쳤을-때." class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> 데이터라는 것이 폭발한다. 합쳤을 때.<a href="데이터-주무르기.html#데이터라는-것이-폭발한다.-합쳤을-때." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="left_join" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> left_join()<a href="데이터-주무르기.html#left_join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="분석하기-좋은-데이터-형태는" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> 분석하기 좋은 데이터 형태는?<a href="데이터-주무르기.html#분석하기-좋은-데이터-형태는" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pivot_wider" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> pivot_wider()<a href="데이터-주무르기.html#pivot_wider" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="pivot_longer" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> pivot_longer()<a href="데이터-주무르기.html#pivot_longer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
+</div>
 </div>
 </div>
             </section>
@@ -292,8 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-에센셜.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="시각화-기초.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -324,7 +331,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-tidy-data.Rmd",
 "text": "Edit"
 },
 "history": {

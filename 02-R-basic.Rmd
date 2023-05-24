@@ -1,0 +1,27 @@
+# R 에센셜
+
+## R과 RStudio 설치
+
+## Hello, World!
+
+## 테마설정
+
+## 당신의 고민은 이미 누군가의 고민이었다
+### 에러메시지를 대하는 자세
+### google 검색팁
+### chatGPT 활용 디버깅 팁
+
+## 계산기로 사용해보기
+## 이름을 붙여주자(객체할당)
+## 컴퓨터에게 "1"은 1이 아니야(문자와 숫자)
+## 함수와 패키지
+
+### 주요 패키지 설치
+```{r eval=FALSE}
+install.packages("remotes")
+remotes::install_github("statgarten/datatoys")
+```
+
+### 패키지란?
+
+## 데이터프레임 이해
