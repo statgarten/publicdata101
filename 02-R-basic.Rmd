@@ -32,10 +32,14 @@ print("Hello World!")
 
 ### 주요 패키지 설치
 ```{r eval=FALSE}
+install.packages("tidyverse")
 install.packages("remotes")
 remotes::install_github("statgarten/datatoys")
 ```
 
 ## datatoys 패키지 소개
+> Play gives children a chance to practice what they are learning -- Fred Rogers
+
+
 
 ## 데이터프레임 이해
