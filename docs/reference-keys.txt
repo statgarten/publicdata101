@@ -31,9 +31,9 @@ hello-world
 함수란
 함수들의-꾸러미-패키지
 주요-패키지-설치
+데이터-주무르기
 datatoys-패키지-소개
 데이터프레임-이해
-데이터-주무르기
 음주운전-데이터-주무르기
 select
 arrange
@@ -64,6 +64,6 @@ ggplot2-소개
 공공데이터-개방-요청하기
 공공데이터의-한계
 statgarten
-statgarten-소개
 cui보다-gui가-좋을-때
+statgarten-소개
 나가는-말

@@ -1,5 +1,10 @@
 # 데이터 주무르기
 
+## datatoys 패키지 소개
+> Play gives children a chance to practice what they are learning -- Fred Rogers
+
+## 데이터프레임 이해
+
 ## 음주운전 데이터 주무르기
 ### select()
 ### arrange()

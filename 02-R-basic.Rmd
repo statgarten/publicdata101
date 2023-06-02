@@ -133,9 +133,3 @@ install.packages("remotes")
 remotes::install_github("statgarten/datatoys")
 ```
 
-## datatoys 패키지 소개
-> Play gives children a chance to practice what they are learning -- Fred Rogers
-
-
-
-## 데이터프레임 이해

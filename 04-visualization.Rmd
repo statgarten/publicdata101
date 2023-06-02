@@ -7,10 +7,14 @@
 knitr::kable(anscombe)
 ```
 
-나열된 숫자만을 읽는 것은 매우 피곤한일인지라, 먼저 기초 통계량을 한번 계산해보자.
+나열된 숫자만을 읽는 것은 매우 피곤한일인지라, 먼저 데이터의 평균과 분산을 한번 계산해보자. 코드의 해석은 생각하지 말고 결과값에 집중해보자.
 
 ```{r}
-fBasics::basicStats(anscombe)
+# 평균 계산
+lapply(anscombe, mean)
+
+# 분산 계산
+lapply(anscombe, var)
 ```
 
 X1~X4 모두 평균 9, 분산 11로 동일했으며, Y1~Y4 에서도 평균 7.5 분산 4.12로 동일했다.
@@ -19,8 +23,28 @@ X1~X4 모두 평균 9, 분산 11로 동일했으며, Y1~Y4 에서도 평균 7.5 
 cor(anscombe)
 ```
 
-X와 매칭되는 Y의 상관계수는 각각 0.816으로 동일했으며 1차 회귀식은 모두 y = 3 + 0.5x로 동일했다. 4개 그룹의 평균, 분산, 상관계수 및 회귀식이 모두 같다. 이것만 보면 같은 경향을 가진 데이터로 볼 수 있을 것이다. 하지만 이 데이터들을 산포도 표시하면 어떤 결과가 나타날까?
+X와 매칭되는 Y의 상관계수는 각각 0.816으로 동일했으며 1차 회귀식은 모두 y = 3 + 0.5x로 동일했다. 즉 4개 그룹의 평균, 분산, 상관계수 및 회귀식이 모두 같다. 이것만 보면 같은 경향을 가진 데이터로 볼 수 있을 것이다. 하지만 이 데이터들을 산포도 표시하면 어떤 결과가 나타날까? 역시 코드의 해석은 생각하지 말고 결과값에 집중해보자.
 
+```{r}
+par(mfrow = c(2, 2)) # 그래프를 2x2 그리드로 배치
+
+# 첫 번째 그래프
+plot(anscombe$x1, anscombe$y1, main = "Dataset I",
+     xlab = "x", ylab = "y")
+
+# 두 번째 그래프
+plot(anscombe$x2, anscombe$y2, main = "Dataset II",
+     xlab = "x", ylab = "y")
+
+# 세 번째 그래프
+plot(anscombe$x3, anscombe$y3, main = "Dataset III",
+     xlab = "x", ylab = "y")
+
+# 네 번째 그래프
+plot(anscombe$x4, anscombe$y4, main = "Dataset IV",
+     xlab = "x", ylab = "y")
+
+```
 
 
 ## ggplot2 소개
