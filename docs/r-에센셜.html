@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-01" />
+<meta name="date" content="2023-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R Studio를 실행해보자. 프로그래밍이 처음인 사람이라면 아주 낯선 화면을 마주하게 될 것이다. 묻지도 따지지도 말고 일단 Console이라고 적인 박스에서 꿈뻑거리고 있는 그곳에 아래와 같이 입력하고 경쾌히 엔터키를 눌러보자.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-에센셜.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello World!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello World!&quot;</code></pre>
-<p>축하한다! <strong>당신은 세상 모든 프로그래머들의 국룰과 함께 역사적인 첫발을 내딛었다.</strong> 부디 새로운 세상(World)에 들어온 이 순간을 잘 기억하시라.</p>
+<p>축하한다! <strong>당신은 세상 모든 프로그래머들의 국룰과 함께 역사적인 첫발을 내딛었다.</strong> 부디 새로운 세상(World)에 들어온 이 순간을 잘 기억하시라. R Studio의 인터페이스는 단순하다. Console에 뭔가를 쓰고 입력하기만 하면 된다. 우리는 이것을 ’명령’이라고 부른다. 컴퓨터는 ’명령’한대로 뭔가를 하기 시작할 것이다. 그리고 그 여튼 뭔가 보여준다. 제대로 실행되던지 아니면 오류 메시지를 보여주던지. 만약 미완성된 명령을 입력하면 프롬프트에 <code>+</code>가 표시되는데, 이는 나머지 부분을 더 입력하기를 기다리고 있다는 의미다. 명령을 마저 입력하거나 Esc를 눌러 취소하면 된다.</p>
 </div>
 <div id="예쁜-테마는-일할-맛-나게-해주지" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> 예쁜 테마는 일할 맛 나게 해주지<a href="r-에센셜.html#예쁜-테마는-일할-맛-나게-해주지" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -288,12 +288,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="계산기로-사용해보기" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> 계산기로 사용해보기<a href="r-에센셜.html#계산기로-사용해보기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R은 계산기로 사용할 수 있다. <code>1 + 1</code>를 입력하고 엔터키를 눌러보자.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-에센셜.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>R은 사칙연산을 포함한 다양한 연산을 할 수 있다. 원하는 숫자들을 더하고(<code>+</code>) 빼고(<code>-</code>) 곱하고(<code>*</code>) 나눠보자(<code>/</code>). R은 아주 작은수 부터 큰수까지 순식간에 계산해준다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-에센셜.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-에센셜.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-에센셜.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-에센셜.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 </div>
 <div id="이름을-붙여주자객체할당" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> 이름을 붙여주자(객체할당)<a href="r-에센셜.html#이름을-붙여주자객체할당" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>내가 그의 이름을 불러주기 전에는 그는 다만 하나의 몸짓에 지나지 않았다.<br />
+내가 그의 이름을 불러 주었을 때, 그는 나에게로 와서 꽃이 되었다. – 꽃(김춘수)</p>
+</blockquote>
+<p>앞에서 배운 것처럼 R에게 명령을 내려보았다. 하지만 이것들은 아직 컴퓨터 어디에도 저장되지 않았다. 이미 다 지나간 일이라 다시 사용할 수 없으므로 만약 이것들을 계속해서 사용하고 싶다면 어딘가에 어떠한 형태로든 저장해 놓아야 한다. 이제 객체(object)가 필요할 시간이다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-에센셜.html#cb13-1" aria-hidden="true" tabindex="-1"></a>two <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb13-2"><a href="r-에센셜.html#cb13-2" aria-hidden="true" tabindex="-1"></a>five <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
+<p>이제 컴퓨터의 메모리 어딘가에 객체가 저장되었다. 객체는 <code>&lt;-</code>를 사용해서 할당할 수 있다(대신 <code>=</code>를 사용할 수도 있지만 사용하지 않기로 하자). 할당된 객체들에 대한 정보는 R Studio의 Environment 탭에서 찾아볼 수 있다.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-에센셜.html#cb14-1" aria-hidden="true" tabindex="-1"></a>two <span class="sc">+</span> <span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r-에센셜.html#cb16-1" aria-hidden="true" tabindex="-1"></a>five <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 500</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-에센셜.html#cb18-1" aria-hidden="true" tabindex="-1"></a>two <span class="sc">/</span> five</span></code></pre></div>
+<pre><code>## [1] 0.4</code></pre>
+<p>이미 만들어진 객체 이름이라도 덮어 쓸 수 있다. 같은 객체 이름을 두번 사용하지 않도록 조심하자.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-에센셜.html#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb20-2"><a href="r-에센셜.html#cb20-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-에센셜.html#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">9999</span></span>
+<span id="cb22-2"><a href="r-에센셜.html#cb22-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 9999</code></pre>
+<p>객체명을 할당할 때는 반드시 아래 규칙을 지켜야 한다. 만약 이 규칙을 지키지 않고 아래와 같이 하면 에러가 발생할 것이다.</p>
+<ol style="list-style-type: decimal">
+<li>문자로 시작해야 한다(= 숫자로 시작할 수 없다).<br />
+</li>
+<li>문자, 숫자, _, . 만 포함해야 한다.</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-에센셜.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">123</span> <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb24-2"><a href="r-에센셜.html#cb24-2" aria-hidden="true" tabindex="-1"></a>animal<span class="sc">!!</span> <span class="er">&lt;</span><span class="sc">-</span> <span class="st">&quot;cow&quot;</span></span></code></pre></div>
+<pre><code>## Error: &lt;text&gt;:2:7: unexpected &#39;!&#39;
+## 1: 123 &lt;- 10
+## 2: animal!
+##          ^</code></pre>
+<p>또한 R은 대소문자를 구분한다. <code>Year</code>과 <code>year</code>은 다르다.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-에센셜.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="dv">365</span></span>
+<span id="cb26-2"><a href="r-에센셜.html#cb26-2" aria-hidden="true" tabindex="-1"></a>year</span></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;year&#39; not found</code></pre>
+<blockquote>
+<p>There are only two hard things in Computer Science: cache invalidation and naming things.
+–Phil Karlton</p>
+</blockquote>
+<p>객체 할당에서 가장 어려운 것은 객체의 이름을 정하는 것이다. 객체명을 정하는 방법과 기준은 개발자 간에 다소 주관적일 수 있으나 일반적인 가이드라인은 다음과 같다. 조금 더 자세한 내용이 알고 싶다면 <a href="https://style.tidyverse.org/syntax.html">tidyverse style guide</a>를 참조하자.</p>
+<ol style="list-style-type: decimal">
+<li><p>명확하고 의미 전달력이 있는 이름 사용: 변수명은 해당 변수의 의도나 기능을 명확하게 전달해야 한다. 다른 사람이 코드를 읽거나 유지보수할 때 이해하기 쉬워야 하기 때문에 의미 있는 단어나 약어를 사용하고, 변수가 나타내는 데이터의 성격이나 용도를 잘 나타내도록 한다. 일반적으로 변수 이름은 명사가, 함수 이름은 동사가 좋다(함수가 무엇인지 아직 몰라도 된다).</p></li>
+<li><p>카멜 케이스 또는 스네이크 케이스 사용: 변수명을 작성하는 데에는 주로 카멜 케이스(camel case) 또는 스네이크 케이스(snake case)를 사용한다. 카멜 케이스는 첫 번째 단어를 제외한 각 단어의 첫 글자를 대문자로 작성하고, 단어들을 연결하여 작성하는 방식으로 예를 들면 “myVariableName”과 같다. 스네이크 케이스는 모든 단어를 소문자로 작성하고, 단어들을 밑줄로 연결하는 방식으로 예를 들면 “my_variable_name”과 같다. 어떤 케이스를 사용하든지 일관성을 유지하는 것이 중요하다(필자는 스네이크 케이스를 선호한다).</p></li>
+<li><p>너무 짧은 변수명 피하기: 충분히 명확하지만 지나치게 짧게 작성하는 것은 가독성을 저해할 수 있다. 변수의 용도와 의미를 잘 반영하면서도 충분히 길이가 있는 이름을 선택하는 것이 좋다. R Studio를 포함한 대부분의 IDE들에서는 할당된 객체에 대한 자동완성 기능을 제공한다.</p></li>
+<li><p>일관성 유지: 프로젝트 전체에서 일관된 변수명 규칙을 사용하는 것이 좋다. 같은 종류의 변수는 같은 규칙에 따라 명명되어야 하며, 다른 개발자들과의 협업 시에도 일관성을 유지할 수 있다.</p></li>
+<li><p>발음하기 쉬운 변수명 쓰기: 혼자 일하지 않는 경우도 많다. <code>Worcestershire</code>같은 변수명을 쓰다간 동료에게 맞는 불상사가 생길 수도 있다.</p></li>
+</ol>
+<p>그리고 생각보다 <strong>한글</strong> 변수명도 잘 읽는다. 물론 한영전환이 불편할 수도 있고 만약 외국인들과 일한다면 소통의 어려움이 있겠지만, 개인적인 프로젝트라면 보다 풍부한 변수명을 쓸 수도 있다. 무엇보다 특정 도메인에 특화된 프로그래밍을 할 때, 한글 변수명을 사용하면 도메인 용어와의 일치도를 높일 수 있다. 한국어 자연어 처리와 같이 한글을 다루는 분야에서 변수명과 관련 용어들 간의 일관성을 유지하기 쉽다.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-에센셜.html#cb28-1" aria-hidden="true" tabindex="-1"></a>아름다운우리한글 <span class="ot">&lt;-</span> <span class="fl">99.9</span></span>
+<span id="cb28-2"><a href="r-에센셜.html#cb28-2" aria-hidden="true" tabindex="-1"></a>아름다운우리한글</span></code></pre></div>
+<pre><code>## [1] 99.9</code></pre>
 </div>
 <div id="컴퓨터에게-1은-1이-아니야문자와-숫자" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> 컴퓨터에게 “1”은 1이 아니야(문자와 숫자)<a href="r-에센셜.html#컴퓨터에게-1은-1이-아니야문자와-숫자" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R은 사람이 콕 찝어 알려주기 전까지는 숫자(number)와 문자(character)를 온전히 구분하지 못한다. 아래 두 사칙연산 결과를 비교해 보자.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-에센셜.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-에센셜.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;5&quot;</span> <span class="sc">+</span> <span class="st">&quot;5&quot;</span></span></code></pre></div>
+<pre><code>## Error in &quot;5&quot; + &quot;5&quot;: non-numeric argument to binary operator</code></pre>
+<p><code>5 + 5</code>는 정확하게 계산값을 뱉어내지만 <code>"5" + "5"</code>는 <code>non-numeric argument</code>라 계산할 수 없다는 에러 메시지를 뱉는다. 이는 R에서 <code>5</code>는 <code>"5"</code>와 다르기 때문이다. 숫자는 더하거나 뺄 수 있지만, 문자는 불가능하다(우리가 철수에서 영희를 빼지 못하는 것처럼). <strong>R은 쌍따옴표(<code>"</code>)로 감싸진 것들은 문자라고 인식</strong>하기 때문에 <code>5 + "5"</code>는 계산이 불가능하다. 반드시 숫자는 숫자를 다루는 방식으로, 문자는 문자를 다루는 방식으로 다뤄져야 한다. 자료의 속성을 가장 쉽게 확인해보는 방법은 <code>str()</code> 함수를 사용하는 것이다</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-에센셜.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##  num 5</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-에센셜.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="st">&quot;5&quot;</span>)</span></code></pre></div>
+<pre><code>##  chr &quot;5&quot;</code></pre>
+<p><code>num</code>은 numeric (숫자)을 의미하고 <code>chr</code>은 character (문자)를 의미한다. 명심하자. 우리는 <code>오 더하기 오</code>와 <code>5 + 5</code>를 보며 같은 결과를 도출하지만 R은 개떡같이 말해도 찰떡같이 알아먹을 줄 모른다. <del>chatGPT는 알아 먹던데..</del></p>
 </div>
 <div id="함수와-패키지" class="section level2 hasAnchor" number="3.8">
 <h2><span class="header-section-number">3.8</span> 함수와 패키지<a href="r-에센셜.html#함수와-패키지" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -305,9 +381,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="주요-패키지-설치" class="section level3 hasAnchor" number="3.8.3">
 <h3><span class="header-section-number">3.8.3</span> 주요 패키지 설치<a href="r-에센셜.html#주요-패키지-설치" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-에센셜.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb3-2"><a href="r-에센셜.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
-<span id="cb3-3"><a href="r-에센셜.html#cb3-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;statgarten/datatoys&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-에센셜.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb38-2"><a href="r-에센셜.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb38-3"><a href="r-에센셜.html#cb38-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;statgarten/datatoys&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="datatoys-패키지-소개" class="section level2 hasAnchor" number="3.9">

@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-01" />
+<meta name="date" content="2023-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -265,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">챕터 5</span> 시각화 기초<a href="시각화-기초.html#시각화-기초" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>데이터 시각화는 데이터를 시각적으로 표현하여 이를 이해하고 전달하는 데에 사용된다. 숫자로만 이뤄진 복잡한 데이터를 직관적이고 효과적으로 분석할 수 있으며, 트렌드, 패턴, 상관 관계 등을 시각적으로 파악할 수 있다. 이런 시각화는 데이터를 보다 직관적으로 이해할 수 있도록 하여 데이터를 통한 의사소통을 원활하게 할 수 있다. 시각화는 결국 <strong>‘효과적인 정보 전달’</strong>이 목적인데 그러기 위해서는 사람의 인지방식에 대한 이해 또한 필요하다. 한마디로 데이터 시각화란 데이터에서 찾은 인사이트를 사람이 쉽게 인지할 수 있게 표현하는 방법이다.</p>
 <p>여기 앤스컴 콰르탯이라는 데이터가 존재한다(<code>datasets</code> 패키지에 내장되어 있다). 영국의 통계학자인 Frank Anscombe이 만든 데이터셋들로 X1~X4, Y1~Y4까지 데이터가 존재하며 각각 숫자에 맞는 X와 Y값은 매칭되는 총 4개의 그룹에 각각 11개의 관측값이 존재하는 데이터다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="시각화-기초.html#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="시각화-기초.html#cb39-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(anscombe)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -393,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>나열된 숫자만을 읽는 것은 매우 피곤한일인지라, 먼저 기초 통계량을 한번 계산해보자.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="시각화-기초.html#cb5-1" aria-hidden="true" tabindex="-1"></a>fBasics<span class="sc">::</span><span class="fu">basicStats</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="시각화-기초.html#cb40-1" aria-hidden="true" tabindex="-1"></a>fBasics<span class="sc">::</span><span class="fu">basicStats</span>(anscombe)</span></code></pre></div>
 <pre><code>##                    x1        x2        x3        x4        y1        y2        y3        y4
 ## nobs        11.000000 11.000000 11.000000 11.000000 11.000000 11.000000 11.000000 11.000000
 ## NAs          0.000000  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000  0.000000
@@ -412,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Skewness     0.000000  0.000000  0.000000  2.466911 -0.048374 -0.978693  1.380120  1.120774
 ## Kurtosis    -1.528926 -1.528926 -1.528926  4.520661 -1.199123 -0.514319  1.240044  0.628751</code></pre>
 <p>X1~X4 모두 평균 9, 분산 11로 동일했으며, Y1~Y4 에서도 평균 7.5 분산 4.12로 동일했다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="시각화-기초.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="시각화-기초.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(anscombe)</span></code></pre></div>
 <pre><code>##            x1         x2         x3         x4         y1         y2         y3         y4
 ## x1  1.0000000  1.0000000  1.0000000 -0.5000000  0.8164205  0.8162365  0.8162867 -0.3140467
 ## x2  1.0000000  1.0000000  1.0000000 -0.5000000  0.8164205  0.8162365  0.8162867 -0.3140467
