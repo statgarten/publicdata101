@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-02" />
+<meta name="date" content="2023-06-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>나열된 숫자만을 읽는 것은 매우 피곤한일인지라, 먼저 데이터의 평균과 분산을 한번 계산해보자. 코드의 해석은 생각하지 말고 결과값에 집중해보자.</p>
+<p>나열된 숫자만을 읽는 것은 매우 피곤한일인지라, 먼저 데이터의 평균과 분산을 한번 계산해보자(코드의 해석은 생각하지 말고 결과값에 집중해보자).</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="시각화-기초.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 평균 계산</span></span>
 <span id="cb40-2"><a href="시각화-기초.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(anscombe, mean)</span></code></pre></div>
 <pre><code>## $x1
@@ -454,25 +454,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## y2  0.8162365  0.8162365  0.8162365 -0.7184365  0.7500054  1.0000000  0.5879193 -0.4780949
 ## y3  0.8162867  0.8162867  0.8162867 -0.3446610  0.4687167  0.5879193  1.0000000 -0.1554718
 ## y4 -0.3140467 -0.3140467 -0.3140467  0.8165214 -0.4891162 -0.4780949 -0.1554718  1.0000000</code></pre>
-<p>X와 매칭되는 Y의 상관계수는 각각 0.816으로 동일했으며 1차 회귀식은 모두 y = 3 + 0.5x로 동일했다. 즉 4개 그룹의 평균, 분산, 상관계수 및 회귀식이 모두 같다. 이것만 보면 같은 경향을 가진 데이터로 볼 수 있을 것이다. 하지만 이 데이터들을 산포도 표시하면 어떤 결과가 나타날까? 역시 코드의 해석은 생각하지 말고 결과값에 집중해보자.</p>
+<p>X와 매칭되는 Y의 상관계수는 각각 0.816으로 동일했으며 1차 회귀식은 모두 y = 3 + 0.5x로 동일했다. <strong>즉 4개 그룹의 평균, 분산, 상관계수 및 회귀식이 모두 같다.</strong> 이것만 보면 같은 경향을 가진 데이터로 볼 수 있을 것이다. 하지만 이 데이터들을 산포도 표시하면 어떤 결과가 나타날까? 역시 코드의 해석은 생각하지 말고 결과값에 집중해보자.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="시각화-기초.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 그래프를 2x2 그리드로 배치</span></span>
 <span id="cb46-2"><a href="시각화-기초.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="시각화-기초.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 첫 번째 그래프</span></span>
-<span id="cb46-4"><a href="시각화-기초.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y1, <span class="at">main =</span> <span class="st">&quot;Dataset I&quot;</span>,</span>
+<span id="cb46-4"><a href="시각화-기초.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y1, <span class="at">main =</span> <span class="st">&quot;Group I&quot;</span>,</span>
 <span id="cb46-5"><a href="시각화-기초.html#cb46-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span>
 <span id="cb46-6"><a href="시각화-기초.html#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-7"><a href="시각화-기초.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 두 번째 그래프</span></span>
-<span id="cb46-8"><a href="시각화-기초.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2, anscombe<span class="sc">$</span>y2, <span class="at">main =</span> <span class="st">&quot;Dataset II&quot;</span>,</span>
+<span id="cb46-8"><a href="시각화-기초.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2, anscombe<span class="sc">$</span>y2, <span class="at">main =</span> <span class="st">&quot;Group II&quot;</span>,</span>
 <span id="cb46-9"><a href="시각화-기초.html#cb46-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span>
 <span id="cb46-10"><a href="시각화-기초.html#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-11"><a href="시각화-기초.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 세 번째 그래프</span></span>
-<span id="cb46-12"><a href="시각화-기초.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3, anscombe<span class="sc">$</span>y3, <span class="at">main =</span> <span class="st">&quot;Dataset III&quot;</span>,</span>
+<span id="cb46-12"><a href="시각화-기초.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3, anscombe<span class="sc">$</span>y3, <span class="at">main =</span> <span class="st">&quot;Group III&quot;</span>,</span>
 <span id="cb46-13"><a href="시각화-기초.html#cb46-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span>
 <span id="cb46-14"><a href="시각화-기초.html#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-15"><a href="시각화-기초.html#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 네 번째 그래프</span></span>
-<span id="cb46-16"><a href="시각화-기초.html#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4, anscombe<span class="sc">$</span>y4, <span class="at">main =</span> <span class="st">&quot;Dataset IV&quot;</span>,</span>
+<span id="cb46-16"><a href="시각화-기초.html#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4, anscombe<span class="sc">$</span>y4, <span class="at">main =</span> <span class="st">&quot;Group IV&quot;</span>,</span>
 <span id="cb46-17"><a href="시각화-기초.html#cb46-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
 <p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>각 그룹은 평균, 분산, 상관관계, 회귀선 등의 통계적 속성이 거의 동일하지만 시각화해보면 각 그룹이 실제로 매우 다른 패턴을 갖고 있음을 알 수 있다. 시각적인 표현은 복잡한 데이터를 이해하기 쉽고 직관적으로 만들어준다. 앤스컴 콰르탯 데이터셋을 예시로 들어 설명했지만, 실제 데이터에서도 시각화를 통해 통찰력을 얻고 결정을 내릴 수 있을 것이다. 다음은 데이터 시각화를 하는 대표적인 이유들이다.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>패턴 식별</strong>: 데이터 시각화는 데이터의 패턴을 식별하는 데 도움이 된다. 이렇게 패턴을 인식하는 것은 데이터를 이해하고 향후 분석에 활용하는 데 중요하다.</p></li>
+<li><p><strong>이상치 탐지</strong>: 데이터 시각화는 이상치를 탐지하는 데 유용하다. 이상치는 데이터셋에서 일반적인 패턴과 다른 값을 가진 데이터 포인트를 의미하는데, 앤스컴 콰르탯 데이터셋의 경우, 그룹 3의 x = 13, y = 12.74와 같은 값이나 그룹 4에서 x = 19, y = 12.50과 같은 이상치를 쉽게 식별할 수 있다. 이렇게 이상치를 시각적으로 확인하면 데이터의 신뢰성과 정확성을 평가할 수 있다.</p></li>
+<li><p><strong>상관관계 이해</strong>: 데이터 시각화는 변수 간의 상관관계를 시각적으로 이해하는 데 도움이 된다. 앤스컴 콰르탯 데이터셋의 그룹 1의 경우 x와 y의 관계가 비선형적이고 종 모양의 패턴을 보여주고, 그룹 2를 보면 선형적인 상관관계가 있음을 쉽게 알 수 있다. 이러한 상관관계를 시각화하여 변수 간의 관계를 파악하면 추세를 예측하고 의사 결정을 내릴 수 있다.</p></li>
+</ol>
 <div id="ggplot2-소개" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> ggplot2 소개<a href="시각화-기초.html#ggplot2-소개" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R에서 사용할 수 있는 많은 시각화 패키지가 존재하지만, 여기서는 Hadley Wickham이 개발한 <code>ggplot2</code> 패키지 위주로 설명하고자 한다. ggplot2 문법은 데이터 시각화를 위한 매우 직관적이고 일관된 방법을 제공하여 사용자가 효율적으로 그래프를 생성하고 사용자 지정할 수 있도록 도와준다. 무엇보다 ggplot2는 다른 tidyverse 패키지와의 호환성이 뛰어나며, 많은 사용자 기반으로 풍부한 문서와 예제를 제공하여 사용자들이 학습하고 사용할 수 있다. 본 챕터에서는 ggplot2을 통해 데이터셋을 지정하고, 어떤 변수를 x축 또는 y축에 매핑할 것인지, 어떤 유형의 그래프를 그릴 것인지, 색상, 크기, 선 스타일 등의 추가적인 매개 변수를 설정하는 방법을 알아보도록 하자. 그 전에 <a href="https://r-graph-gallery.com/ggplot2-package.html">R 그래프 갤러리</a>에 접속하면 R로 만들 수 있는 대부분의 시각화 결과물들과 그 코드를 볼 수 있다.</p>
