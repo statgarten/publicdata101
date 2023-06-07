@@ -1,14 +1,84 @@
 # 데이터 주무르기
+> 씹고 뜯고 맛보고 즐기고 -- 이가탄
 
 ## datatoys 패키지 소개
-> Play gives children a chance to practice what they are learning -- Fred Rogers
+> Play gives children a chance to practice what they are learning   
+> -- Fred Rogers
+
+```{r}
+library(datatoys)
+```
 
 ## 데이터프레임 이해
 
 ## 음주운전 데이터 주무르기
+
+`datatoys` 패키지에는 `drunkdrive`라는 데이터셋이 있다. 이 데이터는 경찰청에서 음주운전 적발기록을 통한 음주예방을 위해 경찰처에서 공개한 자료로 성별, 적발횟수, 나이, 알콜농도, 측정일시, 관할경찰서 등의 정보를 제공한다. `head()` 함수를 통해 어떤 모양으로 생긴 데이터인지부터 확인해보자.
+
+```{r}
+head(drunkdrive)
+```
+
+데이터를 주무르기 위한 많은 패키지가 있지만, 가장 많은 사람들이 사용하는 `dplyr`라는 최적의 패키지가 있다. 이번 챕터에서는 `dplyr`에서 가장 많이 사용되는 몇가지 함수를 배워보도록 하자.
+
+```{r}
+library(dplyr)
+```
+
+
 ### select()
+`drunkdrive`는 총 8가지 변수를 갖고 있다. 너무 많은 데이터들에 압도당하지 않으려면 필요한 변수만 선택(select) 할 필요가 있다. 
+
+```{r}
+drunkdrive %>% select(성별, 적발횟수, 나이, 알콜농도)
+```
+
+데이터가 훨씬 간결해졌다. `:`를 사용하면 범위를 지정할 수도 있다. 동일한 결과를 보여준다.
+
+```{r}
+drunkdrive %>% select(성별:알콜농도)
+```
+
 ### arrange()
+뭐든 비교하고 줄세우는건 재밌다. 우리가 그 대상이 아니라면 말이다. `arrange()` 함수를 사용하면 데이터를 쉽게 정렬할 수 있다.
+
+```{r}
+drunkdrive %>% arrange(나이)
+```
+
+Outlier다! Outlier를 발견했다. -77살은 존재할 수 없는 나이다. -77살을 제외하고 보면 2022년 7월 원주에서 적발된 14살이 가장 어린 나이다. `desc()`를 함께 사용하면 큰 수부터 정렬할 수 있다.
+
+```{r}
+drunkdrive %>% arrange(desc(알콜농도))
+```
+
+2022년 7월 서울시 서초구에서 적발된 67세 남성의 알콜농도는 0.93으로 가장 높았다. 나이가 어린 순으로 정렬하면서 만약 나이가 같은 경우 알콜농도가 높은 순서대로 정렬하고 싶으면 다음과 같이 활용할 수 있다.
+
+```{r}
+drunkdrive %>% arrange(나이, desc(알콜농도))
+```
+
 ### filter()
+
+그렇다면 음주측정을 거부한 사람들이 있을까? 조건에 맞는 데이터만 뽑아내고 싶을 때는 `filter()` 함수를 사용해보자.
+
+```{r}
+drunkdrive %>% filter(측정 == "거부")
+```
+
+남자만 뽑아낼 수도
+
+```{r}
+drunkdrive %>% filter(성별 == "남자")
+```
+
+미성년자만 뽑아낼 수도 있다. 어른들이 보다 관심을 가지고 돌봐줘야 할 아이들이 무려 148명이나 존재한다.
+
+```{r}
+drunkdrive %>% filter(나이 < 20)
+```
+
+
 ### mutate()
 ### count()
 ### group_by() & summarise()

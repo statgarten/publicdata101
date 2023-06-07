@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-05" />
+<meta name="date" content="2023-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,25 +263,177 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="데이터-주무르기" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">챕터 4</span> 데이터 주무르기<a href="데이터-주무르기.html#데이터-주무르기" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<p>씹고 뜯고 맛보고 즐기고 – 이가탄</p>
+</blockquote>
 <div id="datatoys-패키지-소개" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> datatoys 패키지 소개<a href="데이터-주무르기.html#datatoys-패키지-소개" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p>Play gives children a chance to practice what they are learning – Fred Rogers</p>
+<p>Play gives children a chance to practice what they are learning<br />
+– Fred Rogers</p>
 </blockquote>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="데이터-주무르기.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span></code></pre></div>
 </div>
 <div id="데이터프레임-이해" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> 데이터프레임 이해<a href="데이터-주무르기.html#데이터프레임-이해" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="음주운전-데이터-주무르기" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> 음주운전 데이터 주무르기<a href="데이터-주무르기.html#음주운전-데이터-주무르기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>datatoys</code> 패키지에는 <code>drunkdrive</code>라는 데이터셋이 있다. 이 데이터는 경찰청에서 음주운전 적발기록을 통한 음주예방을 위해 경찰처에서 공개한 자료로 성별, 적발횟수, 나이, 알콜농도, 측정일시, 관할경찰서 등의 정보를 제공한다. <code>head()</code> 함수를 통해 어떤 모양으로 생긴 데이터인지부터 확인해보자.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="데이터-주무르기.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(drunkdrive)</span></code></pre></div>
+<pre><code>##   성별 적발횟수 나이 알콜농도            측정일시     관할경찰서 나이불명 측정
+## 1 남자        1   29    0.153 2022-07-01 00:00:00     아산경찰서     정상 측정
+## 2 남자        1   28    0.046 2022-07-01 00:02:00 전주덕진경찰서     정상 측정
+## 3 남자        1   61    0.047 2022-07-01 00:02:00 서울관악경찰서     정상 측정
+## 4 여자        1   40    0.185 2022-07-01 00:04:00 부산연제경찰서     정상 측정
+## 5 남자        1   66    0.139 2022-07-01 00:05:00 서울마포경찰서     정상 측정
+## 6 남자        1   31    0.214 2022-07-01 00:05:00 대전중부경찰서     정상 측정</code></pre>
+<p>데이터를 주무르기 위한 많은 패키지가 있지만, 가장 많은 사람들이 사용하는 <code>dplyr</code>라는 최적의 패키지가 있다. 이번 챕터에서는 <code>dplyr</code>에서 가장 많이 사용되는 몇가지 함수를 배워보도록 하자.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="데이터-주무르기.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <div id="select" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> select()<a href="데이터-주무르기.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>drunkdrive</code>는 총 8가지 변수를 갖고 있다. 너무 많은 데이터들에 압도당하지 않으려면 필요한 변수만 선택(select) 할 필요가 있다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="데이터-주무르기.html#cb46-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별, 적발횟수, 나이, 알콜농도)</span></code></pre></div>
+<pre><code>## # A tibble: 12,021 × 4
+##    성별  적발횟수  나이 알콜농도
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+##  1 남자         1    29    0.153
+##  2 남자         1    28    0.046
+##  3 남자         1    61    0.047
+##  4 여자         1    40    0.185
+##  5 남자         1    66    0.139
+##  6 남자         1    31    0.214
+##  7 남자         1    26    0.136
+##  8 남자         1    44    0.084
+##  9 여자         1    59    0.184
+## 10 남자         1    23    0.164
+## # … with 12,011 more rows</code></pre>
+<p>데이터가 훨씬 간결해졌다. <code>:</code>를 사용하면 범위를 지정할 수도 있다. 동일한 결과를 보여준다.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="데이터-주무르기.html#cb48-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별<span class="sc">:</span>알콜농도)</span></code></pre></div>
+<pre><code>## # A tibble: 12,021 × 4
+##    성별  적발횟수  나이 알콜농도
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+##  1 남자         1    29    0.153
+##  2 남자         1    28    0.046
+##  3 남자         1    61    0.047
+##  4 여자         1    40    0.185
+##  5 남자         1    66    0.139
+##  6 남자         1    31    0.214
+##  7 남자         1    26    0.136
+##  8 남자         1    44    0.084
+##  9 여자         1    59    0.184
+## 10 남자         1    23    0.164
+## # … with 12,011 more rows</code></pre>
 </div>
 <div id="arrange" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> arrange()<a href="데이터-주무르기.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>뭐든 비교하고 줄세우는건 재밌다. 우리가 그 대상이 아니라면 말이다. <code>arrange()</code> 함수를 사용하면 데이터를 쉽게 정렬할 수 있다.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="데이터-주무르기.html#cb50-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이)</span></code></pre></div>
+<pre><code>## # A tibble: 12,021 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1   -77    0.168 2022-07-16 05:31:00 동두천경찰서   정상     측정 
+##  2 남자         1    14    0.112 2022-07-17 03:38:00 원주경찰서     정상     측정 
+##  3 남자         1    15    0.114 2022-07-02 03:51:00 공주경찰서     정상     측정 
+##  4 남자         1    15    0.058 2022-07-10 03:28:00 나주경찰서     정상     측정 
+##  5 여자         1    15    0.066 2022-07-25 07:12:00 안산상록경찰서 정상     측정 
+##  6 남자         1    16    0.083 2022-07-03 02:19:00 서울강북경찰서 정상     측정 
+##  7 남자         1    16    0.124 2022-07-03 02:40:00 천안동남경찰서 정상     측정 
+##  8 남자         1    16    0.13  2022-07-04 01:21:00 서울중랑경찰서 정상     측정 
+##  9 남자         1    16    0.091 2022-07-05 02:58:00 창원중부경찰서 정상     측정 
+## 10 남자         1    16    0.075 2022-07-05 19:35:00 전주덕진경찰서 정상     측정 
+## # … with 12,011 more rows</code></pre>
+<p>Outlier다! Outlier를 발견했다. -77살은 존재할 수 없는 나이다. -77살을 제외하고 보면 2022년 7월 원주에서 적발된 14살이 가장 어린 나이다. <code>desc()</code>를 함께 사용하면 큰 수부터 정렬할 수 있다.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="데이터-주무르기.html#cb52-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(알콜농도))</span></code></pre></div>
+<pre><code>## # A tibble: 12,021 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1    67    0.93  2022-07-18 22:27:00 서울서초경찰서 정상     측정 
+##  2 남자         1    45    0.77  2022-07-06 20:56:00 수원서부경찰서 정상     측정 
+##  3 남자         1    50    0.66  2022-07-03 18:46:00 안산상록경찰서 정상     측정 
+##  4 남자         1    57    0.423 2022-07-20 14:30:00 의령경찰서     정상     측정 
+##  5 남자         1    53    0.404 2022-07-04 16:50:00 일산동부경찰서 정상     측정 
+##  6 남자         1    38    0.403 2022-07-02 14:14:00 구미경찰서     정상     측정 
+##  7 여자         1    30    0.396 2022-07-20 02:24:00 양산경찰서     정상     측정 
+##  8 남자         1    52    0.385 2022-07-23 23:17:00 오산경찰서     정상     측정 
+##  9 남자         1    43    0.379 2022-07-30 11:24:00 서울송파경찰서 정상     측정 
+## 10 남자         1    33    0.378 2022-07-31 23:37:00 인천논현경찰서 정상     측정 
+## # … with 12,011 more rows</code></pre>
+<p>2022년 7월 서울시 서초구에서 적발된 67세 남성의 알콜농도는 0.93으로 가장 높았다. 나이가 어린 순으로 정렬하면서 만약 나이가 같은 경우 알콜농도가 높은 순서대로 정렬하고 싶으면 다음과 같이 활용할 수 있다.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="데이터-주무르기.html#cb54-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이, <span class="fu">desc</span>(알콜농도))</span></code></pre></div>
+<pre><code>## # A tibble: 12,021 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1   -77    0.168 2022-07-16 05:31:00 동두천경찰서   정상     측정 
+##  2 남자         1    14    0.112 2022-07-17 03:38:00 원주경찰서     정상     측정 
+##  3 남자         1    15    0.114 2022-07-02 03:51:00 공주경찰서     정상     측정 
+##  4 여자         1    15    0.066 2022-07-25 07:12:00 안산상록경찰서 정상     측정 
+##  5 남자         1    15    0.058 2022-07-10 03:28:00 나주경찰서     정상     측정 
+##  6 남자         1    16    0.14  2022-07-17 03:26:00 용인서부경찰서 정상     측정 
+##  7 남자         1    16    0.137 2022-07-17 02:32:00 홍성경찰서     정상     측정 
+##  8 남자         1    16    0.13  2022-07-04 01:21:00 서울중랑경찰서 정상     측정 
+##  9 남자         1    16    0.124 2022-07-03 02:40:00 천안동남경찰서 정상     측정 
+## 10 남자         1    16    0.103 2022-07-30 05:24:00 고양경찰서     정상     측정 
+## # … with 12,011 more rows</code></pre>
 </div>
 <div id="filter" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> filter()<a href="데이터-주무르기.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>그렇다면 음주측정을 거부한 사람들이 있을까? 조건에 맞는 데이터만 뽑아내고 싶을 때는 <code>filter()</code> 함수를 사용해보자.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="데이터-주무르기.html#cb56-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(측정 <span class="sc">==</span> <span class="st">&quot;거부&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 457 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서       나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1    49       NA 2022-07-01 00:23:00 영암경찰서       정상     거부 
+##  2 남자         1    33       NA 2022-07-01 01:05:00 안산상록경찰서   정상     거부 
+##  3 남자         1    37       NA 2022-07-01 01:10:00 서울서대문경찰서 정상     거부 
+##  4 여자         1    25       NA 2022-07-01 03:04:00 광주서부경찰서   정상     거부 
+##  5 남자         1    42       NA 2022-07-01 04:16:00 진해경찰서       정상     거부 
+##  6 남자         1    43       NA 2022-07-01 06:05:00 청주청원경찰서   정상     거부 
+##  7 남자         1    64       NA 2022-07-01 16:47:00 성주경찰서       정상     거부 
+##  8 남자         1    66       NA 2022-07-01 20:14:00 괴산경찰서       정상     거부 
+##  9 남자         1    32       NA 2022-07-01 21:07:00 안양동안경찰서   정상     거부 
+## 10 남자         1    57       NA 2022-07-01 21:57:00 서울강서경찰서   정상     거부 
+## # … with 447 more rows</code></pre>
+<p>남자만 뽑아낼 수도</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="데이터-주무르기.html#cb58-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10,629 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1    29    0.153 2022-07-01 00:00:00 아산경찰서     정상     측정 
+##  2 남자         1    28    0.046 2022-07-01 00:02:00 전주덕진경찰서 정상     측정 
+##  3 남자         1    61    0.047 2022-07-01 00:02:00 서울관악경찰서 정상     측정 
+##  4 남자         1    66    0.139 2022-07-01 00:05:00 서울마포경찰서 정상     측정 
+##  5 남자         1    31    0.214 2022-07-01 00:05:00 대전중부경찰서 정상     측정 
+##  6 남자         1    26    0.136 2022-07-01 00:10:00 안산상록경찰서 정상     측정 
+##  7 남자         1    44    0.084 2022-07-01 00:13:00 부산사상경찰서 정상     측정 
+##  8 남자         1    23    0.164 2022-07-01 00:13:00 대구북부경찰서 정상     측정 
+##  9 남자         1    33    0.17  2022-07-01 00:15:00 의왕경찰서     정상     측정 
+## 10 남자         1    37    0.144 2022-07-01 00:16:00 광주북부경찰서 정상     측정 
+## # … with 10,619 more rows</code></pre>
+<p>미성년자만 뽑아낼 수도 있다. 어른들이 보다 관심을 가지고 돌봐줘야 할 아이들이 무려 148명이나 존재한다.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="데이터-주무르기.html#cb60-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 148 × 8
+##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
+##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
+##  1 남자         1    18    0.158 2022-07-02 02:56:00 천안서북경찰서 정상     측정 
+##  2 남자         1    15    0.114 2022-07-02 03:51:00 공주경찰서     정상     측정 
+##  3 남자         1    18    0.237 2022-07-02 23:13:00 용인서부경찰서 정상     측정 
+##  4 남자         1    19    0.03  2022-07-03 02:18:00 화순경찰서     정상     측정 
+##  5 남자         1    16    0.083 2022-07-03 02:19:00 서울강북경찰서 정상     측정 
+##  6 남자         1    16    0.124 2022-07-03 02:40:00 천안동남경찰서 정상     측정 
+##  7 남자         1    19    0.149 2022-07-03 05:18:00 밀양경찰서     정상     측정 
+##  8 남자         1    19    0.049 2022-07-03 08:20:00 광주서부경찰서 정상     측정 
+##  9 남자         1    17    0.045 2022-07-03 23:03:00 김해서부경찰서 정상     측정 
+## 10 남자         1    19    0.07  2022-07-04 01:01:00 부천원미경찰서 정상     측정 
+## # … with 138 more rows</code></pre>
 </div>
 <div id="mutate" class="section level3 hasAnchor" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> mutate()<a href="데이터-주무르기.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
