@@ -134,3 +134,16 @@ install.packages("remotes")
 remotes::install_github("statgarten/datatoys")
 ```
 
+
+불러온 패키지는 R 세션이 재시작 될 때마다(R을 실행하고 종료할 때 마다) 초기화 된다. 한마디로, 새로운 세션이 시작될 때 마다 `library()` 함수를 다시 실행해 줘야 한다. 만약 `library()` 함수를 사용하지 않고 특정 패키지에 있는 데이터셋이나 함수를  한번만 불러오고 싶다면 `::`를 사용할 수 있다. `petNames`라는 데이터셋은 패키지 로딩 없이는 꺼낼 수 없지만,
+
+```{r error=TRUE, echo=TRUE}
+head(petNames)
+```
+
+아래와 같이 사용하면 패키지 로딩 없이 필요한 데이터셋이나 함수만 쏙 빼올 수도 있다.
+
+```{r error=TRUE, echo=TRUE}
+head(datatoys::petNames)
+```
+

@@ -47,6 +47,12 @@ left_join
 pivot_wider
 pivot_longer
 시각화-기초
+이왕이면-예쁜-그래프
+시각화-요소
+색상color
+글씨text
+배치layout
+그-외-요소들
 ggplot2-소개
 테이블-시각화reactable
 실전-공공데이터-프로젝트

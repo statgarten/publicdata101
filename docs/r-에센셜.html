@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-07" />
+<meta name="date" content="2023-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -214,8 +214,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="시각화-기초.html"><a href="시각화-기초.html"><i class="fa fa-check"></i><b>5</b> 시각화 기초</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-소개"><i class="fa fa-check"></i><b>5.1</b> ggplot2 소개</a></li>
-<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#테이블-시각화reactable"><i class="fa fa-check"></i><b>5.2</b> 테이블 시각화(reactable)</a></li>
+<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#이왕이면-예쁜-그래프"><i class="fa fa-check"></i><b>5.1</b> 이왕이면 예쁜 그래프</a></li>
+<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#시각화-요소"><i class="fa fa-check"></i><b>5.2</b> 시각화 요소</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="시각화-기초.html"><a href="시각화-기초.html#색상color"><i class="fa fa-check"></i><b>5.2.1</b> 색상(Color)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="시각화-기초.html"><a href="시각화-기초.html#글씨text"><i class="fa fa-check"></i><b>5.2.2</b> 글씨(Text)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-소개"><i class="fa fa-check"></i><b>5.3</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="5.4" data-path="시각화-기초.html"><a href="시각화-기초.html#테이블-시각화reactable"><i class="fa fa-check"></i><b>5.4</b> 테이블 시각화(reactable)</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>6</b> 실전 공공데이터 프로젝트</a>
 <ul>
@@ -384,6 +392,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-에센셜.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
 <span id="cb38-2"><a href="r-에센셜.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
 <span id="cb38-3"><a href="r-에센셜.html#cb38-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;statgarten/datatoys&quot;</span>)</span></code></pre></div>
+<p>불러온 패키지는 R 세션이 재시작 될 때마다(R을 실행하고 종료할 때 마다) 초기화 된다. 한마디로, 새로운 세션이 시작될 때 마다 <code>library()</code> 함수를 다시 실행해 줘야 한다. 만약 <code>library()</code> 함수를 사용하지 않고 특정 패키지에 있는 데이터셋이나 함수를 한번만 불러오고 싶다면 <code>::</code>를 사용할 수 있다. <code>petNames</code>라는 데이터셋은 패키지 로딩 없이는 꺼낼 수 없지만,</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-에센셜.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(petNames)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   동물이름  건수
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 보리        38
+## 2 구름        25
+## 3 토리        25
+## 4 콩이        21
+## 5 코코        19
+## 6 라떼        17</code></pre>
+<p>아래와 같이 사용하면 패키지 로딩 없이 필요한 데이터셋이나 함수만 쏙 빼올 수도 있다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-에센셜.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datatoys<span class="sc">::</span>petNames)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   동물이름  건수
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 보리        38
+## 2 구름        25
+## 3 토리        25
+## 4 콩이        21
+## 5 코코        19
+## 6 라떼        17</code></pre>
 
 </div>
 </div>
