@@ -127,15 +127,37 @@ str("5")
 
 ### 함수들의 꾸러미, 패키지
 
+함수가 단일 작업을 수행하는 작은 도구 하나라면, 패키지는 그 도구들이 모여 있는 큰 도구상자다. 각 패키지는 특정 기능을 수행하기 위해 필요한 함수와 데이터를 제공하며, 사용자는 패키지를 설치하고 로드하여 해당 기능을 사용할 수 있다. 패키지는 R의 기본 기능을 확장하고, 다양한 도메인에 특화된 기능을 제공하여 데이터 분석, 시각화, 모델링 등 다양한 작업을 수행할 수 있도록 도와준다.
+
 ### 주요 패키지 설치
+
+#### CRAN을 통한 설치
+R은 오픈소스로 많은 사람들이 만들고 공개한 패키지를 손쉽게 사용할 수 있다. 패키지를 설치하는 가장 쉬운 방법은 `install.package()` 함수를 사용하는 것인데, 이는 CRAN(The Comprehensive R Archive Network)이라는 저장소에 올라가 있는 R 패키지를 다운로드 받는다. 현재 CRAN에서 다운로드 가능한 패키지는 아래와 같다.
+
+```{r echo=FALSE, eval=TRUE, message=FALSE}
+library(dplyr)
+library(reactable)
+
+reactable(available.packages(contriburl = contrib.url("https://cran.r-project.org/")) %>% 
+            as_tibble() %>% select(Package, Version, Depends, License), searchable = TRUE,
+            columns = list(Depends = colDef(minWidth = 140))
+          )
+```
+
+
+#### Github을 통한 설치
+
+
+#### 패키지 불러오기
+불러온 패키지는 R 세션이 재시작 될 때마다(R을 실행하고 종료할 때 마다) 초기화 된다. 한마디로, 새로운 세션이 시작될 때 마다 `library()` 함수를 다시 실행해 줘야 한다. 만약 `library()` 함수를 사용하지 않고 특정 패키지에 있는 데이터셋이나 함수를 한번만 불러오고 싶다면 `::`를 사용할 수 있다. 
+
 ```{r eval=FALSE}
 install.packages("tidyverse")
 install.packages("remotes")
 remotes::install_github("statgarten/datatoys")
 ```
 
-
-불러온 패키지는 R 세션이 재시작 될 때마다(R을 실행하고 종료할 때 마다) 초기화 된다. 한마디로, 새로운 세션이 시작될 때 마다 `library()` 함수를 다시 실행해 줘야 한다. 만약 `library()` 함수를 사용하지 않고 특정 패키지에 있는 데이터셋이나 함수를  한번만 불러오고 싶다면 `::`를 사용할 수 있다. `petNames`라는 데이터셋은 패키지 로딩 없이는 꺼낼 수 없지만,
+`petNames`라는 데이터셋은 패키지 로딩 없이는 꺼낼 수 없지만,
 
 ```{r error=TRUE, echo=TRUE}
 head(petNames)
@@ -147,3 +169,8 @@ head(petNames)
 head(datatoys::petNames)
 ```
 
+#### 의존성 문제
+
+R을 사용하다보면 여러가지 패키지들을 함께 사용할 경우가 대부분이고, 사용하는 패키지가 많아질 수록 한 패키지가 다른 패키지의 함수를 빌려다 쓰는 의존성(Dependency)이 증가하게 된다. 그러다보면 의존된 패키지가 누락되거나 업데이트 되었을 때 해당 함수가 정상적으로 동작하지 않을 수도 있다. 예를 들어, "ggplot2" 패키지는 "dplyr" 패키지의 함수를 사용하여 데이터를 전처리하기도 한다. 따라서 "ggplot2" 패키지를 사용하려면 "dplyr" 패키지가 먼저 설치되어 있어야 한다. 
+
+따라서 패키지를 업데이트할 때는 의존하는 다른 패키지와의 호환성을 고려해야 한다. 이러한 문제를 해결하기 위해 R에서는 패키지 의존성을 자동으로 관리해주는 도구인 패키지 관리자를 제공한다. 패키지 관리자는 의존하는 패키지를 자동으로 설치하거나 업데이트하고, 패키지 간의 충돌을 최소화하여 코드의 정상 작동을 보장한다. 문제가 생길 수 있다고 인식하고 있되, 너무 걱정하지는 말자.

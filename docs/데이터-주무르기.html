@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>챕터 4 데이터 주무르기 | 공공데이터 분석 101</title>
   <meta name="description" content="공공데이터 분석 입문" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="챕터 4 데이터 주무르기 | 공공데이터 분석 101" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-06-09" />
+<meta name="date" content="2023-07-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
 
 
 <style type="text/css">
@@ -119,10 +126,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -280,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Play gives children a chance to practice what they are learning<br />
 – Fred Rogers</p>
 </blockquote>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="데이터-주무르기.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="데이터-주무르기.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span></code></pre></div>
 </div>
 <div id="데이터프레임-이해" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> 데이터프레임 이해<a href="데이터-주무르기.html#데이터프레임-이해" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -288,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="음주운전-데이터-주무르기" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> 음주운전 데이터 주무르기<a href="데이터-주무르기.html#음주운전-데이터-주무르기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>datatoys</code> 패키지에는 <code>drunkdrive</code>라는 데이터셋이 있다. 이 데이터는 경찰청에서 음주운전 적발기록을 통한 음주예방을 위해 경찰처에서 공개한 자료로 성별, 적발횟수, 나이, 알콜농도, 측정일시, 관할경찰서 등의 정보를 제공한다. <code>head()</code> 함수를 통해 어떤 모양으로 생긴 데이터인지부터 확인해보자.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="데이터-주무르기.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(drunkdrive)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="데이터-주무르기.html#cb44-1" tabindex="-1"></a><span class="fu">head</span>(drunkdrive)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##   &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
@@ -299,11 +302,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 남자         1    66    0.139 2022-07-01 00:05:00 서울마포경찰서 정상     측정 
 ## 6 남자         1    31    0.214 2022-07-01 00:05:00 대전중부경찰서 정상     측정</code></pre>
 <p>데이터를 주무르기 위한 많은 패키지가 있지만, 가장 많은 사람들이 사용하는 <code>dplyr</code>라는 최적의 패키지가 있다. 이번 챕터에서는 <code>dplyr</code>에서 가장 많이 사용되는 몇가지 함수를 배워보도록 하자.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="데이터-주무르기.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="데이터-주무르기.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div id="select" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> select()<a href="데이터-주무르기.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>drunkdrive</code>는 총 8가지 변수를 갖고 있다. 너무 많은 데이터들에 압도당하지 않으려면 필요한 변수만 선택(select) 할 필요가 있다.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="데이터-주무르기.html#cb47-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별, 적발횟수, 나이, 알콜농도)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="데이터-주무르기.html#cb47-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별, 적발횟수, 나이, 알콜농도)</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 4
 ##    성별  적발횟수  나이 알콜농도
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -319,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 남자         1    23    0.164
 ## # … with 12,011 more rows</code></pre>
 <p>데이터가 훨씬 간결해졌다. <code>:</code>를 사용하면 범위를 지정할 수도 있다. 동일한 결과를 보여준다.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="데이터-주무르기.html#cb49-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별<span class="sc">:</span>알콜농도)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="데이터-주무르기.html#cb49-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별<span class="sc">:</span>알콜농도)</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 4
 ##    성별  적발횟수  나이 알콜농도
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -338,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="arrange" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> arrange()<a href="데이터-주무르기.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>뭐든 비교하고 줄세우는건 재밌다. 우리가 그 대상이 아니라면 말이다. <code>arrange()</code> 함수를 사용하면 데이터를 쉽게 정렬할 수 있다.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="데이터-주무르기.html#cb51-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="데이터-주무르기.html#cb51-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이)</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
@@ -354,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 남자         1    16    0.075 2022-07-05 19:35:00 전주덕진경찰서 정상     측정 
 ## # … with 12,011 more rows</code></pre>
 <p>Outlier다! Outlier를 발견했다. -77살은 존재할 수 없는 나이다. -77살을 제외하고 보면 2022년 7월 원주에서 적발된 14살이 가장 어린 나이다. <code>desc()</code>를 함께 사용하면 큰 수부터 정렬할 수 있다.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="데이터-주무르기.html#cb53-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(알콜농도))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="데이터-주무르기.html#cb53-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(알콜농도))</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
@@ -370,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 남자         1    33    0.378 2022-07-31 23:37:00 인천논현경찰서 정상     측정 
 ## # … with 12,011 more rows</code></pre>
 <p>2022년 7월 서울시 서초구에서 적발된 67세 남성의 알콜농도는 0.93으로 가장 높았다. 나이가 어린 순으로 정렬하면서 만약 나이가 같은 경우 알콜농도가 높은 순서대로 정렬하고 싶으면 다음과 같이 활용할 수 있다.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="데이터-주무르기.html#cb55-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이, <span class="fu">desc</span>(알콜농도))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="데이터-주무르기.html#cb55-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이, <span class="fu">desc</span>(알콜농도))</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="filter" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> filter()<a href="데이터-주무르기.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>그렇다면 음주측정을 거부한 사람들이 있을까? 조건에 맞는 데이터만 뽑아내고 싶을 때는 <code>filter()</code> 함수를 사용해보자.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="데이터-주무르기.html#cb57-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(측정 <span class="sc">==</span> <span class="st">&quot;거부&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="데이터-주무르기.html#cb57-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(측정 <span class="sc">==</span> <span class="st">&quot;거부&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 457 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서       나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;
@@ -405,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 남자         1    57       NA 2022-07-01 21:57:00 서울강서경찰서   정상     거부 
 ## # … with 447 more rows</code></pre>
 <p>남자(또는 여자)만 뽑아낼 수도</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="데이터-주무르기.html#cb59-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="데이터-주무르기.html#cb59-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10,629 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
@@ -421,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 남자         1    37    0.144 2022-07-01 00:16:00 광주북부경찰서 정상     측정 
 ## # … with 10,619 more rows</code></pre>
 <p>미성년자만 뽑아낼 수도 있다. 어른들이 보다 관심을 가지고 돌봐줘야 할 아이들이 무려 148명이나 존재한다.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="데이터-주무르기.html#cb61-1" aria-hidden="true" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="데이터-주무르기.html#cb61-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 148 × 8
 ##    성별  적발횟수  나이 알콜농도 측정일시            관할경찰서     나이불명 측정 
 ##    &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;
