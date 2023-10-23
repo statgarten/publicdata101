@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>챕터 4 데이터 주무르기 | 공공데이터 분석 101</title>
   <meta name="description" content="공공데이터 분석 입문" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="챕터 4 데이터 주무르기 | 공공데이터 분석 101" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-10-21" />
+<meta name="date" content="2023-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,8 +56,18 @@
 <script src="libs/react-17.0.0/react.min.js"></script>
 <script src="libs/react-17.0.0/react-dom.min.js"></script>
 <script src="libs/reactwidget-1.0.0/react-tools.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/reactable-binding-0.3.0/reactable.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -125,10 +135,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -227,20 +233,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
 <li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>7</b> 실전 공공데이터 프로젝트</a>
+<li class="chapter" data-level="7" data-path="호선-지하철-혼잡도-분석.html"><a href="호선-지하철-혼잡도-분석.html"><i class="fa fa-check"></i><b>7</b> 2호선 지하철 혼잡도 분석</a></li>
+<li class="chapter" data-level="8" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html"><i class="fa fa-check"></i><b>8</b> 손없는 날 판별하기 (함수)</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>7.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
-<li class="chapter" data-level="7.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-나라부터-도와줘야-할까-oda-데이터-분석"><i class="fa fa-check"></i><b>7.2</b> 어떤 나라부터 도와줘야 할까? (ODA 데이터 분석)</a></li>
-<li class="chapter" data-level="7.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>7.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
-<li class="chapter" data-level="7.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>7.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
-<li class="chapter" data-level="7.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>7.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
+<li class="chapter" data-level="8.1" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html#map-함수"><i class="fa fa-check"></i><b>8.1</b> map() 함수</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>8</b> Statgarten</a>
+<li class="chapter" data-level="9" data-path="서울시-급똥-지도.html"><a href="서울시-급똥-지도.html"><i class="fa fa-check"></i><b>9</b> 서울시 급똥 지도</a></li>
+<li class="chapter" data-level="10" data-path="대한민구-인구수-변화-시각화.html"><a href="대한민구-인구수-변화-시각화.html"><i class="fa fa-check"></i><b>10</b> 대한민구 인구수 변화 시각화</a></li>
+<li class="chapter" data-level="11" data-path="울릉도의-버스정류장.html"><a href="울릉도의-버스정류장.html"><i class="fa fa-check"></i><b>11</b> 울릉도의 버스정류장</a></li>
+<li class="chapter" data-level="12" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>12</b> Statgarten</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>8.1</b> CUI보다 GUI가 좋을 때</a></li>
-<li class="chapter" data-level="8.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>8.2</b> Statgarten 소개</a></li>
+<li class="chapter" data-level="12.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>12.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="12.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>12.2</b> Statgarten 소개</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>9</b> 나가는 말</a></li>
+<li class="chapter" data-level="13" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>13</b> 나가는 말</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -327,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    44    0.084
 ##  9 여자         1    59    0.184
 ## 10 남자         1    23    0.164
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>데이터가 훨씬 간결해졌다. <code>:</code>를 사용하면 범위를 지정할 수도 있다. 동일한 결과를 보여준다.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="데이터-주무르기.html#cb64-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(성별<span class="sc">:</span>알콜농도)</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 4
@@ -343,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    44    0.084
 ##  9 여자         1    59    0.184
 ## 10 남자         1    23    0.164
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>때로는 필요한 변수를 제외하고 싶을 때도 있다. 이때는 <code>-</code>를 사용하면 된다. 성별, 적발횟수, 나이, 알콜농도 열을 제외하고 보고 싶다면 다음과 같이 사용하면 된다.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="데이터-주무르기.html#cb66-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>성별, <span class="sc">-</span>적발횟수, <span class="sc">-</span>나이, <span class="sc">-</span>알콜농도)</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 4
@@ -359,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 2022-07-01 00:13:00 부산사상경찰서 정상     측정 
 ##  9 2022-07-01 00:13:00 군산경찰서     정상     측정 
 ## 10 2022-07-01 00:13:00 대구북부경찰서 정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>때론 데이터 열의 순서를 바꾸고 싶을 때가 있다. <code>everything()</code> 함수를 함께 활용하면 데이터셋의 남은 모든 열을 선택할 수 있다.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="데이터-주무르기.html#cb68-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">select</span>(알콜농도, 적발횟수, 나이, <span class="fu">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
@@ -375,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8    0.084        1    44 남자  2022-07-01 00:13:00 부산사상경찰서 정상     측정 
 ##  9    0.184        1    59 여자  2022-07-01 00:13:00 군산경찰서     정상     측정 
 ## 10    0.164        1    23 남자  2022-07-01 00:13:00 대구북부경찰서 정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>datatoys 패키지에는 장소별 원인별 화재통계를 제공하는 <code>fire</code>이라는 데이터셋이 있다. 데이터는 아래와 같은 열로 구성되어 있다.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="데이터-주무르기.html#cb70-1" tabindex="-1"></a><span class="fu">str</span>(fire)</span></code></pre></div>
 <pre><code>## tibble [44,435 × 18] (S3: tbl_df/tbl/data.frame)
@@ -412,23 +418,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 자동차,철도차량 자동차     승용자동차            
 ##  9 기타            야외       기타야외              
 ## 10 생활서비스      일상서비스 기타 일상서비스       
-## # ℹ 44,425 more rows</code></pre>
+## # … with 44,425 more rows</code></pre>
 <p><code>분류</code>로 끝나는 열을 선택해보자.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="데이터-주무르기.html#cb74-1" tabindex="-1"></a>fire <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&quot;분류&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 44,435 × 8
-##    발화열원소분류    발화요인대분류 발화요인소분류 최초착화물대분류 최초착화물소분류 장소대분류 장소중분류 장소소분류
-##    &lt;chr&gt;             &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     
-##  1 전기적 아크(단락) 전기적 요인    접촉불량에 의… 전기,전자        전선피복         주거       단독주택   단독주택  
-##  2 담뱃불            부주의         담배꽁초       기타             기타             임야       들불       기타 들불 
-##  3 담뱃불            부주의         담배꽁초       침구,직물류      기타(침구,직물…  자동차,철… 자동차     오토바이  
-##  4 담뱃불            부주의         담배꽁초       종이,목재,건초등 기타(종이,목재,… 판매,업무… 일반업무   일반빌딩  
-##  5 기기 전도,복사열  부주의         음식물 조리중  식품             음식물           주거       공동주택   다세대주택
-##  6 기기 전도,복사열  기계적 요인    과열, 과부하   자동차,철도차량… 벨트             자동차,철… 자동차     승용자동차
-##  7 담뱃불            부주의         담배꽁초       종이,목재,건초등 종이             생활서비스 오락시설   PC방(인터…
-##  8 미상              미상           미상           미상             미상             자동차,철… 자동차     승용자동차
-##  9 모닥불, 연탄, 숯  부주의         불씨,불꽃,화…  종이,목재,건초등 풀, 나뭇잎       기타       야외       기타야외  
-## 10 전기적 아크(단락) 전기적 요인    절연열화에 의… 전기,전자        전선피복         생활서비스 일상서비스 기타 일상…
-## # ℹ 44,425 more rows</code></pre>
+##    발화열원소분류    발화요인대분류 발화요인소분류       최초착화물대분류            최초착화물소분류       장소대분류      장소중분류 장소소분류            
+##    &lt;chr&gt;             &lt;chr&gt;          &lt;chr&gt;                &lt;chr&gt;                       &lt;chr&gt;                  &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;                 
+##  1 전기적 아크(단락) 전기적 요인    접촉불량에 의한 단락 전기,전자                   전선피복               주거            단독주택   단독주택              
+##  2 담뱃불            부주의         담배꽁초             기타                        기타                   임야            들불       기타 들불             
+##  3 담뱃불            부주의         담배꽁초             침구,직물류                 기타(침구,직물류)      자동차,철도차량 자동차     오토바이              
+##  4 담뱃불            부주의         담배꽁초             종이,목재,건초등            기타(종이,목재,건초등) 판매,업무시설   일반업무   일반빌딩              
+##  5 기기 전도,복사열  부주의         음식물 조리중        식품                        음식물                 주거            공동주택   다세대주택            
+##  6 기기 전도,복사열  기계적 요인    과열, 과부하         자동차,철도차량,선박,항공기 벨트                   자동차,철도차량 자동차     승용자동차            
+##  7 담뱃불            부주의         담배꽁초             종이,목재,건초등            종이                   생활서비스      오락시설   PC방(인터넷게임제공업)
+##  8 미상              미상           미상                 미상                        미상                   자동차,철도차량 자동차     승용자동차            
+##  9 모닥불, 연탄, 숯  부주의         불씨,불꽃,화원방치   종이,목재,건초등            풀, 나뭇잎             기타            야외       기타야외              
+## 10 전기적 아크(단락) 전기적 요인    절연열화에 의한 단락 전기,전자                   전선피복               생활서비스      일상서비스 기타 일상서비스       
+## # … with 44,425 more rows</code></pre>
 <p><code>contains()</code> 함수를 사용하면 특정 문자열을 포함하는 열을 선택할 수 있다. <code>요인</code>이라는 문자열을 포함하는 열을 선택해보자.</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="데이터-주무르기.html#cb76-1" tabindex="-1"></a>fire <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;요인&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 44,435 × 2
@@ -444,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 미상           미상                
 ##  9 부주의         불씨,불꽃,화원방치  
 ## 10 전기적 요인    절연열화에 의한 단락
-## # ℹ 44,425 more rows</code></pre>
+## # … with 44,425 more rows</code></pre>
 <p><code>select()</code>함수는 ’열’을 선택할 때 사용한다. 만약 ’행’을 선택하고 싶다면 <code>slice()</code> 함수를 사용할 수 있다. <code>slice()</code> 함수는 데이터셋에서 특정 행을 선택할 때 사용한다. 1, 3, 5, 7, 9번 행을 선택해보자.</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="데이터-주무르기.html#cb78-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 8
@@ -483,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    16    0.13  2022-07-04 01:21:00 서울중랑경찰서 정상     측정 
 ##  9 남자         1    16    0.091 2022-07-05 02:58:00 창원중부경찰서 정상     측정 
 ## 10 남자         1    16    0.075 2022-07-05 19:35:00 전주덕진경찰서 정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>Outlier다! Outlier를 발견했다. -77살은 존재할 수 없는 나이다. -77살을 제외하고 보면 2022년 7월 원주에서 적발된 14살이 가장 어린 나이다. <code>arrange()</code>함수는 기본적으로 작은수부터 정렬한다. <code>desc()</code>를 함께 사용하면 큰 수부터 정렬할 수 있다. 알콜농도가 높은 순서대로 정렬해보자.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="데이터-주무르기.html#cb84-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(알콜농도))</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
@@ -499,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    52    0.385 2022-07-23 23:17:00 오산경찰서     정상     측정 
 ##  9 남자         1    43    0.379 2022-07-30 11:24:00 서울송파경찰서 정상     측정 
 ## 10 남자         1    33    0.378 2022-07-31 23:37:00 인천논현경찰서 정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>2022년 7월 서울시 서초구에서 적발된 67세 남성의 알콜농도는 0.93으로 가장 높았다. 나이가 어린 순으로 정렬하면서 만약 나이가 같은 경우 알콜농도가 높은 순서대로 정렬하고 싶으면 다음과 같이 활용할 수 있다.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="데이터-주무르기.html#cb86-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(나이, <span class="fu">desc</span>(알콜농도))</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
@@ -515,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    16    0.13  2022-07-04 01:21:00 서울중랑경찰서 정상     측정 
 ##  9 남자         1    16    0.124 2022-07-03 02:40:00 천안동남경찰서 정상     측정 
 ## 10 남자         1    16    0.103 2022-07-30 05:24:00 고양경찰서     정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 </div>
 <div id="filter" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> filter()<a href="데이터-주무르기.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -534,7 +540,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    66       NA 2022-07-01 20:14:00 괴산경찰서       정상     거부 
 ##  9 남자         1    32       NA 2022-07-01 21:07:00 안양동안경찰서   정상     거부 
 ## 10 남자         1    57       NA 2022-07-01 21:57:00 서울강서경찰서   정상     거부 
-## # ℹ 447 more rows</code></pre>
+## # … with 447 more rows</code></pre>
 <p>남자(또는 여자)만 뽑아낼 수도,</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="데이터-주무르기.html#cb90-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10,629 × 8
@@ -550,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    23    0.164 2022-07-01 00:13:00 대구북부경찰서 정상     측정 
 ##  9 남자         1    33    0.17  2022-07-01 00:15:00 의왕경찰서     정상     측정 
 ## 10 남자         1    37    0.144 2022-07-01 00:16:00 광주북부경찰서 정상     측정 
-## # ℹ 10,619 more rows</code></pre>
+## # … with 10,619 more rows</code></pre>
 <p>미성년자만 뽑아낼 수도 있다. 어른들이 보다 관심을 가지고 돌봐줘야 할 아이들이 무려 148명이나 존재한다.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="데이터-주무르기.html#cb92-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 148 × 8
@@ -566,12 +572,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    19    0.049 2022-07-03 08:20:00 광주서부경찰서 정상     측정 
 ##  9 남자         1    17    0.045 2022-07-03 23:03:00 김해서부경찰서 정상     측정 
 ## 10 남자         1    19    0.07  2022-07-04 01:01:00 부천원미경찰서 정상     측정 
-## # ℹ 138 more rows</code></pre>
+## # … with 138 more rows</code></pre>
 <p><code>is.na()</code> 함수를 사용해 결측치(NA)를 뽑아낼 수 있다. NA는 Not Available의 약자로 결측치를 의미한다.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="데이터-주무르기.html#cb94-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(측정일시))</span></code></pre></div>
 <pre><code>## # A tibble: 0 × 8
-## # ℹ 8 variables: 성별 &lt;fct&gt;, 적발횟수 &lt;int&gt;, 나이 &lt;dbl&gt;, 알콜농도 &lt;dbl&gt;, 측정일시 &lt;dttm&gt;, 관할경찰서 &lt;chr&gt;,
-## #   나이불명 &lt;chr&gt;, 측정 &lt;chr&gt;</code></pre>
+## # … with 8 variables: 성별 &lt;fct&gt;, 적발횟수 &lt;int&gt;, 나이 &lt;dbl&gt;, 알콜농도 &lt;dbl&gt;, 측정일시 &lt;dttm&gt;, 관할경찰서 &lt;chr&gt;, 나이불명 &lt;chr&gt;, 측정 &lt;chr&gt;</code></pre>
 <p>하지만 대부분의 상황에서는 결측치를 찾아내기 보다. 결측치를 제거하는데 더 자주 사용된다. 결측치를 제거하고 싶다면 <code>!is.na()</code>를 사용하면 된다.</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="데이터-주무르기.html#cb96-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(측정일시))</span></code></pre></div>
 <pre><code>## # A tibble: 12,021 × 8
@@ -587,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    44    0.084 2022-07-01 00:13:00 부산사상경찰서 정상     측정 
 ##  9 여자         1    59    0.184 2022-07-01 00:13:00 군산경찰서     정상     측정 
 ## 10 남자         1    23    0.164 2022-07-01 00:13:00 대구북부경찰서 정상     측정 
-## # ℹ 12,011 more rows</code></pre>
+## # … with 12,011 more rows</code></pre>
 <p>기본적으로 <code>filter()</code>의 인자들은 ‘and’ 조건으로 연결된다. 즉, 남자이면서 미성년자인 데이터를 뽑아내고 싶다면 다음과 같이 활용하면 된다.</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="데이터-주무르기.html#cb98-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span>, 나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 133 × 8
@@ -603,7 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    19    0.049 2022-07-03 08:20:00 광주서부경찰서 정상     측정 
 ##  9 남자         1    17    0.045 2022-07-03 23:03:00 김해서부경찰서 정상     측정 
 ## 10 남자         1    19    0.07  2022-07-04 01:01:00 부천원미경찰서 정상     측정 
-## # ℹ 123 more rows</code></pre>
+## # … with 123 more rows</code></pre>
 <p>만약 ‘or’ 조건으로 연결하고 싶다면 <code>|</code>를 사용하면 된다. <code>|</code>는 or을 의미한다. <code>|</code>를 사용하면 남자<strong>이거나</strong> 미성년자인 데이터를 뽑아낼 수 있다.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="데이터-주무르기.html#cb100-1" tabindex="-1"></a>drunkdrive <span class="sc">%&gt;%</span> <span class="fu">filter</span>(성별 <span class="sc">==</span> <span class="st">&quot;남자&quot;</span> <span class="sc">|</span> 나이 <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10,644 × 8
@@ -619,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 남자         1    23    0.164 2022-07-01 00:13:00 대구북부경찰서 정상     측정 
 ##  9 남자         1    33    0.17  2022-07-01 00:15:00 의왕경찰서     정상     측정 
 ## 10 남자         1    37    0.144 2022-07-01 00:16:00 광주북부경찰서 정상     측정 
-## # ℹ 10,634 more rows</code></pre>
+## # … with 10,634 more rows</code></pre>
 </div>
 <div id="mutate" class="section level3 hasAnchor" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> mutate()<a href="데이터-주무르기.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -640,7 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 공주대학교                3826015       1913008.
 ##  9 광주과학기술원            2060000       1030000 
 ## 10 광주교육대학교            3476500       1738250 
-## # ℹ 378 more rows</code></pre>
+## # … with 378 more rows</code></pre>
 <p>또는 ‘원’ 단위의 등록금을 ‘만원’ 단위로 바꿔 볼 수도 있다.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="데이터-주무르기.html#cb104-1" tabindex="-1"></a>tuition <span class="sc">%&gt;%</span> </span>
 <span id="cb104-2"><a href="데이터-주무르기.html#cb104-2" tabindex="-1"></a>  <span class="fu">select</span>(대학명, 평균등록금.원.) <span class="sc">%&gt;%</span> </span>
@@ -659,7 +664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 한양대학교                  8486720            849.
 ##  9 한국항공대학교              8465834            847.
 ## 10 성균관대학교                8381038            838.
-## # ℹ 378 more rows</code></pre>
+## # … with 378 more rows</code></pre>
 <p>한국공학대학교의 평균 등록금이 연간 903만원으로 가장 높다. 순위를 표시하고 싶으면 <code>row_number()</code> 함수를 사용하면 된다. <code>row_number()</code> 함수는 데이터프레임의 행 번호를 표시한다. 높은 순위부터 순서대로 표시하고 싶다면 <code>desc()</code> 함수를 사용하면 된다.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="데이터-주무르기.html#cb106-1" tabindex="-1"></a>tuition <span class="sc">%&gt;%</span> </span>
 <span id="cb106-2"><a href="데이터-주무르기.html#cb106-2" tabindex="-1"></a>  <span class="fu">select</span>(대학명, 평균등록금.원.) <span class="sc">%&gt;%</span> </span>
@@ -679,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 한양대학교                  8486720            849.     8
 ##  9 한국항공대학교              8465834            847.     9
 ## 10 성균관대학교                8381038            838.    10
-## # ℹ 378 more rows</code></pre>
+## # … with 378 more rows</code></pre>
 <div id="ifelse와-함께" class="section level4 hasAnchor" number="4.3.4.1">
 <h4><span class="header-section-number">4.3.4.1</span> ifelse()와 함께<a href="데이터-주무르기.html#ifelse와-함께" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>ifelse()</code> 함수는 조건에 따라 다른 값을 반환한다. <code>ifelse()</code> 함수는 <code>mutate()</code> 함수와 함께 사용하면 특정 조건에 따라 다른 값을 가지는 새로운 열을 만들 수 있다. <code>ifelse()</code> 함수는 다음과 같이 사용한다.</p>
@@ -699,7 +704,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 공주대학교                3826015 400만원 미만
 ##  9 광주과학기술원            2060000 400만원 미만
 ## 10 광주교육대학교            3476500 400만원 미만
-## # ℹ 378 more rows</code></pre>
+## # … with 378 more rows</code></pre>
 <p><code>ifelse()</code> 함수의 첫 번째 인자는 조건이다. 조건은 <code>평균등록금.원. &gt;= 4000000</code>으로, 평균 등록금이 400만원 이상인지 아닌지를 판단한다. 두 번째 인자는 조건이 참일 때 반환할 값이다. 세 번째 인자는 조건이 거짓일 때 반환할 값이다. <code>ifelse()</code> 함수는 조건이 참일 때와 거짓일 때 반환할 값의 자료형이 같아야 한다.</p>
 </div>
 </div>
@@ -725,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 공주대학교               3826015
 ##  9 광주과학기술원           2060000
 ## 10 광주교육대학교           3476500
-## # ℹ 378 more rows</code></pre>
+## # … with 378 more rows</code></pre>
 </div>
 <div id="group_by" class="section level3 hasAnchor" number="4.3.6">
 <h3><span class="header-section-number">4.3.6</span> group_by()<a href="데이터-주무르기.html#group_by" class="anchor-section" aria-label="Anchor link to header"></a></h3>

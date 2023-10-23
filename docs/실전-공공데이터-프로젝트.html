@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>챕터 6 실전 공공데이터 프로젝트 | 공공데이터 분석 101</title>
+  <title>챕터 7 실전 공공데이터 프로젝트 | 공공데이터 분석 101</title>
   <meta name="description" content="공공데이터 분석 입문" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="챕터 6 실전 공공데이터 프로젝트 | 공공데이터 분석 101" />
+  <meta property="og:title" content="챕터 7 실전 공공데이터 프로젝트 | 공공데이터 분석 101" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="공공데이터 분석 입문" />
   <meta name="github-repo" content="statgarten/publickdata101" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="챕터 6 실전 공공데이터 프로젝트 | 공공데이터 분석 101" />
+  <meta name="twitter:title" content="챕터 7 실전 공공데이터 프로젝트 | 공공데이터 분석 101" />
   
   <meta name="twitter:description" content="공공데이터 분석 입문" />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-10-21" />
+<meta name="date" content="2023-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="시각화-기초.html"/>
+<link rel="prev" href="시각화.html"/>
 <link rel="next" href="statgarten.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,7 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -127,10 +133,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -221,25 +223,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
 <li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-소개"><i class="fa fa-check"></i><b>5.3</b> ggplot2 소개</a></li>
-<li class="chapter" data-level="5.4" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>5.4</b> ggplot2 기본 문법</a></li>
-<li class="chapter" data-level="5.5" data-path="시각화-기초.html"><a href="시각화-기초.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>5.5</b> 데이터셋과 좌표계 지정하기</a></li>
-<li class="chapter" data-level="5.6" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-themes"><i class="fa fa-check"></i><b>5.6</b> ggplot2 themes</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>6</b> 실전 공공데이터 프로젝트</a>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>6.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
-<li class="chapter" data-level="6.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#호선-지하철-혼잡도-분석-서울-지하철-데이터-분석"><i class="fa fa-check"></i><b>6.2</b> 2호선 지하철 혼잡도 분석 (서울 지하철 데이터 분석)</a></li>
-<li class="chapter" data-level="6.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>6.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
-<li class="chapter" data-level="6.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>6.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
-<li class="chapter" data-level="6.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>6.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>7</b> Statgarten</a>
+<li class="chapter" data-level="7" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>7</b> 실전 공공데이터 프로젝트</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>7.1</b> CUI보다 GUI가 좋을 때</a></li>
-<li class="chapter" data-level="7.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>7.2</b> Statgarten 소개</a></li>
+<li class="chapter" data-level="7.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>7.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
+<li class="chapter" data-level="7.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#호선-지하철-혼잡도-분석-서울-지하철-데이터-분석"><i class="fa fa-check"></i><b>7.2</b> 2호선 지하철 혼잡도 분석 (서울 지하철 데이터 분석)</a></li>
+<li class="chapter" data-level="7.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>7.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
+<li class="chapter" data-level="7.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>7.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
+<li class="chapter" data-level="7.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>7.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>8</b> 나가는 말</a></li>
+<li class="chapter" data-level="8" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>8</b> Statgarten</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>8.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="8.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>8.2</b> Statgarten 소개</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>9</b> 나가는 말</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -260,54 +265,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="실전-공공데이터-프로젝트" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">챕터 6</span> 실전 공공데이터 프로젝트<a href="실전-공공데이터-프로젝트.html#실전-공공데이터-프로젝트" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="울릉도의-버스정류장-gis-분석" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> 울릉도의 버스정류장 (GIS 분석)<a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="실전-공공데이터-프로젝트" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">챕터 7</span> 실전 공공데이터 프로젝트<a href="실전-공공데이터-프로젝트.html#실전-공공데이터-프로젝트" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="울릉도의-버스정류장-gis-분석" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 울릉도의 버스정류장 (GIS 분석)<a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>울릉도에는 버스정류장이 얼마나 있고 어디에 위치하고 있을까? <code>datatoys</code>의 busStation 데이터와 <code>leaflet</code> 패키지를 이용해 울릉도의 버스정류장을 분석해보자. <code>busStation</code> 데이터셋은 버스정보시스템(BIS)이 구축된 지자체 중 국가대중교통정보센터(TAGO)와 연계된 136개 지자체에 대한 버스정류장 위치정보 데이터를 제공한다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="실전-공공데이터-프로젝트.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
-<span id="cb1-2"><a href="실전-공공데이터-프로젝트.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb1-3"><a href="실전-공공데이터-프로젝트.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="실전-공공데이터-프로젝트.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="실전-공공데이터-프로젝트.html#cb1-5" tabindex="-1"></a>busStation <span class="sc">%&gt;%</span> </span>
-<span id="cb1-6"><a href="실전-공공데이터-프로젝트.html#cb1-6" tabindex="-1"></a>  <span class="fu">filter</span>(도시명 <span class="sc">==</span> <span class="st">&quot;울릉군&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-7"><a href="실전-공공데이터-프로젝트.html#cb1-7" tabindex="-1"></a>  <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-8"><a href="실전-공공데이터-프로젝트.html#cb1-8" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb1-9"><a href="실전-공공데이터-프로젝트.html#cb1-9" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="sc">~</span>경도, <span class="sc">~</span>위도, <span class="at">popup =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭), <span class="at">label =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭))</span></code></pre></div>
-<div id="htmlwidget-5444a6ebf2f53617606b" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5444a6ebf2f53617606b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[37.483149,37.483048,37.485324,37.485265,37.475255,37.475251,37.473445,37.473292,37.461089,37.460998,37.466438,37.466336,37.477334,37.477343,37.501497,37.501474,37.512295,37.512198,37.526151,37.526265,37.534325,37.534433,37.541135,37.541172,37.520356,37.520666,37.463615,37.463664,37.492747,37.492687,37.492329,37.492221,37.49669,37.494388,37.494293,37.496245,37.499513,37.499453,37.504511,37.504452,37.545509,37.545539,37.535212,37.5353,37.512169,37.509227,37.535404,37.535497,37.490633,37.490563,37.488049,37.488101,37.484803,37.484754,37.466563,37.466623,37.460794,37.460776,37.520226,37.541363,37.541271,37.541541,37.541429,37.495344,37.495386],[130.907617,130.907568,130.899513,130.899629,130.894117,130.894251,130.888952,130.888969,130.856789,130.85672,130.837356,130.837276,130.809218,130.809083,130.808667,130.808534,130.80128,130.801334,130.825614,130.825607,130.842834,130.842788,130.873253,130.873125,130.870226,130.868157,130.877244,130.877118,130.907504,130.907618,130.909888,130.909877,130.892391,130.907189,130.907179,130.909781,130.912255,130.912369,130.913842,130.913726,130.908804,130.908673,130.907061,130.906982,130.809983,130.814114,130.861254,130.861182,130.905296,130.9054,130.904222,130.904103,130.903729,130.903608,130.879818,130.879704,130.875758,130.875892,130.870317,130.893146,130.893226,130.915747,130.915752,130.903576,130.903749],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],null,null,null,["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.460776,37.545539],"lng":[130.80128,130.915752]}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="실전-공공데이터-프로젝트.html#cb152-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb152-2"><a href="실전-공공데이터-프로젝트.html#cb152-2" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb152-3"><a href="실전-공공데이터-프로젝트.html#cb152-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb152-4"><a href="실전-공공데이터-프로젝트.html#cb152-4" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="실전-공공데이터-프로젝트.html#cb152-5" tabindex="-1"></a>busStation <span class="sc">%&gt;%</span> </span>
+<span id="cb152-6"><a href="실전-공공데이터-프로젝트.html#cb152-6" tabindex="-1"></a>  <span class="fu">filter</span>(도시명 <span class="sc">==</span> <span class="st">&quot;울릉군&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb152-7"><a href="실전-공공데이터-프로젝트.html#cb152-7" tabindex="-1"></a>  <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb152-8"><a href="실전-공공데이터-프로젝트.html#cb152-8" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb152-9"><a href="실전-공공데이터-프로젝트.html#cb152-9" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="sc">~</span>경도, <span class="sc">~</span>위도, <span class="at">popup =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭), <span class="at">label =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭))</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-167f08f888d4f59a695a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-167f08f888d4f59a695a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[37.483149,37.483048,37.485324,37.485265,37.475255,37.475251,37.473445,37.473292,37.461089,37.460998,37.466438,37.466336,37.477334,37.477343,37.501497,37.501474,37.512295,37.512198,37.526151,37.526265,37.534325,37.534433,37.541135,37.541172,37.520356,37.520666,37.463615,37.463664,37.492747,37.492687,37.492329,37.492221,37.49669,37.494388,37.494293,37.496245,37.499513,37.499453,37.504511,37.504452,37.545509,37.545539,37.535212,37.5353,37.512169,37.509227,37.535404,37.535497,37.490633,37.490563,37.488049,37.488101,37.484803,37.484754,37.466563,37.466623,37.460794,37.460776,37.520226,37.541363,37.541271,37.541541,37.541429,37.495344,37.495386],[130.907617,130.907568,130.899513,130.899629,130.894117,130.894251,130.888952,130.888969,130.856789,130.85672,130.837356,130.837276,130.809218,130.809083,130.808667,130.808534,130.80128,130.801334,130.825614,130.825607,130.842834,130.842788,130.873253,130.873125,130.870226,130.868157,130.877244,130.877118,130.907504,130.907618,130.909888,130.909877,130.892391,130.907189,130.907179,130.909781,130.912255,130.912369,130.913842,130.913726,130.908804,130.908673,130.907061,130.906982,130.809983,130.814114,130.861254,130.861182,130.905296,130.9054,130.904222,130.904103,130.903729,130.903608,130.879818,130.879704,130.875758,130.875892,130.870317,130.893146,130.893226,130.915747,130.915752,130.903576,130.903749],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],null,null,null,["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.460776,37.545539],"lng":[130.80128,130.915752]}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="호선-지하철-혼잡도-분석-서울-지하철-데이터-분석" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> 2호선 지하철 혼잡도 분석 (서울 지하철 데이터 분석)<a href="실전-공공데이터-프로젝트.html#호선-지하철-혼잡도-분석-서울-지하철-데이터-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="실전-공공데이터-프로젝트.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-2"><a href="실전-공공데이터-프로젝트.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
-<span id="cb2-3"><a href="실전-공공데이터-프로젝트.html#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="실전-공공데이터-프로젝트.html#cb2-4" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="실전-공공데이터-프로젝트.html#cb2-5" tabindex="-1"></a>   <span class="fu">filter</span>(요일구분 <span class="sc">==</span> <span class="st">&quot;평일&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6"><a href="실전-공공데이터-프로젝트.html#cb2-6" tabindex="-1"></a>   <span class="fu">filter</span>(호선 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-7"><a href="실전-공공데이터-프로젝트.html#cb2-7" tabindex="-1"></a>   <span class="fu">mutate</span>(출발역 <span class="ot">=</span> <span class="fu">paste</span>(호선, <span class="st">&quot;호선&quot;</span>, 출발역)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-8"><a href="실전-공공데이터-프로젝트.html#cb2-8" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 혼잡도, <span class="at">color =</span> 상하구분)) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="실전-공공데이터-프로젝트.html#cb2-9" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> 상하구분)) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="실전-공공데이터-프로젝트.html#cb2-10" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E966A0&quot;</span>, <span class="st">&quot;#213363&quot;</span>, <span class="st">&quot;#8EAC50&quot;</span>, <span class="st">&quot;#F2BE22&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb2-11"><a href="실전-공공데이터-프로젝트.html#cb2-11" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(. <span class="sc">~</span>출발역, <span class="at">ncol =</span> <span class="dv">10</span>, <span class="at">strip.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-12"><a href="실전-공공데이터-프로젝트.html#cb2-12" tabindex="-1"></a>   ggthemes<span class="sc">::</span><span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;NanumGothic&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="실전-공공데이터-프로젝트.html#cb2-13" tabindex="-1"></a>   <span class="fu">theme</span>(</span>
-<span id="cb2-14"><a href="실전-공공데이터-프로젝트.html#cb2-14" tabindex="-1"></a>       <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-15"><a href="실전-공공데이터-프로젝트.html#cb2-15" tabindex="-1"></a>       <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-16"><a href="실전-공공데이터-프로젝트.html#cb2-16" tabindex="-1"></a>       <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-17"><a href="실전-공공데이터-프로젝트.html#cb2-17" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
-<span id="cb2-18"><a href="실전-공공데이터-프로젝트.html#cb2-18" tabindex="-1"></a>       ) <span class="sc">+</span></span>
-<span id="cb2-19"><a href="실전-공공데이터-프로젝트.html#cb2-19" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 2호선 시간대별 지하철 혼잡도 분포&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>)</span></code></pre></div>
-<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div id="호선-지하철-혼잡도-분석-서울-지하철-데이터-분석" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 2호선 지하철 혼잡도 분석 (서울 지하철 데이터 분석)<a href="실전-공공데이터-프로젝트.html#호선-지하철-혼잡도-분석-서울-지하철-데이터-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="실전-공공데이터-프로젝트.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb153-2"><a href="실전-공공데이터-프로젝트.html#cb153-2" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb153-3"><a href="실전-공공데이터-프로젝트.html#cb153-3" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="실전-공공데이터-프로젝트.html#cb153-4" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb153-5"><a href="실전-공공데이터-프로젝트.html#cb153-5" tabindex="-1"></a>   <span class="fu">filter</span>(요일구분 <span class="sc">==</span> <span class="st">&quot;평일&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-6"><a href="실전-공공데이터-프로젝트.html#cb153-6" tabindex="-1"></a>   <span class="fu">filter</span>(호선 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-7"><a href="실전-공공데이터-프로젝트.html#cb153-7" tabindex="-1"></a>   <span class="fu">mutate</span>(출발역 <span class="ot">=</span> <span class="fu">paste</span>(호선, <span class="st">&quot;호선&quot;</span>, 출발역)) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-8"><a href="실전-공공데이터-프로젝트.html#cb153-8" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 혼잡도, <span class="at">color =</span> 상하구분)) <span class="sc">+</span></span>
+<span id="cb153-9"><a href="실전-공공데이터-프로젝트.html#cb153-9" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> 상하구분)) <span class="sc">+</span></span>
+<span id="cb153-10"><a href="실전-공공데이터-프로젝트.html#cb153-10" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E966A0&quot;</span>, <span class="st">&quot;#213363&quot;</span>, <span class="st">&quot;#8EAC50&quot;</span>, <span class="st">&quot;#F2BE22&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb153-11"><a href="실전-공공데이터-프로젝트.html#cb153-11" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(. <span class="sc">~</span>출발역, <span class="at">ncol =</span> <span class="dv">10</span>, <span class="at">strip.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-12"><a href="실전-공공데이터-프로젝트.html#cb153-12" tabindex="-1"></a>   ggthemes<span class="sc">::</span><span class="fu">theme_tufte</span>(<span class="at">base_family =</span> <span class="st">&quot;NanumGothic&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-13"><a href="실전-공공데이터-프로젝트.html#cb153-13" tabindex="-1"></a>   <span class="fu">theme</span>(</span>
+<span id="cb153-14"><a href="실전-공공데이터-프로젝트.html#cb153-14" tabindex="-1"></a>       <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb153-15"><a href="실전-공공데이터-프로젝트.html#cb153-15" tabindex="-1"></a>       <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb153-16"><a href="실전-공공데이터-프로젝트.html#cb153-16" tabindex="-1"></a>       <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb153-17"><a href="실전-공공데이터-프로젝트.html#cb153-17" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb153-18"><a href="실전-공공데이터-프로젝트.html#cb153-18" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb153-19"><a href="실전-공공데이터-프로젝트.html#cb153-19" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 2호선 시간대별 지하철 혼잡도 분포&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>)</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 </div>
-<div id="어떤-송아지가-가장-좋을까-api-활용하기" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> 어떤 송아지가 가장 좋을까? (API 활용하기)<a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="어떤-송아지가-가장-좋을까-api-활용하기" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 어떤 송아지가 가장 좋을까? (API 활용하기)<a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="공공데이터로-사주팔자-보기-특일-분석" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> 공공데이터로 사주팔자 보기 (특일 분석)<a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="공공데이터로-사주팔자-보기-특일-분석" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> 공공데이터로 사주팔자 보기 (특일 분석)<a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="승강기-데이터만-알아도-건물이-보인다" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> 승강기 데이터만 알아도 건물이 보인다<a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="승강기-데이터만-알아도-건물이-보인다" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> 승강기 데이터만 알아도 건물이 보인다<a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -316,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="시각화-기초.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="시각화.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="statgarten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

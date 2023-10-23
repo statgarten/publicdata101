@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>챕터 11 울릉도의 버스정류장 | 공공데이터 분석 101</title>
+  <meta name="description" content="공공데이터 분석 입문" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="챕터 11 울릉도의 버스정류장 | 공공데이터 분석 101" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="공공데이터 분석 입문" />
+  <meta name="github-repo" content="statgarten/publickdata101" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="챕터 11 울릉도의 버스정류장 | 공공데이터 분석 101" />
+  
+  <meta name="twitter:description" content="공공데이터 분석 입문" />
+  
+
+<meta name="author" content="Project Statgarten" />
+
+
+<meta name="date" content="2023-10-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="대한민구-인구수-변화-시각화.html"/>
+<link rel="next" href="statgarten.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">공공데이터분석 101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 모두를 위한 공공데이터</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#서론"><i class="fa fa-check"></i><b>1.1</b> 서론</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#이-책의-목적지"><i class="fa fa-check"></i><b>1.2</b> 이 책의 목적지</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#공공데이터란-무엇일까"><i class="fa fa-check"></i><b>1.3</b> 공공데이터란 무엇일까?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#공공데이터를-분석-하는-이유"><i class="fa fa-check"></i><b>1.4</b> 공공데이터를 분석 하는 이유</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#공공데이터-활용사례"><i class="fa fa-check"></i><b>1.5</b> 공공데이터 활용사례</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#무엇을-배우게-될까"><i class="fa fa-check"></i><b>1.6</b> 무엇을 배우게 될까?</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#r을-사용하는-이유"><i class="fa fa-check"></i><b>1.7</b> R을 사용하는 이유</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> 공공데이터 이해</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#공공데이터-확보하기"><i class="fa fa-check"></i><b>2.1</b> 공공데이터 확보하기</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#공공데이터-분쟁조정"><i class="fa fa-check"></i><b>2.2</b> 공공데이터 분쟁조정</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#공공데이터-이용범위"><i class="fa fa-check"></i><b>2.3</b> 공공데이터 이용범위</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#파일데이터와-api"><i class="fa fa-check"></i><b>2.4</b> 파일데이터와 API</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#파일데이터"><i class="fa fa-check"></i><b>2.4.1</b> 파일데이터</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#application-program-interface-api"><i class="fa fa-check"></i><b>2.4.2</b> Application Program Interface (API)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#공공데이터-활용신청"><i class="fa fa-check"></i><b>2.4.3</b> 공공데이터 활용신청</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-에센셜.html"><a href="r-에센셜.html"><i class="fa fa-check"></i><b>3</b> R 에센셜</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-에센셜.html"><a href="r-에센셜.html#r과-r-studio-설치"><i class="fa fa-check"></i><b>3.1</b> R과 R Studio 설치</a></li>
+<li class="chapter" data-level="3.2" data-path="r-에센셜.html"><a href="r-에센셜.html#hello-world"><i class="fa fa-check"></i><b>3.2</b> Hello World!</a></li>
+<li class="chapter" data-level="3.3" data-path="r-에센셜.html"><a href="r-에센셜.html#예쁜-테마는-일할-맛-나게-해주지"><i class="fa fa-check"></i><b>3.3</b> 예쁜 테마는 일할 맛 나게 해주지</a></li>
+<li class="chapter" data-level="3.4" data-path="r-에센셜.html"><a href="r-에센셜.html#당신의-고민은-이미-누군가의-고민이었다"><i class="fa fa-check"></i><b>3.4</b> 당신의 고민은 이미 누군가의 고민이었다</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-에센셜.html"><a href="r-에센셜.html#에러-메시지를-대하는-자세"><i class="fa fa-check"></i><b>3.4.1</b> 에러 메시지를 대하는 자세</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-에센셜.html"><a href="r-에센셜.html#계산기로-사용해보기"><i class="fa fa-check"></i><b>3.5</b> 계산기로 사용해보기</a></li>
+<li class="chapter" data-level="3.6" data-path="r-에센셜.html"><a href="r-에센셜.html#이름을-붙여주자객체할당"><i class="fa fa-check"></i><b>3.6</b> 이름을 붙여주자(객체할당)</a></li>
+<li class="chapter" data-level="3.7" data-path="r-에센셜.html"><a href="r-에센셜.html#컴퓨터에게-1은-1이-아니야문자와-숫자"><i class="fa fa-check"></i><b>3.7</b> 컴퓨터에게 “1”은 1이 아니야(문자와 숫자)</a></li>
+<li class="chapter" data-level="3.8" data-path="r-에센셜.html"><a href="r-에센셜.html#함수와-패키지"><i class="fa fa-check"></i><b>3.8</b> 함수와 패키지</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="r-에센셜.html"><a href="r-에센셜.html#함수란"><i class="fa fa-check"></i><b>3.8.1</b> 함수란?</a></li>
+<li class="chapter" data-level="3.8.2" data-path="r-에센셜.html"><a href="r-에센셜.html#함수들의-꾸러미-패키지"><i class="fa fa-check"></i><b>3.8.2</b> 함수들의 꾸러미, 패키지</a></li>
+<li class="chapter" data-level="3.8.3" data-path="r-에센셜.html"><a href="r-에센셜.html#주요-패키지-설치"><i class="fa fa-check"></i><b>3.8.3</b> 주요 패키지 설치</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자"><i class="fa fa-check"></i><b>3.9</b> 파이프 연산자</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자란"><i class="fa fa-check"></i><b>3.9.1</b> 파이프 연산자란?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html"><i class="fa fa-check"></i><b>4</b> 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#datatoys-패키지-소개"><i class="fa fa-check"></i><b>4.1</b> datatoys 패키지 소개</a></li>
+<li class="chapter" data-level="4.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터프레임-이해"><i class="fa fa-check"></i><b>4.2</b> 데이터프레임 이해</a></li>
+<li class="chapter" data-level="4.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#음주운전-데이터-주무르기"><i class="fa fa-check"></i><b>4.3</b> 음주운전 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#select"><i class="fa fa-check"></i><b>4.3.1</b> select()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#arrange"><i class="fa fa-check"></i><b>4.3.2</b> arrange()</a></li>
+<li class="chapter" data-level="4.3.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#filter"><i class="fa fa-check"></i><b>4.3.3</b> filter()</a></li>
+<li class="chapter" data-level="4.3.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#mutate"><i class="fa fa-check"></i><b>4.3.4</b> mutate()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#rename"><i class="fa fa-check"></i><b>4.3.5</b> rename()</a></li>
+<li class="chapter" data-level="4.3.6" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#group_by"><i class="fa fa-check"></i><b>4.3.6</b> group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터라는-것이-폭발한다.-합쳤을-때."><i class="fa fa-check"></i><b>4.4</b> 데이터라는 것이 폭발한다. 합쳤을 때.</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#left_join"><i class="fa fa-check"></i><b>4.4.1</b> left_join()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="시각화-기초.html"><a href="시각화-기초.html"><i class="fa fa-check"></i><b>5</b> 시각화 기초</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#이왕이면-예쁜-그래프"><i class="fa fa-check"></i><b>5.1</b> 이왕이면 예쁜 그래프</a></li>
+<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#시각화-요소"><i class="fa fa-check"></i><b>5.2</b> 시각화 요소</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="시각화-기초.html"><a href="시각화-기초.html#색상color"><i class="fa fa-check"></i><b>5.2.1</b> 색상(Color)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="시각화-기초.html"><a href="시각화-기초.html#글씨text"><i class="fa fa-check"></i><b>5.2.2</b> 글씨(Text)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="호선-지하철-혼잡도-분석.html"><a href="호선-지하철-혼잡도-분석.html"><i class="fa fa-check"></i><b>7</b> 2호선 지하철 혼잡도 분석</a></li>
+<li class="chapter" data-level="8" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html"><i class="fa fa-check"></i><b>8</b> 손없는 날 판별하기 (함수)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html#map-함수"><i class="fa fa-check"></i><b>8.1</b> map() 함수</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="서울시-급똥-지도.html"><a href="서울시-급똥-지도.html"><i class="fa fa-check"></i><b>9</b> 서울시 급똥 지도</a></li>
+<li class="chapter" data-level="10" data-path="대한민구-인구수-변화-시각화.html"><a href="대한민구-인구수-변화-시각화.html"><i class="fa fa-check"></i><b>10</b> 대한민구 인구수 변화 시각화</a></li>
+<li class="chapter" data-level="11" data-path="울릉도의-버스정류장.html"><a href="울릉도의-버스정류장.html"><i class="fa fa-check"></i><b>11</b> 울릉도의 버스정류장</a></li>
+<li class="chapter" data-level="12" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>12</b> Statgarten</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>12.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="12.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>12.2</b> Statgarten 소개</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>13</b> 나가는 말</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">공공데이터 분석 101</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="울릉도의-버스정류장" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">챕터 11</span> 울릉도의 버스정류장<a href="울릉도의-버스정류장.html#울릉도의-버스정류장" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>울릉도에는 버스정류장이 얼마나 있고 어디에 위치하고 있을까? <code>datatoys</code>의 busStation 데이터와 <code>leaflet</code> 패키지를 이용해 울릉도의 버스정류장을 분석해보자. <code>busStation</code> 데이터셋은 버스정보시스템(BIS)이 구축된 지자체 중 국가대중교통정보센터(TAGO)와 연계된 136개 지자체에 대한 버스정류장 위치정보 데이터를 제공한다.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="울릉도의-버스정류장.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb202-2"><a href="울릉도의-버스정류장.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb202-3"><a href="울릉도의-버스정류장.html#cb202-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb202-4"><a href="울릉도의-버스정류장.html#cb202-4" tabindex="-1"></a></span>
+<span id="cb202-5"><a href="울릉도의-버스정류장.html#cb202-5" tabindex="-1"></a>busStation <span class="sc">%&gt;%</span> </span>
+<span id="cb202-6"><a href="울릉도의-버스정류장.html#cb202-6" tabindex="-1"></a>  <span class="fu">filter</span>(도시명 <span class="sc">==</span> <span class="st">&quot;울릉군&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb202-7"><a href="울릉도의-버스정류장.html#cb202-7" tabindex="-1"></a>  <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb202-8"><a href="울릉도의-버스정류장.html#cb202-8" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb202-9"><a href="울릉도의-버스정류장.html#cb202-9" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="sc">~</span>경도, <span class="sc">~</span>위도, <span class="at">popup =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭), <span class="at">label =</span> <span class="sc">~</span><span class="fu">as.character</span>(정류장.명칭))</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-356e00178ee817c9e8c9" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-356e00178ee817c9e8c9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[37.483149,37.483048,37.485324,37.485265,37.475255,37.475251,37.473445,37.473292,37.461089,37.460998,37.466438,37.466336,37.477334,37.477343,37.501497,37.501474,37.512295,37.512198,37.526151,37.526265,37.534325,37.534433,37.541135,37.541172,37.520356,37.520666,37.463615,37.463664,37.492747,37.492687,37.492329,37.492221,37.49669,37.494388,37.494293,37.496245,37.499513,37.499453,37.504511,37.504452,37.545509,37.545539,37.535212,37.5353,37.512169,37.509227,37.535404,37.535497,37.490633,37.490563,37.488049,37.488101,37.484803,37.484754,37.466563,37.466623,37.460794,37.460776,37.520226,37.541363,37.541271,37.541541,37.541429,37.495344,37.495386],[130.907617,130.907568,130.899513,130.899629,130.894117,130.894251,130.888952,130.888969,130.856789,130.85672,130.837356,130.837276,130.809218,130.809083,130.808667,130.808534,130.80128,130.801334,130.825614,130.825607,130.842834,130.842788,130.873253,130.873125,130.870226,130.868157,130.877244,130.877118,130.907504,130.907618,130.909888,130.909877,130.892391,130.907189,130.907179,130.909781,130.912255,130.912369,130.913842,130.913726,130.908804,130.908673,130.907061,130.906982,130.809983,130.814114,130.861254,130.861182,130.905296,130.9054,130.904222,130.904103,130.903729,130.903608,130.879818,130.879704,130.875758,130.875892,130.870317,130.893146,130.893226,130.915747,130.915752,130.903576,130.903749],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],null,null,null,["울릉군도동정류소","울릉군도동정류소","보건의료원","도동","사동마을회관","사동해수풀장","구장흥초등","구장흥초등","통구미","통구미","남양","남양","구암","곰바위","학포","학포","태하","태하길","현포","현포","평리","평리","천부정류장","천부정류장","나리","나리분지","간령","간령","울릉고등학교","울릉고등학교","저동","저동","봉래폭포","저동사우나앞","저동사우나앞","저동여객터미널","신용슈퍼앞","신용슈퍼앞","내수전","내수전","선창","선창","안용복기념관","안용복기념관","태하공설운동장","태하공설운동장","추산","추산","한마음회관","한마음회관","LH 임대주택","LH 임대주택","울릉읍사무소","울릉읍사무소","사동3리","사동3리","간령","간령","나리","죽암","죽암","관음도","관음도","저동초등학교","저동초등학교"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.460776,37.545539],"lng":[130.80128,130.915752]}},"evals":[],"jsHooks":[]}</script>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="대한민구-인구수-변화-시각화.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statgarten.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-example.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["공공데이터분석101.pdf", "공공데이터분석101.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

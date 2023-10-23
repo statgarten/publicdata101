@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>챕터 7 2호선 지하철 혼잡도 분석 | 공공데이터 분석 101</title>
+  <meta name="description" content="공공데이터 분석 입문" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="챕터 7 2호선 지하철 혼잡도 분석 | 공공데이터 분석 101" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="공공데이터 분석 입문" />
+  <meta name="github-repo" content="statgarten/publickdata101" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="챕터 7 2호선 지하철 혼잡도 분석 | 공공데이터 분석 101" />
+  
+  <meta name="twitter:description" content="공공데이터 분석 입문" />
+  
+
+<meta name="author" content="Project Statgarten" />
+
+
+<meta name="date" content="2023-10-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="시각화.html"/>
+<link rel="next" href="손없는-날-판별하기-함수.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">공공데이터분석 101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 모두를 위한 공공데이터</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#서론"><i class="fa fa-check"></i><b>1.1</b> 서론</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#이-책의-목적지"><i class="fa fa-check"></i><b>1.2</b> 이 책의 목적지</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#공공데이터란-무엇일까"><i class="fa fa-check"></i><b>1.3</b> 공공데이터란 무엇일까?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#공공데이터를-분석-하는-이유"><i class="fa fa-check"></i><b>1.4</b> 공공데이터를 분석 하는 이유</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#공공데이터-활용사례"><i class="fa fa-check"></i><b>1.5</b> 공공데이터 활용사례</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#무엇을-배우게-될까"><i class="fa fa-check"></i><b>1.6</b> 무엇을 배우게 될까?</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#r을-사용하는-이유"><i class="fa fa-check"></i><b>1.7</b> R을 사용하는 이유</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> 공공데이터 이해</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#공공데이터-확보하기"><i class="fa fa-check"></i><b>2.1</b> 공공데이터 확보하기</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#공공데이터-분쟁조정"><i class="fa fa-check"></i><b>2.2</b> 공공데이터 분쟁조정</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#공공데이터-이용범위"><i class="fa fa-check"></i><b>2.3</b> 공공데이터 이용범위</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#파일데이터와-api"><i class="fa fa-check"></i><b>2.4</b> 파일데이터와 API</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#파일데이터"><i class="fa fa-check"></i><b>2.4.1</b> 파일데이터</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#application-program-interface-api"><i class="fa fa-check"></i><b>2.4.2</b> Application Program Interface (API)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#공공데이터-활용신청"><i class="fa fa-check"></i><b>2.4.3</b> 공공데이터 활용신청</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-에센셜.html"><a href="r-에센셜.html"><i class="fa fa-check"></i><b>3</b> R 에센셜</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-에센셜.html"><a href="r-에센셜.html#r과-r-studio-설치"><i class="fa fa-check"></i><b>3.1</b> R과 R Studio 설치</a></li>
+<li class="chapter" data-level="3.2" data-path="r-에센셜.html"><a href="r-에센셜.html#hello-world"><i class="fa fa-check"></i><b>3.2</b> Hello World!</a></li>
+<li class="chapter" data-level="3.3" data-path="r-에센셜.html"><a href="r-에센셜.html#예쁜-테마는-일할-맛-나게-해주지"><i class="fa fa-check"></i><b>3.3</b> 예쁜 테마는 일할 맛 나게 해주지</a></li>
+<li class="chapter" data-level="3.4" data-path="r-에센셜.html"><a href="r-에센셜.html#당신의-고민은-이미-누군가의-고민이었다"><i class="fa fa-check"></i><b>3.4</b> 당신의 고민은 이미 누군가의 고민이었다</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-에센셜.html"><a href="r-에센셜.html#에러-메시지를-대하는-자세"><i class="fa fa-check"></i><b>3.4.1</b> 에러 메시지를 대하는 자세</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-에센셜.html"><a href="r-에센셜.html#계산기로-사용해보기"><i class="fa fa-check"></i><b>3.5</b> 계산기로 사용해보기</a></li>
+<li class="chapter" data-level="3.6" data-path="r-에센셜.html"><a href="r-에센셜.html#이름을-붙여주자객체할당"><i class="fa fa-check"></i><b>3.6</b> 이름을 붙여주자(객체할당)</a></li>
+<li class="chapter" data-level="3.7" data-path="r-에센셜.html"><a href="r-에센셜.html#컴퓨터에게-1은-1이-아니야문자와-숫자"><i class="fa fa-check"></i><b>3.7</b> 컴퓨터에게 “1”은 1이 아니야(문자와 숫자)</a></li>
+<li class="chapter" data-level="3.8" data-path="r-에센셜.html"><a href="r-에센셜.html#함수와-패키지"><i class="fa fa-check"></i><b>3.8</b> 함수와 패키지</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="r-에센셜.html"><a href="r-에센셜.html#함수란"><i class="fa fa-check"></i><b>3.8.1</b> 함수란?</a></li>
+<li class="chapter" data-level="3.8.2" data-path="r-에센셜.html"><a href="r-에센셜.html#함수들의-꾸러미-패키지"><i class="fa fa-check"></i><b>3.8.2</b> 함수들의 꾸러미, 패키지</a></li>
+<li class="chapter" data-level="3.8.3" data-path="r-에센셜.html"><a href="r-에센셜.html#주요-패키지-설치"><i class="fa fa-check"></i><b>3.8.3</b> 주요 패키지 설치</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자"><i class="fa fa-check"></i><b>3.9</b> 파이프 연산자</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자란"><i class="fa fa-check"></i><b>3.9.1</b> 파이프 연산자란?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html"><i class="fa fa-check"></i><b>4</b> 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#datatoys-패키지-소개"><i class="fa fa-check"></i><b>4.1</b> datatoys 패키지 소개</a></li>
+<li class="chapter" data-level="4.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터프레임-이해"><i class="fa fa-check"></i><b>4.2</b> 데이터프레임 이해</a></li>
+<li class="chapter" data-level="4.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#음주운전-데이터-주무르기"><i class="fa fa-check"></i><b>4.3</b> 음주운전 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#select"><i class="fa fa-check"></i><b>4.3.1</b> select()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#arrange"><i class="fa fa-check"></i><b>4.3.2</b> arrange()</a></li>
+<li class="chapter" data-level="4.3.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#filter"><i class="fa fa-check"></i><b>4.3.3</b> filter()</a></li>
+<li class="chapter" data-level="4.3.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#mutate"><i class="fa fa-check"></i><b>4.3.4</b> mutate()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#rename"><i class="fa fa-check"></i><b>4.3.5</b> rename()</a></li>
+<li class="chapter" data-level="4.3.6" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#group_by"><i class="fa fa-check"></i><b>4.3.6</b> group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터라는-것이-폭발한다.-합쳤을-때."><i class="fa fa-check"></i><b>4.4</b> 데이터라는 것이 폭발한다. 합쳤을 때.</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#left_join"><i class="fa fa-check"></i><b>4.4.1</b> left_join()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="시각화-기초.html"><a href="시각화-기초.html"><i class="fa fa-check"></i><b>5</b> 시각화 기초</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#이왕이면-예쁜-그래프"><i class="fa fa-check"></i><b>5.1</b> 이왕이면 예쁜 그래프</a></li>
+<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#시각화-요소"><i class="fa fa-check"></i><b>5.2</b> 시각화 요소</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="시각화-기초.html"><a href="시각화-기초.html#색상color"><i class="fa fa-check"></i><b>5.2.1</b> 색상(Color)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="시각화-기초.html"><a href="시각화-기초.html#글씨text"><i class="fa fa-check"></i><b>5.2.2</b> 글씨(Text)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="호선-지하철-혼잡도-분석.html"><a href="호선-지하철-혼잡도-분석.html"><i class="fa fa-check"></i><b>7</b> 2호선 지하철 혼잡도 분석</a></li>
+<li class="chapter" data-level="8" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html"><i class="fa fa-check"></i><b>8</b> 손없는 날 판별하기 (함수)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html#map-함수"><i class="fa fa-check"></i><b>8.1</b> map() 함수</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="서울시-급똥-지도.html"><a href="서울시-급똥-지도.html"><i class="fa fa-check"></i><b>9</b> 서울시 급똥 지도</a></li>
+<li class="chapter" data-level="10" data-path="대한민구-인구수-변화-시각화.html"><a href="대한민구-인구수-변화-시각화.html"><i class="fa fa-check"></i><b>10</b> 대한민구 인구수 변화 시각화</a></li>
+<li class="chapter" data-level="11" data-path="울릉도의-버스정류장.html"><a href="울릉도의-버스정류장.html"><i class="fa fa-check"></i><b>11</b> 울릉도의 버스정류장</a></li>
+<li class="chapter" data-level="12" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>12</b> Statgarten</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>12.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="12.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>12.2</b> Statgarten 소개</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>13</b> 나가는 말</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">공공데이터 분석 101</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="호선-지하철-혼잡도-분석" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">챕터 7</span> 2호선 지하철 혼잡도 분석<a href="호선-지하철-혼잡도-분석.html#호선-지하철-혼잡도-분석" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>서울 지하철은 붐빈다. 자리도 없고 혼잡한 승차 시간엔 더 불편하다. 하지만, 이를 피하기 위한 작은 전략들이 있다. 아주 일찍 나가거나 늦게 가는 방법이다. 그렇다면 ‘정확히’ 어느 시간에 가면될까? 마침 <code>datatoys</code>패키지에는 <code>busyMetro</code>데이터셋이 내장되어있다. 이는 서울교통공사 1-8호선 30분 단위 평균 혼잡도로 30분간 지나는 열차들의 평균 혼잡도(정원대비 승차인원)를 의미한다.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="호선-지하철-혼잡도-분석.html#cb149-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb149-2"><a href="호선-지하철-혼잡도-분석.html#cb149-2" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb149-3"><a href="호선-지하철-혼잡도-분석.html#cb149-3" tabindex="-1"></a><span class="fu">str</span>(busyMetro)</span></code></pre></div>
+<pre><code>## Warning in str(busyMetro): restarting interrupted promise evaluation</code></pre>
+<pre><code>## tibble [64,662 × 7] (S3: tbl_df/tbl/data.frame)
+##  $ 요일구분: chr [1:64662] &quot;평일&quot; &quot;평일&quot; &quot;평일&quot; &quot;평일&quot; ...
+##  $ 호선    : int [1:64662] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ 역번호  : int [1:64662] 150 150 150 150 150 150 150 150 150 150 ...
+##  $ 출발역  : chr [1:64662] &quot;서울역&quot; &quot;서울역&quot; &quot;서울역&quot; &quot;서울역&quot; ...
+##  $ 상하구분: chr [1:64662] &quot;상선&quot; &quot;상선&quot; &quot;상선&quot; &quot;상선&quot; ...
+##  $ 시간    : Factor w/ 39 levels &quot;5:30&quot;,&quot;6:00&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ 혼잡도  : num [1:64662] 7.3 18.1 18.1 30.9 56.6 69.1 82.7 57.5 52.3 36.9 ...</code></pre>
+<p>먼저 시간별로 전체 지하철의 혼잡도를 살펴보자.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="호선-지하철-혼잡도-분석.html#cb152-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb152-2"><a href="호선-지하철-혼잡도-분석.html#cb152-2" tabindex="-1"></a>   <span class="fu">group_by</span>(시간) <span class="sc">%&gt;%</span> </span>
+<span id="cb152-3"><a href="호선-지하철-혼잡도-분석.html#cb152-3" tabindex="-1"></a>   <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 39 × 2
+##    시간  평균혼잡도
+##    &lt;fct&gt;      &lt;dbl&gt;
+##  1 5:30        14.8
+##  2 6:00        14.7
+##  3 6:30        14.3
+##  4 7:00        18.6
+##  5 7:30        24.5
+##  6 8:00        32.1
+##  7 8:30        30.0
+##  8 9:00        29.3
+##  9 9:30        27.7
+## 10 10:00       25.6
+## # … with 29 more rows</code></pre>
+<p>혼잡도를 그래프로 나타내 보면 다음과 같다. <code>geom_line()</code> 함수 안에 <code>aes(group = 1)</code>을 추가하여 모든 데이터 요소를 하나의 그룹으로 처리할 수 있다.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="호선-지하철-혼잡도-분석.html#cb154-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb154-2"><a href="호선-지하철-혼잡도-분석.html#cb154-2" tabindex="-1"></a>   <span class="fu">group_by</span>(시간) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-3"><a href="호선-지하철-혼잡도-분석.html#cb154-3" tabindex="-1"></a>   <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-4"><a href="호선-지하철-혼잡도-분석.html#cb154-4" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 평균혼잡도)) <span class="sc">+</span></span>
+<span id="cb154-5"><a href="호선-지하철-혼잡도-분석.html#cb154-5" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb154-6"><a href="호선-지하철-혼잡도-분석.html#cb154-6" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 평균 혼잡도&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>)</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p>화면비율이나 크기에 따라 다르겠지만, x축의 시간 변수가 겹쳐보인다. 이를 해결하기 위해 x축의 글자들을 45도 회전시켜보자.<code>theme()</code> 함수 안에 <code>axis.text.x = element_text(angle = 45, hjust = 1)</code>을 추가하면 된다. <code>hjust =</code>를 사용해서 높이를 약간 조절해준다.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="호선-지하철-혼잡도-분석.html#cb155-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb155-2"><a href="호선-지하철-혼잡도-분석.html#cb155-2" tabindex="-1"></a>   <span class="fu">group_by</span>(시간) <span class="sc">%&gt;%</span> </span>
+<span id="cb155-3"><a href="호선-지하철-혼잡도-분석.html#cb155-3" tabindex="-1"></a>   <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb155-4"><a href="호선-지하철-혼잡도-분석.html#cb155-4" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 평균혼잡도)) <span class="sc">+</span></span>
+<span id="cb155-5"><a href="호선-지하철-혼잡도-분석.html#cb155-5" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb155-6"><a href="호선-지하철-혼잡도-분석.html#cb155-6" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 평균 혼잡도&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>) <span class="sc">+</span></span>
+<span id="cb155-7"><a href="호선-지하철-혼잡도-분석.html#cb155-7" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>확실히 출근시간과 퇴근시간 대에 피크를 볼 수 있다. 그렇다면 평일과 주말의 양상은 어떻게 다를까? <code>geom_line()</code> 함수 안에 <code>aes(color = 요일구분)</code>을 추가하면 요일별로 색상을 다르게 표현할 수 있다. scale_color_manual() 함수를 이용해 색상을 직접 지정할 수도 있다.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="호선-지하철-혼잡도-분석.html#cb156-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb156-2"><a href="호선-지하철-혼잡도-분석.html#cb156-2" tabindex="-1"></a>  <span class="fu">group_by</span>(요일구분, 시간) <span class="sc">%&gt;%</span></span>
+<span id="cb156-3"><a href="호선-지하철-혼잡도-분석.html#cb156-3" tabindex="-1"></a>  <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb156-4"><a href="호선-지하철-혼잡도-분석.html#cb156-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 평균혼잡도)) <span class="sc">+</span></span>
+<span id="cb156-5"><a href="호선-지하철-혼잡도-분석.html#cb156-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> 요일구분, <span class="at">color =</span> 요일구분)) <span class="sc">+</span></span>
+<span id="cb156-6"><a href="호선-지하철-혼잡도-분석.html#cb156-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E966A0&quot;</span>, <span class="st">&quot;#213363&quot;</span>, <span class="st">&quot;#8EAC50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb156-7"><a href="호선-지하철-혼잡도-분석.html#cb156-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 평균 혼잡도&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>) <span class="sc">+</span></span>
+<span id="cb156-8"><a href="호선-지하철-혼잡도-분석.html#cb156-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;요일구분&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (`geom_line()`).</code></pre>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p><code>## Warning: Removed 4 rows containing missing values geom_line().</code>라는 경고문구가 나타난다. 주말이나 공휴일에는 지하철 운행시간이 달라 데이터가 존재하지 않기 때문이다. legend 위치를 조절하기 위해서는 <code>theme()</code> 함수 안에 <code>legend.position =</code>을 추가하면 된다.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="호선-지하철-혼잡도-분석.html#cb159-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb159-2"><a href="호선-지하철-혼잡도-분석.html#cb159-2" tabindex="-1"></a>  <span class="fu">group_by</span>(요일구분, 시간) <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="호선-지하철-혼잡도-분석.html#cb159-3" tabindex="-1"></a>  <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb159-4"><a href="호선-지하철-혼잡도-분석.html#cb159-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 평균혼잡도)) <span class="sc">+</span></span>
+<span id="cb159-5"><a href="호선-지하철-혼잡도-분석.html#cb159-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> 요일구분, <span class="at">color =</span> 요일구분)) <span class="sc">+</span></span>
+<span id="cb159-6"><a href="호선-지하철-혼잡도-분석.html#cb159-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E966A0&quot;</span>, <span class="st">&quot;#213363&quot;</span>, <span class="st">&quot;#8EAC50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb159-7"><a href="호선-지하철-혼잡도-분석.html#cb159-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 평균 혼잡도&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>) <span class="sc">+</span></span>
+<span id="cb159-8"><a href="호선-지하철-혼잡도-분석.html#cb159-8" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb159-9"><a href="호선-지하철-혼잡도-분석.html#cb159-9" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb159-10"><a href="호선-지하철-혼잡도-분석.html#cb159-10" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb159-11"><a href="호선-지하철-혼잡도-분석.html#cb159-11" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;요일구분&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (`geom_line()`).</code></pre>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>이번에는 호선별로 평일 지하철 혼잡도를 살펴보자. <code>facet_wrap()</code> 함수를 이용하면 호선별로 그래프를 나눌 수 있다. <code>facet_wrap()</code> 함수 안에 <code>. ~호선</code>을 추가하면 호선별로 그래프를 나눌 수 있다. <code>strip.position = "bottom"</code>을 추가하면 그래프의 하단에 호선명이 나타난다.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="호선-지하철-혼잡도-분석.html#cb162-1" tabindex="-1"></a>busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb162-2"><a href="호선-지하철-혼잡도-분석.html#cb162-2" tabindex="-1"></a>   <span class="fu">filter</span>(요일구분 <span class="sc">==</span> <span class="st">&quot;평일&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-3"><a href="호선-지하철-혼잡도-분석.html#cb162-3" tabindex="-1"></a>   <span class="fu">group_by</span>(호선, 시간) <span class="sc">%&gt;%</span></span>
+<span id="cb162-4"><a href="호선-지하철-혼잡도-분석.html#cb162-4" tabindex="-1"></a>   <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb162-5"><a href="호선-지하철-혼잡도-분석.html#cb162-5" tabindex="-1"></a>   <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 평균혼잡도)) <span class="sc">+</span></span>
+<span id="cb162-6"><a href="호선-지하철-혼잡도-분석.html#cb162-6" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb162-7"><a href="호선-지하철-혼잡도-분석.html#cb162-7" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(. <span class="sc">~</span>호선, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">strip.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-8"><a href="호선-지하철-혼잡도-분석.html#cb162-8" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 혼잡도&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;평일 05:30 ~ 00:30&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-9"><a href="호선-지하철-혼잡도-분석.html#cb162-9" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;호선&#39;. You can override using the `.groups` argument.</code></pre>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>가장 붐비는 지하철 역은 어딜까?</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="호선-지하철-혼잡도-분석.html#cb164-1" tabindex="-1"></a>very_busy <span class="ot">&lt;-</span> busyMetro <span class="sc">%&gt;%</span> </span>
+<span id="cb164-2"><a href="호선-지하철-혼잡도-분석.html#cb164-2" tabindex="-1"></a>  <span class="fu">filter</span>(요일구분 <span class="sc">==</span> <span class="st">&quot;평일&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb164-3"><a href="호선-지하철-혼잡도-분석.html#cb164-3" tabindex="-1"></a>  <span class="fu">group_by</span>(출발역, 상하구분) <span class="sc">%&gt;%</span></span>
+<span id="cb164-4"><a href="호선-지하철-혼잡도-분석.html#cb164-4" tabindex="-1"></a>  <span class="fu">summarise</span>(평균혼잡도 <span class="ot">=</span> <span class="fu">mean</span>(혼잡도, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb164-5"><a href="호선-지하철-혼잡도-분석.html#cb164-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(평균혼잡도)) <span class="sc">%&gt;%</span></span>
+<span id="cb164-6"><a href="호선-지하철-혼잡도-분석.html#cb164-6" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;출발역&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="호선-지하철-혼잡도-분석.html#cb166-1" tabindex="-1"></a>very_busy</span></code></pre></div>
+<pre><code>## # A tibble: 20 × 3
+## # Groups:   출발역 [13]
+##    출발역       상하구분 평균혼잡도
+##    &lt;chr&gt;        &lt;chr&gt;         &lt;dbl&gt;
+##  1 방배         내선           58.1
+##  2 교대         내선           57.6
+##  3 서초         내선           57.5
+##  4 석촌         하선           56.4
+##  5 송파         상선           55.8
+##  6 강남         내선           55.7
+##  7 송파         하선           54.6
+##  8 사당         내선           54.4
+##  9 서초         외선           54.0
+## 10 사당         외선           53.8
+## 11 방배         외선           53.5
+## 12 교대         외선           53.2
+## 13 어린이대공원 하선           52.4
+## 14 건대입구     상선           52.0
+## 15 잠실         하선           51.8
+## 16 낙성대       내선           51.8
+## 17 문정         상선           51.5
+## 18 석촌         상선           51.5
+## 19 어린이대공원 상선           51.0
+## 20 역삼         내선           50.9</code></pre>
+<p>평일 평균 혼잡도가 가장 높은 상위 20개 역을 선정하였다. 그럼 각 역의 시간대별 혼잡도를 살펴보자. <code>filter()</code> 함수를 이용해 평일 데이터만 추출하고, <code>mutate()</code> 함수를 이용해 출발역 변수를 생성한다. <code>paste()</code> 함수를 이용해 호선, 상하구분과 출발역을 붙여주었다. <code>facet_wrap()</code> 함수를 이용해 출발역별로 그래프를 나누었다. <code>element_blank()</code>를 사용하면 축의 텍스트를 제거할 수 있다.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="호선-지하철-혼잡도-분석.html#cb168-1" tabindex="-1"></a>very_busy <span class="sc">%&gt;%</span> </span>
+<span id="cb168-2"><a href="호선-지하철-혼잡도-분석.html#cb168-2" tabindex="-1"></a>  <span class="fu">select</span>(출발역, 상하구분) <span class="sc">%&gt;%</span> </span>
+<span id="cb168-3"><a href="호선-지하철-혼잡도-분석.html#cb168-3" tabindex="-1"></a>  <span class="fu">left_join</span>(busyMetro, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;출발역&quot;</span>, <span class="st">&quot;상하구분&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb168-4"><a href="호선-지하철-혼잡도-분석.html#cb168-4" tabindex="-1"></a>  <span class="fu">filter</span>(요일구분 <span class="sc">==</span> <span class="st">&quot;평일&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb168-5"><a href="호선-지하철-혼잡도-분석.html#cb168-5" tabindex="-1"></a>  <span class="fu">mutate</span>(출발역 <span class="ot">=</span> <span class="fu">paste</span>(호선, <span class="st">&quot;호선&quot;</span>, 출발역, 상하구분)) <span class="sc">%&gt;%</span></span>
+<span id="cb168-6"><a href="호선-지하철-혼잡도-분석.html#cb168-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(시간, 혼잡도, <span class="at">color =</span> 상하구분)) <span class="sc">+</span></span>
+<span id="cb168-7"><a href="호선-지하철-혼잡도-분석.html#cb168-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> 상하구분)) <span class="sc">+</span></span>
+<span id="cb168-8"><a href="호선-지하철-혼잡도-분석.html#cb168-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(. <span class="sc">~</span>출발역, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">strip.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb168-9"><a href="호선-지하철-혼잡도-분석.html#cb168-9" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb168-10"><a href="호선-지하철-혼잡도-분석.html#cb168-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;서울교통공사 지하철 시간대별 혼잡도&quot;</span>,</span>
+<span id="cb168-11"><a href="호선-지하철-혼잡도-분석.html#cb168-11" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;상위 20개 역; 평일 05:30 ~ 00:30&quot;</span></span>
+<span id="cb168-12"><a href="호선-지하철-혼잡도-분석.html#cb168-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb168-13"><a href="호선-지하철-혼잡도-분석.html#cb168-13" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p>평일 붐비는 지하철이 싫다면, 저 시간대를 피하거나 다른 경로를 이용해 보는건 어떨까?</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="시각화.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="손없는-날-판별하기-함수.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-example.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["공공데이터분석101.pdf", "공공데이터분석101.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

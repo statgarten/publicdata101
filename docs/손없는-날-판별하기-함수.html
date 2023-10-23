@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>챕터 8 손없는 날 판별하기 (함수) | 공공데이터 분석 101</title>
+  <meta name="description" content="공공데이터 분석 입문" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="챕터 8 손없는 날 판별하기 (함수) | 공공데이터 분석 101" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="공공데이터 분석 입문" />
+  <meta name="github-repo" content="statgarten/publickdata101" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="챕터 8 손없는 날 판별하기 (함수) | 공공데이터 분석 101" />
+  
+  <meta name="twitter:description" content="공공데이터 분석 입문" />
+  
+
+<meta name="author" content="Project Statgarten" />
+
+
+<meta name="date" content="2023-10-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="호선-지하철-혼잡도-분석.html"/>
+<link rel="next" href="서울시-급똥-지도.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
+<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">공공데이터분석 101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 모두를 위한 공공데이터</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#서론"><i class="fa fa-check"></i><b>1.1</b> 서론</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#이-책의-목적지"><i class="fa fa-check"></i><b>1.2</b> 이 책의 목적지</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#공공데이터란-무엇일까"><i class="fa fa-check"></i><b>1.3</b> 공공데이터란 무엇일까?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#공공데이터를-분석-하는-이유"><i class="fa fa-check"></i><b>1.4</b> 공공데이터를 분석 하는 이유</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#공공데이터-활용사례"><i class="fa fa-check"></i><b>1.5</b> 공공데이터 활용사례</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#무엇을-배우게-될까"><i class="fa fa-check"></i><b>1.6</b> 무엇을 배우게 될까?</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#r을-사용하는-이유"><i class="fa fa-check"></i><b>1.7</b> R을 사용하는 이유</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> 공공데이터 이해</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#공공데이터-확보하기"><i class="fa fa-check"></i><b>2.1</b> 공공데이터 확보하기</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#공공데이터-분쟁조정"><i class="fa fa-check"></i><b>2.2</b> 공공데이터 분쟁조정</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#공공데이터-이용범위"><i class="fa fa-check"></i><b>2.3</b> 공공데이터 이용범위</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#파일데이터와-api"><i class="fa fa-check"></i><b>2.4</b> 파일데이터와 API</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#파일데이터"><i class="fa fa-check"></i><b>2.4.1</b> 파일데이터</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#application-program-interface-api"><i class="fa fa-check"></i><b>2.4.2</b> Application Program Interface (API)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#공공데이터-활용신청"><i class="fa fa-check"></i><b>2.4.3</b> 공공데이터 활용신청</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-에센셜.html"><a href="r-에센셜.html"><i class="fa fa-check"></i><b>3</b> R 에센셜</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-에센셜.html"><a href="r-에센셜.html#r과-r-studio-설치"><i class="fa fa-check"></i><b>3.1</b> R과 R Studio 설치</a></li>
+<li class="chapter" data-level="3.2" data-path="r-에센셜.html"><a href="r-에센셜.html#hello-world"><i class="fa fa-check"></i><b>3.2</b> Hello World!</a></li>
+<li class="chapter" data-level="3.3" data-path="r-에센셜.html"><a href="r-에센셜.html#예쁜-테마는-일할-맛-나게-해주지"><i class="fa fa-check"></i><b>3.3</b> 예쁜 테마는 일할 맛 나게 해주지</a></li>
+<li class="chapter" data-level="3.4" data-path="r-에센셜.html"><a href="r-에센셜.html#당신의-고민은-이미-누군가의-고민이었다"><i class="fa fa-check"></i><b>3.4</b> 당신의 고민은 이미 누군가의 고민이었다</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-에센셜.html"><a href="r-에센셜.html#에러-메시지를-대하는-자세"><i class="fa fa-check"></i><b>3.4.1</b> 에러 메시지를 대하는 자세</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-에센셜.html"><a href="r-에센셜.html#계산기로-사용해보기"><i class="fa fa-check"></i><b>3.5</b> 계산기로 사용해보기</a></li>
+<li class="chapter" data-level="3.6" data-path="r-에센셜.html"><a href="r-에센셜.html#이름을-붙여주자객체할당"><i class="fa fa-check"></i><b>3.6</b> 이름을 붙여주자(객체할당)</a></li>
+<li class="chapter" data-level="3.7" data-path="r-에센셜.html"><a href="r-에센셜.html#컴퓨터에게-1은-1이-아니야문자와-숫자"><i class="fa fa-check"></i><b>3.7</b> 컴퓨터에게 “1”은 1이 아니야(문자와 숫자)</a></li>
+<li class="chapter" data-level="3.8" data-path="r-에센셜.html"><a href="r-에센셜.html#함수와-패키지"><i class="fa fa-check"></i><b>3.8</b> 함수와 패키지</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="r-에센셜.html"><a href="r-에센셜.html#함수란"><i class="fa fa-check"></i><b>3.8.1</b> 함수란?</a></li>
+<li class="chapter" data-level="3.8.2" data-path="r-에센셜.html"><a href="r-에센셜.html#함수들의-꾸러미-패키지"><i class="fa fa-check"></i><b>3.8.2</b> 함수들의 꾸러미, 패키지</a></li>
+<li class="chapter" data-level="3.8.3" data-path="r-에센셜.html"><a href="r-에센셜.html#주요-패키지-설치"><i class="fa fa-check"></i><b>3.8.3</b> 주요 패키지 설치</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자"><i class="fa fa-check"></i><b>3.9</b> 파이프 연산자</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자란"><i class="fa fa-check"></i><b>3.9.1</b> 파이프 연산자란?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html"><i class="fa fa-check"></i><b>4</b> 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#datatoys-패키지-소개"><i class="fa fa-check"></i><b>4.1</b> datatoys 패키지 소개</a></li>
+<li class="chapter" data-level="4.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터프레임-이해"><i class="fa fa-check"></i><b>4.2</b> 데이터프레임 이해</a></li>
+<li class="chapter" data-level="4.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#음주운전-데이터-주무르기"><i class="fa fa-check"></i><b>4.3</b> 음주운전 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#select"><i class="fa fa-check"></i><b>4.3.1</b> select()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#arrange"><i class="fa fa-check"></i><b>4.3.2</b> arrange()</a></li>
+<li class="chapter" data-level="4.3.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#filter"><i class="fa fa-check"></i><b>4.3.3</b> filter()</a></li>
+<li class="chapter" data-level="4.3.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#mutate"><i class="fa fa-check"></i><b>4.3.4</b> mutate()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#rename"><i class="fa fa-check"></i><b>4.3.5</b> rename()</a></li>
+<li class="chapter" data-level="4.3.6" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#group_by"><i class="fa fa-check"></i><b>4.3.6</b> group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터라는-것이-폭발한다.-합쳤을-때."><i class="fa fa-check"></i><b>4.4</b> 데이터라는 것이 폭발한다. 합쳤을 때.</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#left_join"><i class="fa fa-check"></i><b>4.4.1</b> left_join()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="시각화-기초.html"><a href="시각화-기초.html"><i class="fa fa-check"></i><b>5</b> 시각화 기초</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#이왕이면-예쁜-그래프"><i class="fa fa-check"></i><b>5.1</b> 이왕이면 예쁜 그래프</a></li>
+<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#시각화-요소"><i class="fa fa-check"></i><b>5.2</b> 시각화 요소</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="시각화-기초.html"><a href="시각화-기초.html#색상color"><i class="fa fa-check"></i><b>5.2.1</b> 색상(Color)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="시각화-기초.html"><a href="시각화-기초.html#글씨text"><i class="fa fa-check"></i><b>5.2.2</b> 글씨(Text)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="호선-지하철-혼잡도-분석.html"><a href="호선-지하철-혼잡도-분석.html"><i class="fa fa-check"></i><b>7</b> 2호선 지하철 혼잡도 분석</a></li>
+<li class="chapter" data-level="8" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html"><i class="fa fa-check"></i><b>8</b> 손없는 날 판별하기 (함수)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="손없는-날-판별하기-함수.html"><a href="손없는-날-판별하기-함수.html#map-함수"><i class="fa fa-check"></i><b>8.1</b> map() 함수</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="서울시-급똥-지도.html"><a href="서울시-급똥-지도.html"><i class="fa fa-check"></i><b>9</b> 서울시 급똥 지도</a></li>
+<li class="chapter" data-level="10" data-path="대한민구-인구수-변화-시각화.html"><a href="대한민구-인구수-변화-시각화.html"><i class="fa fa-check"></i><b>10</b> 대한민구 인구수 변화 시각화</a></li>
+<li class="chapter" data-level="11" data-path="울릉도의-버스정류장.html"><a href="울릉도의-버스정류장.html"><i class="fa fa-check"></i><b>11</b> 울릉도의 버스정류장</a></li>
+<li class="chapter" data-level="12" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>12</b> Statgarten</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>12.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="12.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>12.2</b> Statgarten 소개</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>13</b> 나가는 말</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">공공데이터 분석 101</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="손없는-날-판별하기-함수" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">챕터 8</span> 손없는 날 판별하기 (함수)<a href="손없는-날-판별하기-함수.html#손없는-날-판별하기-함수" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>손없는 날(損-)에서의 손은 사람의 활동을 방해하고 사람에게 해코지 한다는 악귀 또는 악신을 뜻하며, 나쁜 귀신이 돌아다니지 않아 인간에게 해를 끼치치 않는 길한 날을 의미한다. 음력 날짜로는 9와 0[1]으로 끝나는 날이며, 8개의 모든 방향으로 귀신이 활동하지 않는 길일이다. 따라서 이날에 수리, 이사, 혼례, 개업 등을 하면 상서롭다고 믿으며 주요행사의 날짜를 정하는 기준이 된다. <code>datatoys</code>의 <code>Kcalendar</code> 데이터셋에서는 한국천문연구원에서 제공하는 날짜와 관련된 다양한 데이터를 제공한다. 이 중 날짜 별 손없는 날을 제공하는데, 손없는 날을 찾는 간단한 함수를 한번 만들어보자. 먼저 데이터는 아래와 같다.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="손없는-날-판별하기-함수.html#cb169-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb169-2"><a href="손없는-날-판별하기-함수.html#cb169-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb169-3"><a href="손없는-날-판별하기-함수.html#cb169-3" tabindex="-1"></a></span>
+<span id="cb169-4"><a href="손없는-날-판별하기-함수.html#cb169-4" tabindex="-1"></a><span class="fu">str</span>(Kcalendar)</span></code></pre></div>
+<pre><code>## tibble [241,027 × 11] (S3: tbl_df/tbl/data.frame)
+##  $ 양력날짜      : Date[1:241027], format: &quot;1391-02-05&quot; &quot;1391-02-06&quot; &quot;1391-02-07&quot; &quot;1391-02-08&quot; ...
+##  $ 음력날짜      : Date[1:241027], format: &quot;1391-01-01&quot; &quot;1391-01-02&quot; &quot;1391-01-03&quot; &quot;1391-01-04&quot; ...
+##  $ 음력간지년한글: chr [1:241027] &quot;신미&quot; &quot;신미&quot; &quot;신미&quot; &quot;신미&quot; ...
+##  $ 음력간지월한글: chr [1:241027] &quot;경인&quot; &quot;경인&quot; &quot;경인&quot; &quot;경인&quot; ...
+##  $ 음력간지일한글: chr [1:241027] &quot;기축&quot; &quot;경인&quot; &quot;신묘&quot; &quot;임진&quot; ...
+##  $ 음력간지년한자: chr [1:241027] &quot;辛未&quot; &quot;辛未&quot; &quot;辛未&quot; &quot;辛未&quot; ...
+##  $ 음력간지월한자: chr [1:241027] &quot;庚寅&quot; &quot;庚寅&quot; &quot;庚寅&quot; &quot;庚寅&quot; ...
+##  $ 음력간지일한자: chr [1:241027] &quot;己丑&quot; &quot;庚寅&quot; &quot;辛卯&quot; &quot;壬辰&quot; ...
+##  $ 율리우스적일  : num [1:241027] 2229156 2229157 2229158 2229159 2229160 ...
+##  $ 손없는날      : logi [1:241027] FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ 손있는날      : chr [1:241027] &quot;동&quot; &quot;동&quot; &quot;남&quot; &quot;남&quot; ...</code></pre>
+<p>손없는날을 찾는 함수를 만들어보자.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="손없는-날-판별하기-함수.html#cb171-1" tabindex="-1"></a>find_son <span class="ot">&lt;-</span> <span class="cf">function</span>(date) {</span>
+<span id="cb171-2"><a href="손없는-날-판별하기-함수.html#cb171-2" tabindex="-1"></a>  son <span class="ot">&lt;-</span> datatoys<span class="sc">::</span>Kcalendar <span class="sc">%&gt;%</span> </span>
+<span id="cb171-3"><a href="손없는-날-판별하기-함수.html#cb171-3" tabindex="-1"></a>    <span class="fu">filter</span>(양력날짜 <span class="sc">==</span> date) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-4"><a href="손없는-날-판별하기-함수.html#cb171-4" tabindex="-1"></a>    <span class="fu">pull</span>(손없는날)</span>
+<span id="cb171-5"><a href="손없는-날-판별하기-함수.html#cb171-5" tabindex="-1"></a>  </span>
+<span id="cb171-6"><a href="손없는-날-판별하기-함수.html#cb171-6" tabindex="-1"></a>  <span class="fu">return</span>(son)</span>
+<span id="cb171-7"><a href="손없는-날-판별하기-함수.html#cb171-7" tabindex="-1"></a>}</span>
+<span id="cb171-8"><a href="손없는-날-판별하기-함수.html#cb171-8" tabindex="-1"></a></span>
+<span id="cb171-9"><a href="손없는-날-판별하기-함수.html#cb171-9" tabindex="-1"></a><span class="fu">find_son</span>(<span class="at">date =</span> <span class="st">&quot;2024-01-01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="손없는-날-판별하기-함수.html#cb173-1" tabindex="-1"></a><span class="fu">find_son</span>(<span class="at">date =</span> <span class="st">&quot;2024-01-02&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>임의의 날짜를 입력하면 손없는 날인지 아닌지를 판별해주는 함수를 만들었다. 하지만 TRUE 또는 FALSE로 표현되는 함수는 보기 친절하지 않다. 손없는 날이면 “손없는 날입니다.”라는 메시지를, 손없는 날이 아니면 “손없는 날이 아닙니다.”라는 메시지를 출력하는 함수를 만들어보자. <code>if()</code> 함수를 이용해 손없는 날인지 아닌지를 판별하고, <code>paste0()</code> 함수를 이용해 메시지를 출력한다. 만약 <code>son == FALSE</code>라면 <code>else{}</code> 함수를 이용해 “손없는 날이 아닙니다.”라는 메시지를 출력한다.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="손없는-날-판별하기-함수.html#cb175-1" tabindex="-1"></a>find_son <span class="ot">&lt;-</span> <span class="cf">function</span>(date) {</span>
+<span id="cb175-2"><a href="손없는-날-판별하기-함수.html#cb175-2" tabindex="-1"></a>  son <span class="ot">&lt;-</span> datatoys<span class="sc">::</span>Kcalendar <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="손없는-날-판별하기-함수.html#cb175-3" tabindex="-1"></a>    <span class="fu">filter</span>(양력날짜 <span class="sc">==</span> date) <span class="sc">%&gt;%</span> </span>
+<span id="cb175-4"><a href="손없는-날-판별하기-함수.html#cb175-4" tabindex="-1"></a>    <span class="fu">pull</span>(손없는날)</span>
+<span id="cb175-5"><a href="손없는-날-판별하기-함수.html#cb175-5" tabindex="-1"></a>  </span>
+<span id="cb175-6"><a href="손없는-날-판별하기-함수.html#cb175-6" tabindex="-1"></a>  <span class="cf">if</span>(son <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb175-7"><a href="손없는-날-판별하기-함수.html#cb175-7" tabindex="-1"></a>    message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(date,<span class="st">&quot;은 &#39;손없는 날&#39; 입니다.&quot;</span>)  </span>
+<span id="cb175-8"><a href="손없는-날-판별하기-함수.html#cb175-8" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb175-9"><a href="손없는-날-판별하기-함수.html#cb175-9" tabindex="-1"></a>    message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(date,<span class="st">&quot;은 &#39;손없는 날&#39;이 아닙니다.&quot;</span>)  </span>
+<span id="cb175-10"><a href="손없는-날-판별하기-함수.html#cb175-10" tabindex="-1"></a>  }</span>
+<span id="cb175-11"><a href="손없는-날-판별하기-함수.html#cb175-11" tabindex="-1"></a>  </span>
+<span id="cb175-12"><a href="손없는-날-판별하기-함수.html#cb175-12" tabindex="-1"></a>  <span class="fu">return</span>(message)</span>
+<span id="cb175-13"><a href="손없는-날-판별하기-함수.html#cb175-13" tabindex="-1"></a>}</span>
+<span id="cb175-14"><a href="손없는-날-판별하기-함수.html#cb175-14" tabindex="-1"></a></span>
+<span id="cb175-15"><a href="손없는-날-판별하기-함수.html#cb175-15" tabindex="-1"></a><span class="fu">find_son</span>(<span class="at">date =</span> <span class="st">&quot;2024-01-01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2024-01-01은 &#39;손없는 날&#39; 입니다.&quot;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="손없는-날-판별하기-함수.html#cb177-1" tabindex="-1"></a><span class="fu">find_son</span>(<span class="at">date =</span> <span class="st">&quot;2024-01-02&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2024-01-02은 &#39;손없는 날&#39;이 아닙니다.&quot;</code></pre>
+<div id="map-함수" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> map() 함수<a href="손없는-날-판별하기-함수.html#map-함수" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R에서 반복된 작업을 수행할 때 <code>purrr</code> 패키지의 여러 함수들을 사용할 수 있다. <code>purrr</code> 패키지는 함수형 프로그래밍 패러다임을 지원하는 패키지로, <code>map()</code> 함수를 이용해 반복된 작업을 수행할 수 있다. <code>map()</code> 함수는 리스트, 벡터, 데이터프레임 등의 객체에 함수를 적용해주는 함수로, <code>map()</code> 함수의 첫번째 인자에는 적용할 함수를, 두번째 인자에는 적용할 객체를 입력한다. <code>map()</code> 함수는 <code>for</code> 반복문과 유사한 기능을 수행한다.</p>
+<p><code>map()</code> 함수를 이용해 손없는 날인지 아닌지를 판별해보자.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="손없는-날-판별하기-함수.html#cb179-1" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb179-2"><a href="손없는-날-판별하기-함수.html#cb179-2" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="손없는-날-판별하기-함수.html#cb179-3" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2024-01-01&quot;</span>, <span class="st">&quot;2024-01-02&quot;</span>, <span class="st">&quot;2024-01-03&quot;</span>, <span class="st">&quot;2024-01-04&quot;</span>, <span class="st">&quot;2024-01-05&quot;</span>, <span class="st">&quot;2024-01-06&quot;</span>, <span class="st">&quot;2024-01-07&quot;</span>, <span class="st">&quot;2024-01-08&quot;</span>, <span class="st">&quot;2024-01-09&quot;</span>, <span class="st">&quot;2024-01-10&quot;</span>)</span>
+<span id="cb179-4"><a href="손없는-날-판별하기-함수.html#cb179-4" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="손없는-날-판별하기-함수.html#cb179-5" tabindex="-1"></a><span class="fu">map</span>(date, find_son)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;2024-01-01은 &#39;손없는 날&#39; 입니다.&quot;
+## 
+## [[2]]
+## [1] &quot;2024-01-02은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[3]]
+## [1] &quot;2024-01-03은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[4]]
+## [1] &quot;2024-01-04은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[5]]
+## [1] &quot;2024-01-05은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[6]]
+## [1] &quot;2024-01-06은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[7]]
+## [1] &quot;2024-01-07은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[8]]
+## [1] &quot;2024-01-08은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[9]]
+## [1] &quot;2024-01-09은 &#39;손없는 날&#39;이 아닙니다.&quot;
+## 
+## [[10]]
+## [1] &quot;2024-01-10은 &#39;손없는 날&#39; 입니다.&quot;</code></pre>
+<p><code>map()</code> 함수는 기본적으로 리스트(list) 형태의 값을 반환한다. 만약 데이터프레임 형태로 값을 반환하고 싶다면 <code>map_df()</code> 함수를 사용한다.</p>
+<pre><code>map_df(date, find_son)</code></pre>
+<p>아마도 아래와 같은 에러 메시지를 반환할 것이다.</p>
+<pre><code>&gt; map_dfr(date, find_son)
+Error in `dplyr::bind_rows()`:
+! Argument 1 must have names.
+Run `rlang::last_error()` to see where the error occurred.</code></pre>
+<p>이는 <code>find_son()</code> 함수가 데이터프레임 형태를 반환하지 않기 때문에 발생하는 에러이다. <code>find_son()</code> 함수를 수정해보자.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="손없는-날-판별하기-함수.html#cb183-1" tabindex="-1"></a>find_son <span class="ot">&lt;-</span> <span class="cf">function</span>(date) {</span>
+<span id="cb183-2"><a href="손없는-날-판별하기-함수.html#cb183-2" tabindex="-1"></a>  son <span class="ot">&lt;-</span> datatoys<span class="sc">::</span>Kcalendar <span class="sc">%&gt;%</span> </span>
+<span id="cb183-3"><a href="손없는-날-판별하기-함수.html#cb183-3" tabindex="-1"></a>    <span class="fu">filter</span>(양력날짜 <span class="sc">==</span> date) <span class="sc">%&gt;%</span> </span>
+<span id="cb183-4"><a href="손없는-날-판별하기-함수.html#cb183-4" tabindex="-1"></a>    <span class="fu">pull</span>(손없는날)</span>
+<span id="cb183-5"><a href="손없는-날-판별하기-함수.html#cb183-5" tabindex="-1"></a>  </span>
+<span id="cb183-6"><a href="손없는-날-판별하기-함수.html#cb183-6" tabindex="-1"></a>  <span class="cf">if</span>(son <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb183-7"><a href="손없는-날-판별하기-함수.html#cb183-7" tabindex="-1"></a>    message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(date,<span class="st">&quot;은 &#39;손없는 날&#39; 입니다.&quot;</span>)  </span>
+<span id="cb183-8"><a href="손없는-날-판별하기-함수.html#cb183-8" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb183-9"><a href="손없는-날-판별하기-함수.html#cb183-9" tabindex="-1"></a>    message <span class="ot">&lt;-</span> <span class="fu">paste0</span>(date,<span class="st">&quot;은 &#39;손없는 날&#39;이 아닙니다.&quot;</span>)  </span>
+<span id="cb183-10"><a href="손없는-날-판별하기-함수.html#cb183-10" tabindex="-1"></a>  }</span>
+<span id="cb183-11"><a href="손없는-날-판별하기-함수.html#cb183-11" tabindex="-1"></a>  </span>
+<span id="cb183-12"><a href="손없는-날-판별하기-함수.html#cb183-12" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">date =</span> date, <span class="at">message =</span> message))</span>
+<span id="cb183-13"><a href="손없는-날-판별하기-함수.html#cb183-13" tabindex="-1"></a>}</span>
+<span id="cb183-14"><a href="손없는-날-판별하기-함수.html#cb183-14" tabindex="-1"></a></span>
+<span id="cb183-15"><a href="손없는-날-판별하기-함수.html#cb183-15" tabindex="-1"></a><span class="fu">map_df</span>(date, find_son)</span></code></pre></div>
+<pre><code>##          date                              message
+## 1  2024-01-01     2024-01-01은 &#39;손없는 날&#39; 입니다.
+## 2  2024-01-02 2024-01-02은 &#39;손없는 날&#39;이 아닙니다.
+## 3  2024-01-03 2024-01-03은 &#39;손없는 날&#39;이 아닙니다.
+## 4  2024-01-04 2024-01-04은 &#39;손없는 날&#39;이 아닙니다.
+## 5  2024-01-05 2024-01-05은 &#39;손없는 날&#39;이 아닙니다.
+## 6  2024-01-06 2024-01-06은 &#39;손없는 날&#39;이 아닙니다.
+## 7  2024-01-07 2024-01-07은 &#39;손없는 날&#39;이 아닙니다.
+## 8  2024-01-08 2024-01-08은 &#39;손없는 날&#39;이 아닙니다.
+## 9  2024-01-09 2024-01-09은 &#39;손없는 날&#39;이 아닙니다.
+## 10 2024-01-10     2024-01-10은 &#39;손없는 날&#39; 입니다.</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="호선-지하철-혼잡도-분석.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="서울시-급똥-지도.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-example.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["공공데이터분석101.pdf", "공공데이터분석101.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
