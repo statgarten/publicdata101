@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>챕터 6 시각화 | 공공데이터 분석 101</title>
+  <meta name="description" content="공공데이터 분석 입문" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="챕터 6 시각화 | 공공데이터 분석 101" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="공공데이터 분석 입문" />
+  <meta name="github-repo" content="statgarten/publickdata101" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="챕터 6 시각화 | 공공데이터 분석 101" />
+  
+  <meta name="twitter:description" content="공공데이터 분석 입문" />
+  
+
+<meta name="author" content="Project Statgarten" />
+
+
+<meta name="date" content="2023-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="시각화-기초.html"/>
+<link rel="next" href="실전-공공데이터-프로젝트.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/reactable-binding-0.3.0/reactable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">공공데이터분석 101</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 모두를 위한 공공데이터</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#서론"><i class="fa fa-check"></i><b>1.1</b> 서론</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#이-책의-목적지"><i class="fa fa-check"></i><b>1.2</b> 이 책의 목적지</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#공공데이터란-무엇일까"><i class="fa fa-check"></i><b>1.3</b> 공공데이터란 무엇일까?</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#공공데이터를-분석-하는-이유"><i class="fa fa-check"></i><b>1.4</b> 공공데이터를 분석 하는 이유</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#공공데이터-활용사례"><i class="fa fa-check"></i><b>1.5</b> 공공데이터 활용사례</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#무엇을-배우게-될까"><i class="fa fa-check"></i><b>1.6</b> 무엇을 배우게 될까?</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#r을-사용하는-이유"><i class="fa fa-check"></i><b>1.7</b> R을 사용하는 이유</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> 공공데이터 이해</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#공공데이터-확보하기"><i class="fa fa-check"></i><b>2.1</b> 공공데이터 확보하기</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#공공데이터-분쟁조정"><i class="fa fa-check"></i><b>2.2</b> 공공데이터 분쟁조정</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#공공데이터-이용범위"><i class="fa fa-check"></i><b>2.3</b> 공공데이터 이용범위</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#파일데이터와-api"><i class="fa fa-check"></i><b>2.4</b> 파일데이터와 API</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#파일데이터"><i class="fa fa-check"></i><b>2.4.1</b> 파일데이터</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#application-program-interface-api"><i class="fa fa-check"></i><b>2.4.2</b> Application Program Interface (API)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#공공데이터-활용신청"><i class="fa fa-check"></i><b>2.4.3</b> 공공데이터 활용신청</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-에센셜.html"><a href="r-에센셜.html"><i class="fa fa-check"></i><b>3</b> R 에센셜</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-에센셜.html"><a href="r-에센셜.html#r과-r-studio-설치"><i class="fa fa-check"></i><b>3.1</b> R과 R Studio 설치</a></li>
+<li class="chapter" data-level="3.2" data-path="r-에센셜.html"><a href="r-에센셜.html#hello-world"><i class="fa fa-check"></i><b>3.2</b> Hello World!</a></li>
+<li class="chapter" data-level="3.3" data-path="r-에센셜.html"><a href="r-에센셜.html#예쁜-테마는-일할-맛-나게-해주지"><i class="fa fa-check"></i><b>3.3</b> 예쁜 테마는 일할 맛 나게 해주지</a></li>
+<li class="chapter" data-level="3.4" data-path="r-에센셜.html"><a href="r-에센셜.html#당신의-고민은-이미-누군가의-고민이었다"><i class="fa fa-check"></i><b>3.4</b> 당신의 고민은 이미 누군가의 고민이었다</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-에센셜.html"><a href="r-에센셜.html#에러-메시지를-대하는-자세"><i class="fa fa-check"></i><b>3.4.1</b> 에러 메시지를 대하는 자세</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-에센셜.html"><a href="r-에센셜.html#계산기로-사용해보기"><i class="fa fa-check"></i><b>3.5</b> 계산기로 사용해보기</a></li>
+<li class="chapter" data-level="3.6" data-path="r-에센셜.html"><a href="r-에센셜.html#이름을-붙여주자객체할당"><i class="fa fa-check"></i><b>3.6</b> 이름을 붙여주자(객체할당)</a></li>
+<li class="chapter" data-level="3.7" data-path="r-에센셜.html"><a href="r-에센셜.html#컴퓨터에게-1은-1이-아니야문자와-숫자"><i class="fa fa-check"></i><b>3.7</b> 컴퓨터에게 “1”은 1이 아니야(문자와 숫자)</a></li>
+<li class="chapter" data-level="3.8" data-path="r-에센셜.html"><a href="r-에센셜.html#함수와-패키지"><i class="fa fa-check"></i><b>3.8</b> 함수와 패키지</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="r-에센셜.html"><a href="r-에센셜.html#함수란"><i class="fa fa-check"></i><b>3.8.1</b> 함수란?</a></li>
+<li class="chapter" data-level="3.8.2" data-path="r-에센셜.html"><a href="r-에센셜.html#함수들의-꾸러미-패키지"><i class="fa fa-check"></i><b>3.8.2</b> 함수들의 꾸러미, 패키지</a></li>
+<li class="chapter" data-level="3.8.3" data-path="r-에센셜.html"><a href="r-에센셜.html#주요-패키지-설치"><i class="fa fa-check"></i><b>3.8.3</b> 주요 패키지 설치</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자"><i class="fa fa-check"></i><b>3.9</b> 파이프 연산자</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="r-에센셜.html"><a href="r-에센셜.html#파이프-연산자란"><i class="fa fa-check"></i><b>3.9.1</b> 파이프 연산자란?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html"><i class="fa fa-check"></i><b>4</b> 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#datatoys-패키지-소개"><i class="fa fa-check"></i><b>4.1</b> datatoys 패키지 소개</a></li>
+<li class="chapter" data-level="4.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터프레임-이해"><i class="fa fa-check"></i><b>4.2</b> 데이터프레임 이해</a></li>
+<li class="chapter" data-level="4.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#음주운전-데이터-주무르기"><i class="fa fa-check"></i><b>4.3</b> 음주운전 데이터 주무르기</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#select"><i class="fa fa-check"></i><b>4.3.1</b> select()</a></li>
+<li class="chapter" data-level="4.3.2" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#arrange"><i class="fa fa-check"></i><b>4.3.2</b> arrange()</a></li>
+<li class="chapter" data-level="4.3.3" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#filter"><i class="fa fa-check"></i><b>4.3.3</b> filter()</a></li>
+<li class="chapter" data-level="4.3.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#mutate"><i class="fa fa-check"></i><b>4.3.4</b> mutate()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#rename"><i class="fa fa-check"></i><b>4.3.5</b> rename()</a></li>
+<li class="chapter" data-level="4.3.6" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#group_by"><i class="fa fa-check"></i><b>4.3.6</b> group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#데이터라는-것이-폭발한다.-합쳤을-때."><i class="fa fa-check"></i><b>4.4</b> 데이터라는 것이 폭발한다. 합쳤을 때.</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="데이터-주무르기.html"><a href="데이터-주무르기.html#left_join"><i class="fa fa-check"></i><b>4.4.1</b> left_join()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="시각화-기초.html"><a href="시각화-기초.html"><i class="fa fa-check"></i><b>5</b> 시각화 기초</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="시각화-기초.html"><a href="시각화-기초.html#이왕이면-예쁜-그래프"><i class="fa fa-check"></i><b>5.1</b> 이왕이면 예쁜 그래프</a></li>
+<li class="chapter" data-level="5.2" data-path="시각화-기초.html"><a href="시각화-기초.html#시각화-요소"><i class="fa fa-check"></i><b>5.2</b> 시각화 요소</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="시각화-기초.html"><a href="시각화-기초.html#색상color"><i class="fa fa-check"></i><b>5.2.1</b> 색상(Color)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="시각화-기초.html"><a href="시각화-기초.html#글씨text"><i class="fa fa-check"></i><b>5.2.2</b> 글씨(Text)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>7</b> 실전 공공데이터 프로젝트</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>7.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
+<li class="chapter" data-level="7.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-나라부터-도와줘야-할까-oda-데이터-분석"><i class="fa fa-check"></i><b>7.2</b> 어떤 나라부터 도와줘야 할까? (ODA 데이터 분석)</a></li>
+<li class="chapter" data-level="7.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>7.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
+<li class="chapter" data-level="7.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>7.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
+<li class="chapter" data-level="7.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>7.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>8</b> Statgarten</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>8.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="8.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>8.2</b> Statgarten 소개</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>9</b> 나가는 말</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">공공데이터 분석 101</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="시각화" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">챕터 6</span> 시각화<a href="시각화.html#시각화" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ggplot2-소개" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> ggplot2 소개<a href="시각화.html#ggplot2-소개" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R에서 사용할 수 있는 많은 시각화 패키지가 존재하지만, 여기서는 Hadley Wickham이 개발한 <code>ggplot2</code> 패키지 위주로 설명하고자 한다. ggplot2 문법은 데이터 시각화를 위한 매우 직관적이고 일관된 방법을 제공하여 사용자가 효율적으로 그래프를 생성하고 사용자 지정할 수 있도록 도와준다. 무엇보다 ggplot2는 다른 tidyverse 패키지와의 호환성이 뛰어나며, 많은 사용자 기반으로 풍부한 문서와 예제를 제공하여 사용자들이 학습하고 사용할 수 있다.</p>
+<p>본 챕터에서는 ggplot2을 통해 데이터셋을 지정하고, 어떤 변수를 x축 또는 y축에 매핑할 것인지, 어떤 유형의 그래프를 그릴 것인지, 색상, 크기, 선 스타일 등의 추가적인 매개 변수를 설정하는 방법을 알아보도록 하자. 그 전에 <a href="https://r-graph-gallery.com/ggplot2-package.html">R 그래프 갤러리</a>에 접속하면 R로 만들 수 있는 대부분의 시각화 결과물들과 그 코드를 볼 수 있다.</p>
+<p>ggplot2 패키지를 사용하기 위해서는 먼저 패키지를 설치하고 불러와야 한다. ggplot2는 tidyverse 패키지에 포함되어 있으므로 tidyverse 패키지를 불러오면 ggplot2도 함께 불러와진다.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="시각화.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+</div>
+<div id="ggplot2-기본-문법" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> ggplot2 기본 문법<a href="시각화.html#ggplot2-기본-문법" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ggplot2의 기본 문법은 다음과 같다. 지금은 이 문법을 외우는 것보다는 어떤 요소들이 존재하는지를 파악하는 것에 집중하자.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="시각화.html#cb135-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb135-2"><a href="시각화.html#cb135-2" tabindex="-1"></a>  <span class="er">&lt;</span>geom_<span class="sc">*</span><span class="er">&gt;</span>(</span>
+<span id="cb135-3"><a href="시각화.html#cb135-3" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>),</span>
+<span id="cb135-4"><a href="시각화.html#cb135-4" tabindex="-1"></a>    <span class="at">stat =</span> <span class="sc">&lt;</span>STAT<span class="sc">&gt;</span>,</span>
+<span id="cb135-5"><a href="시각화.html#cb135-5" tabindex="-1"></a>    <span class="at">position =</span> <span class="sc">&lt;</span>POSITION<span class="sc">&gt;</span></span>
+<span id="cb135-6"><a href="시각화.html#cb135-6" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb135-7"><a href="시각화.html#cb135-7" tabindex="-1"></a>  <span class="er">&lt;</span>COORDINATE_FUNCTION<span class="sc">&gt;</span> <span class="sc">+</span></span>
+<span id="cb135-8"><a href="시각화.html#cb135-8" tabindex="-1"></a>  <span class="er">&lt;</span>FACET_FUNCTION<span class="sc">&gt;</span></span></code></pre></div>
+<ul>
+<li><code>ggplot()</code> 함수는 데이터셋을 지정한다.</li>
+<li><code>+</code> 기호는 ggplot2에서 여러 개의 레이어를 추가할 때 사용한다.</li>
+<li><code>aes()</code> 함수는 데이터셋의 변수를 x축 또는 y축에 매핑한다. 이는 x축만 존재할 수도 있고, y축만 존재할 수도 있다. x축과 y축 모두 존재할 수도 있다. <code>color =</code>, <code>fill =</code>, <code>size =</code>, <code>shape =</code>, <code>linetype =</code> 등의 매개 변수를 사용하여 group 별 색상, 크기, 선 스타일 등을 지정할 수 있다.</li>
+<li><code>geom_*()</code> 함수는 데이터셋을 어떤 유형의 그래프로 그릴 것인지를 지정한다. <code>geom_*()</code> 함수는 <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_bar()</code>, <code>geom_boxplot()</code> 등이 있다.</li>
+<li><code>stat</code> 매개 변수는 데이터를 어떻게 요약할 것인지를 지정한다. 예를 들어, <code>geom_bar()</code> 함수를 사용할 때 <code>stat = "identity"</code>를 지정하면 데이터셋의 값을 그대로 표현하고, <code>stat = "count"</code>를 지정하면 데이터셋의 값을 개수로 표현한다.</li>
+<li><code>position</code> 매개 변수는 데이터를 어떻게 배치할 것인지를 지정한다. 예를 들어, <code>geom_bar()</code> 함수를 사용할 때 <code>position = "dodge"</code>를 지정하면 데이터를 그룹별로 나누어 표현하고, <code>position = "fill"</code>을 지정하면 데이터를 비율로 표현한다.</li>
+<li><code>coord_*()</code> 함수는 좌표계를 지정한다. <code>coord_*()</code> 함수는 <code>coord_flip()</code>, <code>coord_polar()</code> 등이 있다.</li>
+<li><code>facet_*()</code> 함수는 그래프를 여러 개의 패널로 나누어 표현한다. <code>facet_*()</code> 함수는 <code>facet_wrap()</code>, <code>facet_grid()</code> 등이 있다.</li>
+</ul>
+</div>
+<div id="데이터셋과-좌표계-지정하기" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 데이터셋과 좌표계 지정하기<a href="시각화.html#데이터셋과-좌표계-지정하기" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ggplot2를 사용하기 위해서는 먼저 데이터셋을 지정해야 한다. datatoys의 <code>petNames</code> 데이터셋은 마포구 반려동물 이름 통계를 제공한다. 이 데이터셋을 사용하여 ggplot2를 사용해보자.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="시각화.html#cb136-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
+<span id="cb136-2"><a href="시각화.html#cb136-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb136-3"><a href="시각화.html#cb136-3" tabindex="-1"></a></span>
+<span id="cb136-4"><a href="시각화.html#cb136-4" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> petNames <span class="sc">%&gt;%</span> </span>
+<span id="cb136-5"><a href="시각화.html#cb136-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(건수)) <span class="sc">%&gt;%</span> </span>
+<span id="cb136-6"><a href="시각화.html#cb136-6" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<p>먼저 <code>petNames</code> 데이터셋을 <code>건수</code> 변수를 기준으로 내림차순 정렬하고, 상위 10개의 데이터만 추출하여 <code>top10</code> 데이터셋을 생성하였다. 이제 <code>top10</code> 데이터셋을 사용하여 ggplot2를 사용해보자.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="시각화.html#cb137-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10)</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>만약 빈 화면만 뜬다면 정확히 한 것이다. 여기에 <code>aes()</code> 함수를 사용하여 <code>x</code> 매개 변수에 <code>동물이름</code> 변수를 매핑하면 x축에 <code>동물이름</code> 변수를 표현할 수 있다.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="시각화.html#cb138-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름))</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>이번에는 y축에 <code>건수</code> 변수를 매핑해보자.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="시각화.html#cb139-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수))</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><code>+</code>를 사용하여 <code>geom_col()</code> 함수를 추가하면 막대 그래프를 그릴 수 있다. 앞서 <code>ggplot()</code> 함수를 이용해 지정한 좌표계 위에 레이어를 쌓는 것이다.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="시각화.html#cb140-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb140-2"><a href="시각화.html#cb140-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>막대그래프를 통해 각 동물 이름별로 반려동물 등록 건수를 확인할 수 있지만, 정확한 값을 확인하기 어렵다. 이를 해결하기 위해서는 <code>geom_text()</code>를 사용해 새로운 레이어를 추가해준다. <code>geom_col()</code> 다음에 위치하는 것을 주목하라.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="시각화.html#cb141-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb141-2"><a href="시각화.html#cb141-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb141-3"><a href="시각화.html#cb141-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수))</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>기본적으로 ggplot2는 레이어(layer; 층)를 쌓으면서 그래프를 그린다. 이는 마치 투명한 셀로판지에 그린 그림 여러 장을 쌓는 것과 유사하다. 이때, 먼저 그린 그림이 아래에 위치하고, 나중에 그린 그림이 위에 위치한다. 이를 통해 먼저 그린 그림이 가려지지 않고, 나중에 그린 그림이 가려지는 효과를 얻을 수 있다.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="시각화.html#cb142-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb142-2"><a href="시각화.html#cb142-2" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb142-3"><a href="시각화.html#cb142-3" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>위 그래프와 순서만 바꿨을 뿐인데 <code>geom_text()</code>의 결과가 일부 보이지 않는다. 이는 그 위에 쌓여진 <code>geom_col()</code> 함수가 그린 결과물이 <code>geom_text()</code> 함수의 결과물을 가려버렸기 때문이다. 다시 원래대로 순서를 바꿔주고, <code>vjust =</code> 매개 변수를 사용하여 텍스트의 위치를 조정해 보자. 보다 보기 좋아질 것이다.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="시각화.html#cb143-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb143-2"><a href="시각화.html#cb143-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb143-3"><a href="시각화.html#cb143-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><code>coord_flip()</code> 함수를 사용하면 x축과 y축을 바꿀 수 있다. <code>geom_text()</code> 함수의 <code>vjust =</code> 매개 변수가 <code>hjust =</code>로 바뀐 것은 <code>coord_flip()</code> 함수를 사용하면 x축과 y축이 바뀌기 때문이다.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="시각화.html#cb144-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb144-2"><a href="시각화.html#cb144-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb144-3"><a href="시각화.html#cb144-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb144-4"><a href="시각화.html#cb144-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><code>coord_*</code> 함수는 좌표계를 지정하는 함수이다. <code>coord_flip()</code> 함수는 좌표계를 수평으로 뒤집는다. <code>coord_polar()</code> 함수는 좌표계를 극좌표계로 변환한다. <code>coord_*</code> 계열 함수에는 <code>coord_cartesian()</code>, <code>coord_fixed()</code>, <code>coord_map()</code> 등이 있다.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="시각화.html#cb145-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb145-2"><a href="시각화.html#cb145-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb145-3"><a href="시각화.html#cb145-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb145-4"><a href="시각화.html#cb145-4" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>만약 우리만 이 그래프를 볼 목적이라면 상관 없겠지만, 아무것도 모르는 사람이 이 그래프를 보면 무슨 의미인지 알 수 없다. <code>labs()</code> 함수를 사용하면 그래프의 제목(title), 부제목(subtitle), 캡션(caption), x축과 y축의 이름을 지정할 수 있다. 그래프에 대한 설명을 추가해 보다 뜻을 명확하게 해 보자.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="시각화.html#cb146-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> 동물이름, <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb146-2"><a href="시각화.html#cb146-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb146-3"><a href="시각화.html#cb146-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb146-4"><a href="시각화.html#cb146-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb146-5"><a href="시각화.html#cb146-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb146-6"><a href="시각화.html#cb146-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;마포구 반려동물 이름 통계&quot;</span>,</span>
+<span id="cb146-7"><a href="시각화.html#cb146-7" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;상위 10개의 반려동물 이름&quot;</span>,</span>
+<span id="cb146-8"><a href="시각화.html#cb146-8" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;데이터 출처: 마포구청&quot;</span>,</span>
+<span id="cb146-9"><a href="시각화.html#cb146-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;반려동물 이름&quot;</span>,</span>
+<span id="cb146-10"><a href="시각화.html#cb146-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;등록 건수&quot;</span></span>
+<span id="cb146-11"><a href="시각화.html#cb146-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p>보다 명확한 그래프를 만들었다. 충분히 아름다운 그래프지만 그래프에서 아쉬운 점을 하나 찾아본다면 막대그래프의 순서이다. 큰 순서부터, 또는 작은 순서부터 보여주는 방법은 없을까? <code>reorder()</code> 함수를 사용하면 막대그래프의 순서를 변경할 수 있다. <code>reorder(x, y)</code> 함수는 <code>x</code> 매개 변수에 지정한 변수를 <code>y</code> 매개 변수에 지정한 변수의 크기에 따라 재정렬한다. <code>-</code>를 사용하면 내림차순으로 정렬한다.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="시각화.html#cb147-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(동물이름, 건수), <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb147-2"><a href="시각화.html#cb147-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb147-3"><a href="시각화.html#cb147-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb147-4"><a href="시각화.html#cb147-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb147-5"><a href="시각화.html#cb147-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb147-6"><a href="시각화.html#cb147-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;마포구 반려동물 이름 통계&quot;</span>,</span>
+<span id="cb147-7"><a href="시각화.html#cb147-7" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;상위 10개의 반려동물 이름&quot;</span>,</span>
+<span id="cb147-8"><a href="시각화.html#cb147-8" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;데이터 출처: 마포구청&quot;</span>,</span>
+<span id="cb147-9"><a href="시각화.html#cb147-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;반려동물 이름&quot;</span>,</span>
+<span id="cb147-10"><a href="시각화.html#cb147-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;등록 건수&quot;</span></span>
+<span id="cb147-11"><a href="시각화.html#cb147-11" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+</div>
+<div id="ggplot2-themes" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> ggplot2 themes<a href="시각화.html#ggplot2-themes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ggplot2는 기본적으로 흰색 배경에 회색 격자를 그리는데, 이를 변경할 수 있다. <code>theme_*()</code> 함수를 사용하여 테마를 변경할 수 있다. <code>ggthemes</code> 패키지를 통해 다양한 추가 테마를 사용할 수 있다.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="시각화.html#cb148-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb148-2"><a href="시각화.html#cb148-2" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="시각화.html#cb148-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> top10, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(동물이름, 건수), <span class="at">y =</span> 건수)) <span class="sc">+</span></span>
+<span id="cb148-4"><a href="시각화.html#cb148-4" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb148-5"><a href="시각화.html#cb148-5" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> 건수), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb148-6"><a href="시각화.html#cb148-6" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb148-7"><a href="시각화.html#cb148-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb148-8"><a href="시각화.html#cb148-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;마포구 반려동물 이름 통계&quot;</span>,</span>
+<span id="cb148-9"><a href="시각화.html#cb148-9" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;상위 10개의 반려동물 이름&quot;</span>,</span>
+<span id="cb148-10"><a href="시각화.html#cb148-10" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;데이터 출처: 마포구청&quot;</span></span>
+<span id="cb148-11"><a href="시각화.html#cb148-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb148-12"><a href="시각화.html#cb148-12" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>(<span class="at">base_family =</span> <span class="st">&quot;NanumGothic&quot;</span>)</span></code></pre></div>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="시각화-기초.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="실전-공공데이터-프로젝트.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["공공데이터분석101.pdf", "공공데이터분석101.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

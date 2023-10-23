@@ -1,8 +1,44 @@
 # 실전 공공데이터 프로젝트
 
 ## 울릉도의 버스정류장 (GIS 분석)
+울릉도에는 버스정류장이 얼마나 있고 어디에 위치하고 있을까? `datatoys`의 busStation 데이터와 `leaflet` 패키지를 이용해 울릉도의 버스정류장을 분석해보자. `busStation` 데이터셋은 버스정보시스템(BIS)이 구축된 지자체 중 국가대중교통정보센터(TAGO)와 연계된 136개 지자체에 대한 버스정류장 위치정보 데이터를 제공한다.
 
-## 어떤 나라부터 도와줘야 할까? (ODA 데이터 분석)
+```{r error=FALSE, message=FALSE}
+library(datatoys)
+library(leaflet)
+library(dplyr)
+
+busStation %>% 
+  filter(도시명 == "울릉군") %>%
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~경도, ~위도, popup = ~as.character(정류장.명칭), label = ~as.character(정류장.명칭))
+```
+
+
+## 2호선 지하철 혼잡도 분석 (서울 지하철 데이터 분석)
+```{r}
+library(ggplot2)
+library(datatoys)
+
+busyMetro %>% 
+   filter(요일구분 == "평일") %>% 
+   filter(호선 == 2) %>% 
+   mutate(출발역 = paste(호선, "호선", 출발역)) %>% 
+   ggplot(aes(시간, 혼잡도, color = 상하구분)) +
+   geom_line(aes(group = 상하구분)) +
+   scale_color_manual(values = c("#E966A0", "#213363", "#8EAC50", "#F2BE22")) +
+   facet_wrap(. ~출발역, ncol = 10, strip.position = "bottom") +
+   ggthemes::theme_tufte(base_family = "NanumGothic") +
+   theme(
+       axis.text = element_blank(),
+       axis.ticks = element_blank(),
+       axis.title = element_blank(),
+       legend.position = "bottom"
+       ) +
+   labs(title = "서울교통공사 2호선 시간대별 지하철 혼잡도 분포", subtitle = "평일 05:30 ~ 00:30")
+```
+
 
 ## 어떤 송아지가 가장 좋을까? (API 활용하기)
 

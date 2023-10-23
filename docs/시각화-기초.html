@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>챕터 5 시각화 기초 | 공공데이터 분석 101</title>
   <meta name="description" content="공공데이터 분석 입문" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="챕터 5 시각화 기초 | 공공데이터 분석 101" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Project Statgarten" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="데이터-주무르기.html"/>
-<link rel="next" href="실전-공공데이터-프로젝트.html"/>
+<link rel="next" href="시각화.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -56,9 +56,8 @@
 <script src="libs/react-17.0.0/react.min.js"></script>
 <script src="libs/react-17.0.0/react-dom.min.js"></script>
 <script src="libs/reactwidget-1.0.0/react-tools.js"></script>
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
-<link href="libs/reactable-0.4.1/reactable.css" rel="stylesheet" />
-<script src="libs/reactable-binding-0.4.1/reactable.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/reactable-binding-0.3.0/reactable.js"></script>
 
 
 <style type="text/css">
@@ -126,6 +125,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -216,27 +219,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.3" data-path="시각화-기초.html"><a href="시각화-기초.html#배치layout"><i class="fa fa-check"></i><b>5.2.3</b> 배치(Layout)</a></li>
 <li class="chapter" data-level="5.2.4" data-path="시각화-기초.html"><a href="시각화-기초.html#그-외-요소들"><i class="fa fa-check"></i><b>5.2.4</b> 그 외 요소들</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="시각화-기초.html"><a href="시각화-기초.html#ggplot2-소개"><i class="fa fa-check"></i><b>5.3</b> ggplot2 소개</a></li>
-<li class="chapter" data-level="5.4" data-path="시각화-기초.html"><a href="시각화-기초.html#pivot_"><i class="fa fa-check"></i><b>5.4</b> pivot_*()</a>
+</ul></li>
+<li class="chapter" data-level="6" data-path="시각화.html"><a href="시각화.html"><i class="fa fa-check"></i><b>6</b> 시각화</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="시각화-기초.html"><a href="시각화-기초.html#pivot_wider"><i class="fa fa-check"></i><b>5.4.1</b> pivot_wider()</a></li>
-<li class="chapter" data-level="5.4.2" data-path="시각화-기초.html"><a href="시각화-기초.html#pivot_longer"><i class="fa fa-check"></i><b>5.4.2</b> pivot_longer()</a></li>
+<li class="chapter" data-level="6.1" data-path="시각화.html"><a href="시각화.html#ggplot2-소개"><i class="fa fa-check"></i><b>6.1</b> ggplot2 소개</a></li>
+<li class="chapter" data-level="6.2" data-path="시각화.html"><a href="시각화.html#ggplot2-기본-문법"><i class="fa fa-check"></i><b>6.2</b> ggplot2 기본 문법</a></li>
+<li class="chapter" data-level="6.3" data-path="시각화.html"><a href="시각화.html#데이터셋과-좌표계-지정하기"><i class="fa fa-check"></i><b>6.3</b> 데이터셋과 좌표계 지정하기</a></li>
+<li class="chapter" data-level="6.4" data-path="시각화.html"><a href="시각화.html#ggplot2-themes"><i class="fa fa-check"></i><b>6.4</b> ggplot2 themes</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>6</b> 실전 공공데이터 프로젝트</a>
+<li class="chapter" data-level="7" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html"><i class="fa fa-check"></i><b>7</b> 실전 공공데이터 프로젝트</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>6.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
-<li class="chapter" data-level="6.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-나라부터-도와줘야-할까-oda-데이터-분석"><i class="fa fa-check"></i><b>6.2</b> 어떤 나라부터 도와줘야 할까? (ODA 데이터 분석)</a></li>
-<li class="chapter" data-level="6.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>6.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
-<li class="chapter" data-level="6.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>6.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
-<li class="chapter" data-level="6.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>6.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
+<li class="chapter" data-level="7.1" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#울릉도의-버스정류장-gis-분석"><i class="fa fa-check"></i><b>7.1</b> 울릉도의 버스정류장 (GIS 분석)</a></li>
+<li class="chapter" data-level="7.2" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-나라부터-도와줘야-할까-oda-데이터-분석"><i class="fa fa-check"></i><b>7.2</b> 어떤 나라부터 도와줘야 할까? (ODA 데이터 분석)</a></li>
+<li class="chapter" data-level="7.3" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#어떤-송아지가-가장-좋을까-api-활용하기"><i class="fa fa-check"></i><b>7.3</b> 어떤 송아지가 가장 좋을까? (API 활용하기)</a></li>
+<li class="chapter" data-level="7.4" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#공공데이터로-사주팔자-보기-특일-분석"><i class="fa fa-check"></i><b>7.4</b> 공공데이터로 사주팔자 보기 (특일 분석)</a></li>
+<li class="chapter" data-level="7.5" data-path="실전-공공데이터-프로젝트.html"><a href="실전-공공데이터-프로젝트.html#승강기-데이터만-알아도-건물이-보인다"><i class="fa fa-check"></i><b>7.5</b> 승강기 데이터만 알아도 건물이 보인다</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>7</b> Statgarten</a>
+<li class="chapter" data-level="8" data-path="statgarten.html"><a href="statgarten.html"><i class="fa fa-check"></i><b>8</b> Statgarten</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>7.1</b> CUI보다 GUI가 좋을 때</a></li>
-<li class="chapter" data-level="7.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>7.2</b> Statgarten 소개</a></li>
+<li class="chapter" data-level="8.1" data-path="statgarten.html"><a href="statgarten.html#cui보다-gui가-좋을-때"><i class="fa fa-check"></i><b>8.1</b> CUI보다 GUI가 좋을 때</a></li>
+<li class="chapter" data-level="8.2" data-path="statgarten.html"><a href="statgarten.html#statgarten-소개"><i class="fa fa-check"></i><b>8.2</b> Statgarten 소개</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>8</b> 나가는 말</a></li>
+<li class="chapter" data-level="9" data-path="나가는-말.html"><a href="나가는-말.html"><i class="fa fa-check"></i><b>9</b> 나가는 말</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -468,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb132-15"><a href="시각화-기초.html#cb132-15" tabindex="-1"></a><span class="co"># 네 번째 그래프</span></span>
 <span id="cb132-16"><a href="시각화-기초.html#cb132-16" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4, anscombe<span class="sc">$</span>y4, <span class="at">main =</span> <span class="st">&quot;Group IV&quot;</span>,</span>
 <span id="cb132-17"><a href="시각화-기초.html#cb132-17" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
-<p><img src="%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A9%E1%86%BC%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8101_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>각 그룹은 평균, 분산, 상관관계, 회귀선 등의 통계적 속성이 거의 동일하지만 시각화해보면 각 그룹이 실제로 매우 다른 패턴을 갖고 있음을 알 수 있다. 시각적인 표현은 복잡한 데이터를 이해하기 쉽고 직관적으로 만들어준다. 앤스컴 콰르탯 데이터셋을 예시로 들어 설명했지만, 실제 데이터에서도 시각화를 통해 통찰력을 얻고 결정을 내릴 수 있을 것이다. 다음은 데이터 시각화를 하는 대표적인 이유들이다.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>패턴 식별</strong>: 데이터 시각화는 데이터의 패턴을 식별하는 데 도움이 된다. 이렇게 패턴을 인식하는 것은 데이터를 이해하고 향후 분석에 활용하는 데 중요하다.</p></li>
@@ -486,47 +490,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> 시각화 요소<a href="시각화-기초.html#시각화-요소" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="시각화-기초.html#cb133-1" tabindex="-1"></a><span class="fu">library</span>(datatoys)</span>
 <span id="cb133-2"><a href="시각화-기초.html#cb133-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✔ tibble  3.1.8     ✔ purrr   1.0.0
-## ✔ tidyr   1.2.1     ✔ stringr 1.5.0
-## ✔ readr   2.1.3     ✔ forcats 0.5.2</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter()  masks stats::filter()
-## ✖ purrr::flatten() masks jsonlite::flatten()
-## ✖ dplyr::lag()     masks stats::lag()</code></pre>
 <div id="색상color" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> 색상(Color)<a href="시각화-기초.html#색상color" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>적절한 색상 선택은 데이터의 구분과 패턴을 강조할 수 있다. 하지만 종종 시각화를 단순히 멋지게 보이게 하려는 목적으로 여러가지 색상을 사용하는 경우가 있는데, 분명한 목적이나 의도가 없이 색을 사용하지 않으면 오히려 혼란만 불러일으킬 수 있다. 마포구 반려동물 이름 순위를 시각화한 아래 두 그래프를 비교해보자.</p>
-<p><img src="%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A9%E1%86%BC%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8101_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>A의 경우 알록달록하니 예쁘긴 하지만 색이 무엇을 의미하는지 한번 더 들여보게 된다. 반면에 B는 조금 투박해 보일수도 있지만 전달하고자 하는 정보가 정확히 전달되는 데 아무 문제가 없다. <strong>특별한 이유가 없다면 최대한 적은 색상을 사용해 안그래도 복잡한 이 세상에서 보는이의 피로감을 조금이나마 감소</strong>시켜 주자.</p>
 <p>카테고리 별로 다른 색을 사용하면 보는이가 직관적으로 차이를 감지하게 된다.</p>
-<p><img src="%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A9%E1%86%BC%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8101_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>또는 강조하고 싶은 곳에 특별한 색을 사용할 수도 있다. 한국방송통신대학교가 압도적인 입학정원을 보인다.</p>
-<p><img src="%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A9%E1%86%BC%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8101_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D101_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 <div id="글씨text" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> 글씨(Text)<a href="시각화-기초.html#글씨text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>글씨 크기, 글씨체, 굵기, 색상 등을 조절하여 시각화의 의도를 더욱 명확하게 전달할 수 있다.</p>
 </div>
 <div id="배치layout" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> 배치(Layout)<a href="시각화-기초.html#배치layout" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>정렬</p>
+<p>정렬 방식, 여백, 배경 등을 조절하여 시각화의 의도를 더욱 명확하게 전달할 수 있다.</p>
 </div>
 <div id="그-외-요소들" class="section level3 hasAnchor" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> 그 외 요소들<a href="시각화-기초.html#그-외-요소들" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div id="ggplot2-소개" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> ggplot2 소개<a href="시각화-기초.html#ggplot2-소개" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R에서 사용할 수 있는 많은 시각화 패키지가 존재하지만, 여기서는 Hadley Wickham이 개발한 <code>ggplot2</code> 패키지 위주로 설명하고자 한다. ggplot2 문법은 데이터 시각화를 위한 매우 직관적이고 일관된 방법을 제공하여 사용자가 효율적으로 그래프를 생성하고 사용자 지정할 수 있도록 도와준다. 무엇보다 ggplot2는 다른 tidyverse 패키지와의 호환성이 뛰어나며, 많은 사용자 기반으로 풍부한 문서와 예제를 제공하여 사용자들이 학습하고 사용할 수 있다. 본 챕터에서는 ggplot2을 통해 데이터셋을 지정하고, 어떤 변수를 x축 또는 y축에 매핑할 것인지, 어떤 유형의 그래프를 그릴 것인지, 색상, 크기, 선 스타일 등의 추가적인 매개 변수를 설정하는 방법을 알아보도록 하자. 그 전에 <a href="https://r-graph-gallery.com/ggplot2-package.html">R 그래프 갤러리</a>에 접속하면 R로 만들 수 있는 대부분의 시각화 결과물들과 그 코드를 볼 수 있다.</p>
-</div>
-<div id="pivot_" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> pivot_*()<a href="시각화-기초.html#pivot_" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="pivot_wider" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> pivot_wider()<a href="시각화-기초.html#pivot_wider" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="pivot_longer" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> pivot_longer()<a href="시각화-기초.html#pivot_longer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-
+<p>시각화의 의도를 더욱 명확하게 전달할 수 있는 다양한 요소들이 존재한다. 예를 들어, 시각화의 주제와 관련된 아이콘을 추가하거나, 시각화의 주제와 관련된 배경을 추가할 수도 있다.</p>
 </div>
 </div>
 </div>
@@ -536,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="데이터-주무르기.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="실전-공공데이터-프로젝트.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="시각화.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

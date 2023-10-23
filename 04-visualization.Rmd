@@ -133,16 +133,176 @@ datatoys::tuition %>% arrange(desc(입학정원.합.명.)) %>% slice(1:10) %>%
 
 
 ### 글씨(Text)
+글씨 크기, 글씨체, 굵기, 색상 등을 조절하여 시각화의 의도를 더욱 명확하게 전달할 수 있다. 
+
 ### 배치(Layout)
-정렬
+정렬 방식, 여백, 배경 등을 조절하여 시각화의 의도를 더욱 명확하게 전달할 수 있다. 
 
 ### 그 외 요소들
+시각화의 의도를 더욱 명확하게 전달할 수 있는 다양한 요소들이 존재한다. 예를 들어, 시각화의 주제와 관련된 아이콘을 추가하거나, 시각화의 주제와 관련된 배경을 추가할 수도 있다.
+
+
+# 시각화
 
 ## ggplot2 소개
-R에서 사용할 수 있는 많은 시각화 패키지가 존재하지만, 여기서는 Hadley Wickham이 개발한 `ggplot2` 패키지 위주로 설명하고자 한다. ggplot2 문법은 데이터 시각화를 위한 매우 직관적이고 일관된 방법을 제공하여 사용자가 효율적으로 그래프를 생성하고 사용자 지정할 수 있도록 도와준다. 무엇보다 ggplot2는 다른 tidyverse 패키지와의 호환성이 뛰어나며, 많은 사용자 기반으로 풍부한 문서와 예제를 제공하여 사용자들이 학습하고 사용할 수 있다. 본 챕터에서는 ggplot2을 통해 데이터셋을 지정하고, 어떤 변수를 x축 또는 y축에 매핑할 것인지, 어떤 유형의 그래프를 그릴 것인지, 색상, 크기, 선 스타일 등의 추가적인 매개 변수를 설정하는 방법을 알아보도록 하자. 그 전에 [R 그래프 갤러리](https://r-graph-gallery.com/ggplot2-package.html)에 접속하면 R로 만들 수 있는 대부분의 시각화 결과물들과 그 코드를 볼 수 있다.
+R에서 사용할 수 있는 많은 시각화 패키지가 존재하지만, 여기서는 Hadley Wickham이 개발한 `ggplot2` 패키지 위주로 설명하고자 한다. ggplot2 문법은 데이터 시각화를 위한 매우 직관적이고 일관된 방법을 제공하여 사용자가 효율적으로 그래프를 생성하고 사용자 지정할 수 있도록 도와준다. 무엇보다 ggplot2는 다른 tidyverse 패키지와의 호환성이 뛰어나며, 많은 사용자 기반으로 풍부한 문서와 예제를 제공하여 사용자들이 학습하고 사용할 수 있다. 
+
+본 챕터에서는 ggplot2을 통해 데이터셋을 지정하고, 어떤 변수를 x축 또는 y축에 매핑할 것인지, 어떤 유형의 그래프를 그릴 것인지, 색상, 크기, 선 스타일 등의 추가적인 매개 변수를 설정하는 방법을 알아보도록 하자. 그 전에 [R 그래프 갤러리](https://r-graph-gallery.com/ggplot2-package.html)에 접속하면 R로 만들 수 있는 대부분의 시각화 결과물들과 그 코드를 볼 수 있다.
+
+ggplot2 패키지를 사용하기 위해서는 먼저 패키지를 설치하고 불러와야 한다. ggplot2는 tidyverse 패키지에 포함되어 있으므로 tidyverse 패키지를 불러오면 ggplot2도 함께 불러와진다.
+
+```r
+library(ggplot2)
+```
+
+## ggplot2 기본 문법
+ggplot2의 기본 문법은 다음과 같다. 지금은 이 문법을 외우는 것보다는 어떤 요소들이 존재하는지를 파악하는 것에 집중하자. 
+
+```r
+ggplot(data = <DATA>) + 
+  <geom_*>(
+    mapping = aes(<MAPPINGS>),
+    stat = <STAT>,
+    position = <POSITION>
+  ) +
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION>
+```
+
+- `ggplot()` 함수는 데이터셋을 지정한다.
+- `+` 기호는 ggplot2에서 여러 개의 레이어를 추가할 때 사용한다.
+- `aes()` 함수는 데이터셋의 변수를 x축 또는 y축에 매핑한다. 이는 x축만 존재할 수도 있고, y축만 존재할 수도 있다. x축과 y축 모두 존재할 수도 있다. `color =`, `fill =`, `size =`, `shape =`, `linetype =` 등의 매개 변수를 사용하여 group 별 색상, 크기, 선 스타일 등을 지정할 수 있다.
+- `geom_*()` 함수는 데이터셋을 어떤 유형의 그래프로 그릴 것인지를 지정한다. `geom_*()` 함수는 `geom_point()`, `geom_line()`, `geom_bar()`, `geom_boxplot()` 등이 있다.
+- `stat` 매개 변수는 데이터를 어떻게 요약할 것인지를 지정한다. 예를 들어, `geom_bar()` 함수를 사용할 때 `stat = "identity"`를 지정하면 데이터셋의 값을 그대로 표현하고, `stat = "count"`를 지정하면 데이터셋의 값을 개수로 표현한다.
+- `position` 매개 변수는 데이터를 어떻게 배치할 것인지를 지정한다. 예를 들어, `geom_bar()` 함수를 사용할 때 `position = "dodge"`를 지정하면 데이터를 그룹별로 나누어 표현하고, `position = "fill"`을 지정하면 데이터를 비율로 표현한다.
+- `coord_*()` 함수는 좌표계를 지정한다. `coord_*()` 함수는 `coord_flip()`, `coord_polar()` 등이 있다.
+- `facet_*()` 함수는 그래프를 여러 개의 패널로 나누어 표현한다. `facet_*()` 함수는 `facet_wrap()`, `facet_grid()` 등이 있다.
+
+## 데이터셋과 좌표계 지정하기
+ggplot2를 사용하기 위해서는 먼저 데이터셋을 지정해야 한다. datatoys의 `petNames` 데이터셋은 마포구 반려동물 이름 통계를 제공한다. 이 데이터셋을 사용하여 ggplot2를 사용해보자. 
+
+```{r}
+library(datatoys)
+library(ggplot2)
+
+top10 <- petNames %>% 
+  arrange(desc(건수)) %>% 
+  slice(1:10)
+```
+
+먼저 `petNames` 데이터셋을 `건수` 변수를 기준으로 내림차순 정렬하고, 상위 10개의 데이터만 추출하여 `top10` 데이터셋을 생성하였다. 이제 `top10` 데이터셋을 사용하여 ggplot2를 사용해보자. 
+
+```{r}
+ggplot(data = top10)
+```
+
+만약 빈 화면만 뜬다면 정확히 한 것이다. 여기에 `aes()` 함수를 사용하여 `x` 매개 변수에 `동물이름` 변수를 매핑하면 x축에 `동물이름` 변수를 표현할 수 있다. 
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름))
+```
+
+이번에는 y축에 `건수` 변수를 매핑해보자. 
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수))
+```
+
+`+`를 사용하여 `geom_col()` 함수를 추가하면 막대 그래프를 그릴 수 있다. 앞서 `ggplot()` 함수를 이용해 지정한 좌표계 위에 레이어를 쌓는 것이다. 
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col()
+```
+
+막대그래프를 통해 각 동물 이름별로 반려동물 등록 건수를 확인할 수 있지만, 정확한 값을 확인하기 어렵다. 이를 해결하기 위해서는 `geom_text()`를 사용해 새로운 레이어를 추가해준다. `geom_col()` 다음에 위치하는 것을 주목하라.
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수))
+```
+
+기본적으로 ggplot2는 레이어(layer; 층)를 쌓으면서 그래프를 그린다. 이는 마치 투명한 셀로판지에 그린 그림 여러 장을 쌓는 것과 유사하다. 이때, 먼저 그린 그림이 아래에 위치하고, 나중에 그린 그림이 위에 위치한다. 이를 통해 먼저 그린 그림이 가려지지 않고, 나중에 그린 그림이 가려지는 효과를 얻을 수 있다. 
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_text(aes(label = 건수)) +
+  geom_col()
+```
+
+위 그래프와 순서만 바꿨을 뿐인데 `geom_text()`의 결과가 일부 보이지 않는다. 이는 그 위에 쌓여진 `geom_col()` 함수가 그린 결과물이 `geom_text()` 함수의 결과물을 가려버렸기 때문이다. 다시 원래대로 순서를 바꿔주고, `vjust =` 매개 변수를 사용하여 텍스트의 위치를 조정해 보자. 보다 보기 좋아질 것이다.
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수), vjust = -0.5)
+```
+
+`coord_flip()` 함수를 사용하면 x축과 y축을 바꿀 수 있다. `geom_text()` 함수의 `vjust =` 매개 변수가 `hjust =`로 바뀐 것은 `coord_flip()` 함수를 사용하면 x축과 y축이 바뀌기 때문이다.
+
+```{r} 
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수), hjust = -0.5) +
+  coord_flip()
+```
+
+`coord_*` 함수는 좌표계를 지정하는 함수이다. `coord_flip()` 함수는 좌표계를 수평으로 뒤집는다. `coord_polar()` 함수는 좌표계를 극좌표계로 변환한다. `coord_*` 계열 함수에는 `coord_cartesian()`, `coord_fixed()`, `coord_map()` 등이 있다. 
 
 
-## pivot_*()
-### pivot_wider()
-### pivot_longer()
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수)) +
+  coord_polar()
+```
 
+만약 우리만 이 그래프를 볼 목적이라면 상관 없겠지만, 아무것도 모르는 사람이 이 그래프를 보면 무슨 의미인지 알 수 없다. `labs()` 함수를 사용하면 그래프의 제목(title), 부제목(subtitle), 캡션(caption), x축과 y축의 이름을 지정할 수 있다. 그래프에 대한 설명을 추가해 보다 뜻을 명확하게 해 보자.
+
+```{r}
+ggplot(data = top10, aes(x = 동물이름, y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수), hjust = -0.5) +
+  coord_flip() +
+  labs(
+    title = "마포구 반려동물 이름 통계",
+    subtitle = "상위 10개의 반려동물 이름",
+    caption = "데이터 출처: 마포구청",
+    x = "반려동물 이름",
+    y = "등록 건수"
+  )
+```
+
+보다 명확한 그래프를 만들었다. 충분히 아름다운 그래프지만 그래프에서 아쉬운 점을 하나 찾아본다면 막대그래프의 순서이다. 큰 순서부터, 또는 작은 순서부터 보여주는 방법은 없을까? `reorder()` 함수를 사용하면 막대그래프의 순서를 변경할 수 있다. `reorder(x, y)` 함수는 `x` 매개 변수에 지정한 변수를 `y` 매개 변수에 지정한 변수의 크기에 따라 재정렬한다. `-`를 사용하면 내림차순으로 정렬한다. 
+
+```{r}
+ggplot(data = top10, aes(x = reorder(동물이름, 건수), y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수), hjust = -0.5) +
+  coord_flip() +
+  labs(
+    title = "마포구 반려동물 이름 통계",
+    subtitle = "상위 10개의 반려동물 이름",
+    caption = "데이터 출처: 마포구청",
+    x = "반려동물 이름",
+    y = "등록 건수"
+  )
+```
+
+## ggplot2 themes
+ggplot2는 기본적으로 흰색 배경에 회색 격자를 그리는데, 이를 변경할 수 있다. `theme_*()` 함수를 사용하여 테마를 변경할 수 있다. `ggthemes` 패키지를 통해 다양한 추가 테마를 사용할 수 있다. 
+
+```{r}
+library(ggthemes)
+
+ggplot(data = top10, aes(x = reorder(동물이름, 건수), y = 건수)) +
+  geom_col() +
+  geom_text(aes(label = 건수), hjust = -0.5) +
+  coord_flip() +
+  labs(
+    title = "마포구 반려동물 이름 통계",
+    subtitle = "상위 10개의 반려동물 이름",
+    caption = "데이터 출처: 마포구청"
+  ) +
+  theme_fivethirtyeight(base_family = "NanumGothic")
+```

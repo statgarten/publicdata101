@@ -53,10 +53,11 @@ left_join
 글씨text
 배치layout
 그-외-요소들
+시각화
 ggplot2-소개
-pivot_
-pivot_wider
-pivot_longer
+ggplot2-기본-문법
+데이터셋과-좌표계-지정하기
+ggplot2-themes
 실전-공공데이터-프로젝트
 울릉도의-버스정류장-gis-분석
 어떤-나라부터-도와줘야-할까-oda-데이터-분석
@@ -67,3 +68,4 @@ statgarten
 cui보다-gui가-좋을-때
 statgarten-소개
 나가는-말
+호선-지하철-혼잡도-분석-서울-지하철-데이터-분석
