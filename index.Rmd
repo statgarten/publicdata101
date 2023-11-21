@@ -1,6 +1,6 @@
 --- 
 title: "공공데이터 분석 101"
-author: "Project Statgarten"
+author: "Project Statgarten: 김진환, 나영준"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
